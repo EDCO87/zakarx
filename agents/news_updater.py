@@ -3,7 +3,7 @@ ZAKARX News Updater Agent
 Busca noticias relevantes para pymes colombianas y actualiza las tarjetas en index.html
 """
 import os, re, json, feedparser, requests
-import anthropic
+import google.generativeai as genai
 from datetime import datetime
 from bs4 import BeautifulSoup
 
@@ -43,8 +43,9 @@ def fetch_news():
             print(f"⚠️  Error en feed {url}: {ex}")
     return articles[:3]
 
-def format_with_claude(articles):
-    client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
+def format_with_gemini(articles):
+    genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+    model = genai.GenerativeModel('gemini-1.5-flash')
     articles_text = "\n".join(
         [f"{i+1}. TITULO: {a['title']}\n   RESUMEN: {a['summary']}\n   FUENTE: {a['source']}"
          for i, a in enumerate(articles)]
@@ -66,13 +67,8 @@ Responde ÚNICAMENTE con JSON válido (sin markdown, sin explicaciones):
   {{"cat":"...","title":"...","desc":"...","meta":"..."}}
 ]"""
 
-    response = client.messages.create(
-        model="claude-haiku-4-5",
-        max_tokens=800,
-        messages=[{"role": "user", "content": prompt}]
-    )
-    raw = response.content[0].text.strip()
-    # Extraer JSON si viene envuelto en backticks
+    response = model.generate_content(prompt)
+    raw = response.text.strip()
     match = re.search(r'\[.*\]', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)
 
@@ -115,8 +111,8 @@ if __name__ == '__main__':
         exit(1)
     print(f"✅ {len(articles)} noticias encontradas")
 
-    print("🤖 Formateando con Claude...")
-    formatted = format_with_claude(articles)
+    print("🤖 Formateando con Gemini...")
+    formatted = format_with_gemini(articles)
 
     print("📝 Actualizando index.html...")
     update_html(formatted)

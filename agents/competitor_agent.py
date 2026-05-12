@@ -3,7 +3,7 @@ ZAKARX Competitor Agent
 Monitorea precios de Alegra, Siigo y Loggro y actualiza el texto comparativo en index.html
 """
 import os, re, json, requests
-import anthropic
+import google.generativeai as genai
 from bs4 import BeautifulSoup
 from datetime import datetime
 
@@ -31,8 +31,9 @@ def scrape_price_page(url):
     except Exception as ex:
         return f"[Error al leer página: {ex}]"
 
-def analyze_with_claude(scraped_data):
-    client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
+def analyze_with_gemini(scraped_data):
+    genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+    model = genai.GenerativeModel('gemini-1.5-flash')
     data_text = "\n".join([f"{name}: {text}" for name, text in scraped_data.items()])
 
     prompt = f"""Analiza estos datos de precios de competidores de software para pymes en Colombia:
@@ -53,12 +54,8 @@ Genera un JSON con este formato exacto:
 
 Responde ÚNICAMENTE con JSON válido, sin markdown."""
 
-    response = client.messages.create(
-        model="claude-haiku-4-5",
-        max_tokens=500,
-        messages=[{"role": "user", "content": prompt}]
-    )
-    raw = response.content[0].text.strip()
+    response = model.generate_content(prompt)
+    raw = response.text.strip()
     match = re.search(r'\{.*\}', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)
 
@@ -110,8 +107,8 @@ if __name__ == '__main__':
         print(f"  → {name}...")
         scraped[name] = scrape_price_page(url)
 
-    print("🤖 Analizando con Claude...")
-    data = analyze_with_claude(scraped)
+    print("🤖 Analizando con Gemini...")
+    data = analyze_with_gemini(scraped)
     print(f"  Alegra: {data.get('alegra_precio')}")
     print(f"  Siigo:  {data.get('siigo_precio')}")
     print(f"  Loggro: {data.get('loggro_precio')}")

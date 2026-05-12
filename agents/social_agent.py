@@ -4,7 +4,7 @@ Genera posts listos para publicar en Instagram, LinkedIn y Twitter/X
 basados en las noticias actuales del sitio y tendencias del mercado.
 """
 import os, re, json, feedparser
-import anthropic
+import google.generativeai as genai
 from datetime import datetime
 from bs4 import BeautifulSoup
 
@@ -45,8 +45,9 @@ def fetch_trending():
             pass
     return topics[:5]
 
-def generate_posts_with_claude(news, trends):
-    client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
+def generate_posts_with_gemini(news, trends):
+    genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+    model = genai.GenerativeModel('gemini-1.5-flash')
 
     news_text = "\n".join([f"- [{n['cat']}] {n['title']}: {n['desc']}" for n in news])
     trends_text = "\n".join([f"- {t}" for t in trends])
@@ -86,12 +87,8 @@ Responde ÚNICAMENTE con JSON válido:
   }}
 }}"""
 
-    response = client.messages.create(
-        model="claude-haiku-4-5",
-        max_tokens=2000,
-        messages=[{"role": "user", "content": prompt}]
-    )
-    raw = response.content[0].text.strip()
+    response = model.generate_content(prompt)
+    raw = response.text.strip()
     match = re.search(r'\{.*\}', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)
 
@@ -156,8 +153,8 @@ if __name__ == '__main__':
     trends = fetch_trending()
     print(f"  {len(trends)} tendencias encontradas")
 
-    print("🤖 Generando posts con Claude...")
-    posts = generate_posts_with_claude(news, trends)
+    print("🤖 Generando posts con Gemini...")
+    posts = generate_posts_with_gemini(news, trends)
 
     print("📝 Escribiendo social-posts.md...")
     write_social_posts(posts, date_str)

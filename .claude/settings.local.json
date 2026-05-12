@@ -18,7 +18,13 @@
       "Bash(pip show *)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git config *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(cd \"C:\\\\Users\\\\elias\\\\Desktop\\\\ZAKARX\\\\Pagina Web\" && sed -i 's/ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}/GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}/g' .github/workflows/*.yml && echo \"Done\")"
     ]
   }
 }

@@ -4,7 +4,7 @@ Actualiza meta tags, description, keywords y OG tags en index.html
 según tendencias de búsqueda actuales para pymes colombianas.
 """
 import os, re, json, feedparser
-import anthropic
+import google.generativeai as genai
 from datetime import datetime
 
 TREND_FEEDS = [
@@ -25,7 +25,8 @@ def fetch_trending_topics():
     return topics[:15]
 
 def generate_seo_with_claude(topics, current_html):
-    client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
+    genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+    model = genai.GenerativeModel('gemini-1.5-flash')
 
     # Extraer meta tags actuales del HTML
     desc_match = re.search(r'<meta name="description" content="([^"]*)"', current_html)
@@ -66,12 +67,8 @@ Responde ÚNICAMENTE con JSON válido:
   "og_title": "ZAKARX — Suite Digital para Pymes | Pago Único"
 }}"""
 
-    response = client.messages.create(
-        model="claude-haiku-4-5",
-        max_tokens=600,
-        messages=[{"role": "user", "content": prompt}]
-    )
-    raw = response.content[0].text.strip()
+    response = model.generate_content(prompt)
+    raw = response.text.strip()
     match = re.search(r'\{.*\}', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)
 

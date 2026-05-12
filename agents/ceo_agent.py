@@ -3,7 +3,7 @@ ZAKARX CEO Agent
 Revisa el estado completo del sitio y genera reporte semanal para Elias.
 """
 import os, re, json, feedparser, requests
-import anthropic
+import google.generativeai as genai
 from datetime import datetime
 from bs4 import BeautifulSoup
 
@@ -64,8 +64,9 @@ def fetch_market_news():
             pass
     return news
 
-def generate_report_with_claude(audit, news):
-    client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
+def generate_report_with_gemini(audit, news):
+    genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+    model = genai.GenerativeModel('gemini-1.5-flash')
 
     prompt = f"""Eres el agente CEO de ZAKARX, una suite digital para pymes colombianas.
 El dueño es Elias (corrales.elias@gmail.com). Genera el reporte semanal.
@@ -89,12 +90,8 @@ Genera un reporte ejecutivo conciso con:
 
 Tono: directo, ejecutivo, orientado a acción. Máx 300 palabras."""
 
-    response = client.messages.create(
-        model="claude-haiku-4-5",
-        max_tokens=600,
-        messages=[{"role": "user", "content": prompt}]
-    )
-    return response.content[0].text.strip()
+    response = model.generate_content(prompt)
+    return response.text.strip()
 
 def write_report(audit, report_text):
     now = datetime.now()
@@ -137,8 +134,8 @@ if __name__ == '__main__':
     print("📰 Buscando noticias del mercado...")
     news = fetch_market_news()
 
-    print("🤖 Generando reporte con Claude...")
-    report = generate_report_with_claude(audit, news)
+    print("🤖 Generando reporte con Gemini...")
+    report = generate_report_with_gemini(audit, news)
 
     print("📝 Escribiendo reporte-semanal.md...")
     write_report(audit, report)

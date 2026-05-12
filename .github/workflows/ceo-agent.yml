@@ -26,6 +26,7 @@ jobs:
         run: python agents/ceo_agent.py
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PYTHONPATH: agents
 
       - name: Commit & Push report
         run: |

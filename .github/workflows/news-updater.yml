@@ -26,6 +26,7 @@ jobs:
         run: python agents/news_updater.py
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PYTHONPATH: agents
 
       - name: Commit & Push changes
         run: |

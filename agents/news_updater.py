@@ -3,7 +3,7 @@ ZAKARX News Updater Agent
 Busca noticias relevantes para pymes colombianas y actualiza las tarjetas en index.html
 """
 import os, re, json, feedparser, requests
-from google import genai
+from gemini import ask
 from datetime import datetime
 from bs4 import BeautifulSoup
 
@@ -44,7 +44,6 @@ def fetch_news():
     return articles[:3]
 
 def format_with_gemini(articles):
-    client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
     articles_text = "\n".join(
         [f"{i+1}. TITULO: {a['title']}\n   RESUMEN: {a['summary']}\n   FUENTE: {a['source']}"
          for i, a in enumerate(articles)]
@@ -66,8 +65,7 @@ Responde ÚNICAMENTE con JSON válido (sin markdown, sin explicaciones):
   {{"cat":"...","title":"...","desc":"...","meta":"..."}}
 ]"""
 
-    response = client.models.generate_content(model='gemini-1.5-flash', contents=prompt)
-    raw = response.text.strip()
+    raw = ask(prompt)
     match = re.search(r'\[.*\]', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)
 

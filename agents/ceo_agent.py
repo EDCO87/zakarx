@@ -3,7 +3,7 @@ ZAKARX CEO Agent
 Revisa el estado completo del sitio y genera reporte semanal para Elias.
 """
 import os, re, json, feedparser, requests
-from google import genai
+from gemini import ask
 from datetime import datetime
 from bs4 import BeautifulSoup
 
@@ -65,7 +65,6 @@ def fetch_market_news():
     return news
 
 def generate_report_with_gemini(audit, news):
-    client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
 
     prompt = f"""Eres el agente CEO de ZAKARX, una suite digital para pymes colombianas.
 El dueño es Elias (corrales.elias@gmail.com). Genera el reporte semanal.
@@ -89,8 +88,7 @@ Genera un reporte ejecutivo conciso con:
 
 Tono: directo, ejecutivo, orientado a acción. Máx 300 palabras."""
 
-    response = client.models.generate_content(model='gemini-1.5-flash', contents=prompt)
-    return response.text.strip()
+    return ask(prompt)
 
 def write_report(audit, report_text):
     now = datetime.now()

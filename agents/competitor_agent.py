@@ -3,7 +3,7 @@ ZAKARX Competitor Agent
 Monitorea precios de Alegra, Siigo y Loggro y actualiza el texto comparativo en index.html
 """
 import os, re, json, requests
-from google import genai
+from gemini import ask
 from bs4 import BeautifulSoup
 from datetime import datetime
 
@@ -32,7 +32,6 @@ def scrape_price_page(url):
         return f"[Error al leer página: {ex}]"
 
 def analyze_with_gemini(scraped_data):
-    client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
     data_text = "\n".join([f"{name}: {text}" for name, text in scraped_data.items()])
 
     prompt = f"""Analiza estos datos de precios de competidores de software para pymes en Colombia:
@@ -53,8 +52,7 @@ Genera un JSON con este formato exacto:
 
 Responde ÚNICAMENTE con JSON válido, sin markdown."""
 
-    response = client.models.generate_content(model='gemini-1.5-flash', contents=prompt)
-    raw = response.text.strip()
+    raw = ask(prompt)
     match = re.search(r'\{.*\}', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)
 

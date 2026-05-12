@@ -26,6 +26,7 @@ jobs:
         run: python agents/competitor_agent.py
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PYTHONPATH: agents
 
       - name: Commit & Push changes
         run: |

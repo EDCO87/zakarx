@@ -59,6 +59,7 @@ def fetch_news():
                     'title':   e.title,
                     'summary': summary,
                     'source':  e.get('source', {}).get('title', 'Google News'),
+                    'link':    e.get('link', '#'),
                 })
         except Exception as ex:
             print(f"⚠️  Error en feed: {ex}")
@@ -74,6 +75,7 @@ def format_no_ai(articles):
             'title': truncate(a['title'], 65),
             'desc':  truncate(a['summary'], 110) if a['summary'] else 'Lee más sobre este tema relevante para tu negocio.',
             'meta':  f"{a['source']} • hoy",
+            'link':  a.get('link', '#'),
         })
     return result
 
@@ -82,6 +84,8 @@ def format_with_gemini(articles):
         [f"{i+1}. TITULO: {a['title']}\n   RESUMEN: {a['summary']}\n   FUENTE: {a['source']}"
          for i, a in enumerate(articles)]
     )
+    links = [a.get('link', '#') for a in articles]
+
     prompt = f"""Tienes estas 3 noticias recientes para pymes colombianas/latinoamericanas:
 
 {articles_text}
@@ -103,7 +107,11 @@ Responde ÚNICAMENTE con JSON válido:
     fallback_json = json.dumps(format_no_ai(articles), ensure_ascii=False)
     raw = ask(prompt, fallback=fallback_json)
     match = re.search(r'\[.*\]', raw, re.DOTALL)
-    return json.loads(match.group(0) if match else raw)
+    result = json.loads(match.group(0) if match else raw)
+    # Inyectar links (la IA no los modifica, los tomamos del RSS original)
+    for i, item in enumerate(result):
+        item['link'] = links[i] if i < len(links) else '#'
+    return result
 
 def replace_news_grid(html, new_content):
     """Reemplaza el contenido completo de div#news-grid contando divs anidados."""
@@ -135,8 +143,9 @@ def update_html(articles_data):
     cards_html = ""
     for i, a in enumerate(articles_data):
         img = UNSPLASH_IMAGES[i % len(UNSPLASH_IMAGES)]
+        link = a.get('link', '#')
         cards_html += f'''
-        <article class="news-card">
+        <a class="news-card" href="{link}" target="_blank" rel="noopener noreferrer">
           <img class="news-card-img" src="{img}" alt="{a['title']}" loading="lazy">
           <div class="news-card-body">
             <span class="news-cat">{a['cat']}</span>
@@ -144,7 +153,7 @@ def update_html(articles_data):
             <p class="news-desc">{a['desc']}</p>
             <span class="news-meta">{a['meta']}</span>
           </div>
-        </article>'''
+        </a>'''
 
     html = replace_news_grid(html, cards_html + "\n      ")
 

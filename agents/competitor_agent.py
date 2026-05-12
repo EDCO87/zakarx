@@ -53,7 +53,7 @@ Genera un JSON con este formato exacto:
 
 Responde ÚNICAMENTE con JSON válido, sin markdown."""
 
-    response = client.models.generate_content(model='gemini-2.0-flash', contents=prompt)
+    response = client.models.generate_content(model='gemini-1.5-flash', contents=prompt)
     raw = response.text.strip()
     match = re.search(r'\{.*\}', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)

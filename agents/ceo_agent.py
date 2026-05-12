@@ -89,7 +89,7 @@ Genera un reporte ejecutivo conciso con:
 
 Tono: directo, ejecutivo, orientado a acción. Máx 300 palabras."""
 
-    response = client.models.generate_content(model='gemini-2.0-flash', contents=prompt)
+    response = client.models.generate_content(model='gemini-1.5-flash', contents=prompt)
     return response.text.strip()
 
 def write_report(audit, report_text):

@@ -1,21 +1,28 @@
 """
-Wrapper para la API REST de Gemini.
-Prueba varios modelos en orden hasta que uno responda correctamente.
+Wrapper para Gemini API con fallback a formateo básico sin IA.
+Si la API falla, los agentes siguen funcionando con lógica Python pura.
 """
 import os, requests
 
 MODELS = [
-    ("v1",    "gemini-pro"),
-    ("v1beta","gemini-1.5-flash"),
-    ("v1beta","gemini-1.5-flash-latest"),
-    ("v1beta","gemini-1.5-pro"),
-    ("v1beta","gemini-2.0-flash-lite"),
+    ("v1beta", "gemini-2.0-flash"),
+    ("v1beta", "gemini-2.0-flash-lite"),
+    ("v1beta", "gemini-1.5-flash"),
+    ("v1",     "gemini-pro"),
 ]
 
-def ask(prompt: str) -> str:
-    api_key = os.environ['GEMINI_API_KEY']
+def ask(prompt: str, fallback: str = None) -> str:
+    """
+    Llama a Gemini. Si falla, retorna `fallback` si se provee,
+    o lanza excepción si no hay fallback.
+    """
+    api_key = os.environ.get('GEMINI_API_KEY', '')
+    if not api_key:
+        if fallback is not None:
+            return fallback
+        raise RuntimeError("GEMINI_API_KEY no configurada")
+
     payload = {"contents": [{"parts": [{"text": prompt}]}]}
-    errors = []
 
     for version, model in MODELS:
         url = (
@@ -26,10 +33,12 @@ def ask(prompt: str) -> str:
             r = requests.post(url, json=payload, timeout=30)
             if r.status_code == 200:
                 text = r.json()['candidates'][0]['content']['parts'][0]['text'].strip()
-                print(f"✅ Gemini OK con modelo: {model}")
+                print(f"✅ Gemini OK ({model})")
                 return text
-            errors.append(f"{model}: HTTP {r.status_code} — {r.text[:120]}")
-        except Exception as e:
-            errors.append(f"{model}: {e}")
+        except Exception:
+            pass
 
-    raise RuntimeError("Ningún modelo de Gemini respondió:\n" + "\n".join(errors))
+    print("⚠️  Gemini no disponible — usando modo sin IA")
+    if fallback is not None:
+        return fallback
+    raise RuntimeError("API no disponible y no se proporcionó fallback")

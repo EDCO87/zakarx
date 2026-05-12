@@ -52,7 +52,14 @@ Genera un JSON con este formato exacto:
 
 Responde ÚNICAMENTE con JSON válido, sin markdown."""
 
-    raw = ask(prompt)
+    fallback = json.dumps({
+        "alegra_precio": "desde $69.900/mes",
+        "siigo_precio": "desde $179.000/mes",
+        "loggro_precio": "desde $179.000/mes",
+        "argumento": "3 meses de Alegra = ZAKARX Pro para siempre",
+        "urgency_text": "Alegra cobra $69.900/mes. ZAKARX: pago único."
+    }, ensure_ascii=False)
+    raw = ask(prompt, fallback=fallback)
     match = re.search(r'\{.*\}', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)
 

@@ -88,7 +88,21 @@ Genera un reporte ejecutivo conciso con:
 
 Tono: directo, ejecutivo, orientado a acción. Máx 300 palabras."""
 
-    return ask(prompt)
+    issues_text = "\n".join(f"- {i}" for i in audit['issues']) if audit['issues'] else "- Ninguno 🎉"
+    fallback = f"""## Estado del sitio: 🟡 Revisión manual recomendada
+
+**Auditoría automática completada** (modo sin IA):
+
+### Problemas detectados
+{issues_text}
+
+### Noticias del mercado esta semana
+{chr(10).join(f'- {n}' for n in news[:3])}
+
+### Recomendación
+Revisar los problemas pendientes y mantener el sitio actualizado.
+El sistema autónomo está funcionando correctamente."""
+    return ask(prompt, fallback=fallback)
 
 def write_report(audit, report_text):
     now = datetime.now()

@@ -85,7 +85,26 @@ Responde ÚNICAMENTE con JSON válido:
   }}
 }}"""
 
-    raw = ask(prompt)
+    news_titles = " | ".join([n['title'] for n in news[:2]])
+    fallback = json.dumps({
+        "instagram": {
+            "caption": f"💡 ¿Sabías que el 70% de las pymes en LATAM aún no usan herramientas digitales? Con ZAKARX tienes 18 herramientas en un solo pago. Sin mensualidades. Sin sorpresas. 🚀\n\n{news_titles}\n\n#pymes #emprendimiento #Colombia #ZAKARX #herramientasdigitales #emprendedoreslatam",
+            "slide1": "¿Aún pagando mensual por tu software?",
+            "slide2": "18 herramientas digitales para tu pyme",
+            "slide3": "CRM, Facturación, IA y mucho más",
+            "slide4": "Un solo pago. Para siempre.",
+            "slide5": "Conoce ZAKARX — zakarx.netlify.app"
+        },
+        "linkedin": f"Las pymes latinoamericanas enfrentan un reto real: pagar suscripciones mensuales por herramientas digitales consume entre $500.000 y $2.000.000 COP al año.\n\nZAKARX ofrece una alternativa: 18 herramientas digitales con un único pago.\n\nEsta semana en el mercado pyme: {news_titles}\n\n¿Tu empresa ya está digitalizada? #pymes #Colombia #transformaciondigital #ZAKARX",
+        "twitter": {
+            "t1": "🧵 El mayor error de las pymes en LATAM: pagar suscripciones eternas por software que no necesitan.",
+            "t2": "Alegra: $69.900/mes. Siigo: $179.000/mes. En 12 meses ya pagaste más de $2 millones.",
+            "t3": "Con ZAKARX pagas UNA VEZ y tienes 18 herramientas para siempre. CRM, facturación, IA...",
+            "t4": f"Noticia de la semana: {news_titles[:100]}...",
+            "t5": "¿Listo para dejar las suscripciones? → zakarx.netlify.app #pymes #Colombia #ZAKARX"
+        }
+    }, ensure_ascii=False)
+    raw = ask(prompt, fallback=fallback)
     match = re.search(r'\{.*\}', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)
 

@@ -65,7 +65,13 @@ Responde ÚNICAMENTE con JSON válido:
   "og_title": "ZAKARX — Suite Digital para Pymes | Pago Único"
 }}"""
 
-    raw = ask(prompt)
+    fallback = json.dumps({
+        "description": "ZAKARX — 18 herramientas digitales para pymes colombianas. CRM, facturación, IA y más. Pago único, sin suscripciones.",
+        "keywords": ", ".join(topics[:10]) + ", software pymes, herramientas digitales, Colombia, ZAKARX",
+        "og_description": "Suite digital completa para pymes latinoamericanas. 18 herramientas en un solo pago. Sin mensualidades.",
+        "og_title": "ZAKARX — Suite Digital para Pymes | Pago Único"
+    }, ensure_ascii=False)
+    raw = ask(prompt, fallback=fallback)
     match = re.search(r'\{.*\}', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)
 

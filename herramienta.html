@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<title>Herramienta — ZAKARX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:#0a0b14;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+:root{
+  --accent:#00dcc8;--accent-dark:#00b8a6;--accent-light:#e0faf8;
+  --gold:#f5c842;--border:#e8eaf2;--text:#0a0b14;--text2:#4a4d60;--text3:#8b8fa8;
+  --shadow:0 4px 16px rgba(0,0,0,.07);--shadow-lg:0 20px 60px rgba(0,0,0,.10);
+  --radius:12px;--max:1000px;--transition:200ms cubic-bezier(.4,0,.2,1);
+}
+
+/* Navbar */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:66px}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;display:flex;align-items:center;gap:8px}
+.nav-logo-mark{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:#fff}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{padding:8px 12px;border-radius:8px;font-size:.88rem;font-weight:500;color:var(--text2);transition:all var(--transition)}
+.nav-links a:hover{color:var(--accent-dark)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;border:2px solid transparent;transition:all var(--transition)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 4px 16px rgba(0,220,200,.3)}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.btn-sm{padding:8px 18px;font-size:.82rem}
+
+/* Hero */
+#hero{padding:130px 24px 60px;text-align:center;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(0,220,200,.07),transparent 60%),#fff;border-bottom:1px solid var(--border)}
+.breadcrumb{font-size:.82rem;color:var(--text3);margin-bottom:20px}
+.breadcrumb a{color:var(--accent-dark)}
+.breadcrumb span{margin:0 6px}
+.tool-icon-big{font-size:4rem;margin-bottom:16px;display:block}
+#hero h1{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:14px}
+#hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#hero p{font-size:1.05rem;color:var(--text2);max-width:540px;margin:0 auto 32px}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-outline{background:transparent;color:var(--text);border-color:var(--border)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent-dark);background:var(--accent-light)}
+.btn-lg{padding:16px 32px;font-size:1rem}
+
+/* Features */
+#features{padding:80px 24px;background:#f7f8fc}
+.container{max-width:var(--max);margin:0 auto}
+.section-label{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);display:block;margin-bottom:14px;text-align:center}
+#features h2{font-size:clamp(1.6rem,3vw,2.4rem);text-align:center;margin-bottom:48px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.feat-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);padding:28px 24px;transition:all .25s}
+.feat-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:var(--accent)}
+.feat-icon{font-size:1.8rem;margin-bottom:12px}
+.feat-card h3{font-size:1rem;margin-bottom:8px}
+.feat-card p{font-size:.88rem;color:var(--text2)}
+
+/* Demo section */
+#demo{padding:80px 24px}
+#demo h2{font-size:clamp(1.6rem,3vw,2.4rem);text-align:center;margin-bottom:40px}
+.demo-window{max-width:760px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);border:1.5px solid var(--border)}
+.demo-bar{background:#f0f0f3;padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.demo-dot{width:12px;height:12px;border-radius:50%}
+.demo-title{font-size:.82rem;color:var(--text3);margin-left:8px;font-family:'Syne',sans-serif;font-weight:600}
+.demo-body{background:#fff;padding:32px;min-height:300px}
+.demo-row{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.demo-field{flex:1;min-width:140px}
+.demo-field label{display:block;font-size:.75rem;font-weight:600;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
+.demo-input{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.9rem;color:var(--text2);background:#f9f9fb;font-family:'DM Sans',sans-serif}
+.demo-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:11px 22px;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;cursor:pointer;margin-top:8px}
+.demo-badge{display:inline-block;background:var(--accent-light);color:var(--accent-dark);font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:100px;margin-left:8px}
+.demo-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.demo-table th{text-align:left;padding:8px 12px;font-family:'Syne',sans-serif;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);border-bottom:2px solid var(--border)}
+.demo-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text2)}
+.demo-table tr:last-child td{border-bottom:none}
+.tag{display:inline-block;padding:2px 10px;border-radius:100px;font-size:.75rem;font-weight:600}
+.tag-green{background:#e0faf8;color:#00b8a6}
+.tag-gold{background:#fef9e7;color:#c9a000}
+.tag-gray{background:#f0f0f3;color:#8b8fa8}
+
+/* CTA */
+#cta{padding:80px 24px;background:linear-gradient(135deg,#0a0b14 0%,#1a1d2e 100%);text-align:center;color:#fff}
+#cta h2{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:16px}
+#cta h2 span{color:var(--accent)}
+#cta p{color:rgba(255,255,255,.65);font-size:1rem;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+.btn-white{background:#fff;color:#0a0b14;border-color:#fff}
+.btn-white:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-accent-outline{background:transparent;color:var(--accent);border-color:rgba(0,220,200,.4)}
+.btn-accent-outline:hover{background:rgba(0,220,200,.1)}
+
+/* Footer */
+footer{padding:24px;text-align:center;font-size:.82rem;color:var(--text3);border-top:1px solid var(--border)}
+footer a{color:var(--accent-dark)}
+
+@media(max-width:600px){
+  .hero-actions{flex-direction:column;align-items:center}
+  .demo-body{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">Z</div>
+      ZAKARX
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="herramientas.html">Herramientas</a>
+      <a href="precios.html">Precios</a>
+    </div>
+    <a href="precios.html" class="btn btn-primary btn-sm">Ver planes →</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="breadcrumb">
+    <a href="herramientas.html">← Herramientas</a>
+  </div>
+  <span class="tool-icon-big" id="t-icon">🛠️</span>
+  <h1 id="t-title">Cargando herramienta<span>…</span></h1>
+  <p id="t-desc">Descripción de la herramienta.</p>
+  <div class="hero-actions">
+    <a id="wa-btn" href="#" class="btn btn-primary btn-lg">💬 Quiero acceder</a>
+    <a href="herramientas.html" class="btn btn-outline btn-lg">← Ver todas</a>
+  </div>
+</section>
+
+<section id="features">
+  <div class="container">
+    <span class="section-label">Funcionalidades</span>
+    <h2>¿Qué puedes hacer?</h2>
+    <div class="features-grid" id="t-features"></div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="container">
+    <h2>Vista previa</h2>
+    <div class="demo-window">
+      <div class="demo-bar">
+        <div class="demo-dot" style="background:#ff5f57"></div>
+        <div class="demo-dot" style="background:#febc2e"></div>
+        <div class="demo-dot" style="background:#28c840"></div>
+        <span class="demo-title" id="demo-title">ZAKARX — Demo</span>
+      </div>
+      <div class="demo-body" id="demo-body">
+        <!-- Generado por JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="container">
+    <h2>¿Listo para usar <span id="cta-name">esta herramienta</span>?</h2>
+    <p>Contáctanos por WhatsApp y te damos acceso hoy mismo.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a id="wa-btn2" href="#" class="btn btn-white btn-lg">💬 Escribir por WhatsApp</a>
+      <a href="precios.html" class="btn btn-accent-outline btn-lg">Ver planes</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 ZAKARX · <a href="index.html">Inicio</a> · <a href="herramientas.html">Herramientas</a> · <a href="precios.html">Precios</a>
+</footer>
+
+<script>
+var TOOLS = {
+  'crm': {
+    icon:'🤝', name:'CRM Liviano', cat:'Ventas',
+    desc:'Gestiona tus clientes, oportunidades y seguimientos desde un solo lugar. Sin complicaciones, sin Excel perdidos.',
+    features:[
+      {icon:'📋',title:'Pipeline de ventas',desc:'Visualiza en qué etapa está cada cliente y qué acción necesita.'},
+      {icon:'🔔',title:'Recordatorios automáticos',desc:'Recibe alertas para hacer seguimiento en el momento exacto.'},
+      {icon:'📊',title:'Historial completo',desc:'Todo el historial de contacto con cada cliente en un clic.'},
+      {icon:'🏷️',title:'Etiquetas y filtros',desc:'Organiza clientes por sector, estado o valor potencial.'},
+    ],
+    demo:'crm'
+  },
+  'cotizaciones': {
+    icon:'📄', name:'Cotizaciones Automáticas', cat:'Ventas',
+    desc:'Genera cotizaciones profesionales en segundos. Personaliza con tu marca y envía directo al cliente.',
+    features:[
+      {icon:'⚡',title:'Generación en segundos',desc:'Rellena los datos básicos y la cotización se arma sola.'},
+      {icon:'🎨',title:'Tu marca integrada',desc:'Logo, colores y datos de tu empresa en cada documento.'},
+      {icon:'📬',title:'Envío directo',desc:'Envía por WhatsApp o email sin salir de la herramienta.'},
+      {icon:'📁',title:'Historial de cotizaciones',desc:'Accede a todas tus cotizaciones anteriores en cualquier momento.'},
+    ],
+    demo:'cotizacion'
+  },
+  'facturador': {
+    icon:'🧾', name:'Facturador Simple', cat:'Ventas',
+    desc:'Crea facturas limpias y profesionales en menos de un minuto. Sin software contable complicado.',
+    features:[
+      {icon:'🧮',title:'Cálculo automático',desc:'IVA, descuentos y totales calculados automáticamente.'},
+      {icon:'📤',title:'Exporta en PDF',desc:'Descarga la factura lista para enviar al cliente.'},
+      {icon:'🔢',title:'Numeración automática',desc:'Consecutivos automáticos para llevar el control.'},
+      {icon:'💾',title:'Guarda clientes',desc:'Reutiliza datos de clientes frecuentes sin volver a escribirlos.'},
+    ],
+    demo:'factura'
+  },
+  'reportes-ventas': {
+    icon:'📈', name:'Reportes de Ventas', cat:'Ventas',
+    desc:'Visualiza el rendimiento de tu negocio con gráficas claras. Toma decisiones basadas en datos reales.',
+    features:[
+      {icon:'📊',title:'Dashboard en tiempo real',desc:'Ventas del día, semana y mes en un vistazo.'},
+      {icon:'🎯',title:'Metas vs resultados',desc:'Compara lo planeado con lo logrado fácilmente.'},
+      {icon:'🏆',title:'Top productos',desc:'Descubre cuáles son tus productos o servicios más rentables.'},
+      {icon:'📅',title:'Comparativos por periodo',desc:'Compara este mes con el anterior o con el año pasado.'},
+    ],
+    demo:'reporte'
+  },
+  'metricas': {
+    icon:'📊', name:'Panel de Métricas', cat:'Operaciones',
+    desc:'Todos los indicadores clave de tu negocio en un único panel. Decisiones más rápidas y certeras.',
+    features:[
+      {icon:'⚡',title:'KPIs en tiempo real',desc:'Los indicadores más importantes siempre actualizados.'},
+      {icon:'🎛️',title:'Panel personalizable',desc:'Muestra solo las métricas que importan para tu negocio.'},
+      {icon:'📉',title:'Alertas de caída',desc:'Recibe una alerta si algún indicador baja del umbral.'},
+      {icon:'📤',title:'Exporta reportes',desc:'Comparte el panel con tu equipo o socios.'},
+    ],
+    demo:'metricas'
+  },
+  'contratos': {
+    icon:'📝', name:'Generador de Contratos', cat:'Operaciones',
+    desc:'Crea contratos profesionales desde plantillas probadas. Protege tu negocio sin pagar un abogado por cada documento.',
+    features:[
+      {icon:'📋',title:'Plantillas listas',desc:'Contratos de servicio, confidencialidad, trabajo y más.'},
+      {icon:'✏️',title:'Personalización fácil',desc:'Completa los datos y el contrato se redacta solo.'},
+      {icon:'📄',title:'Descarga en PDF/Word',desc:'Listo para firmar y archivar.'},
+      {icon:'🔒',title:'Cláusulas legales',desc:'Redactado con cláusulas que protegen tu negocio.'},
+    ],
+    demo:'contrato'
+  },
+  'chatbot-ia': {
+    icon:'🤖', name:'Chatbot IA', cat:'Inteligencia Artificial',
+    desc:'Atiende a tus clientes 24/7 con un asistente inteligente entrenado con la información de tu negocio.',
+    features:[
+      {icon:'🧠',title:'Entrenado con tu negocio',desc:'Responde preguntas específicas de tus productos y servicios.'},
+      {icon:'🕐',title:'Disponible 24/7',desc:'Atiende clientes incluso cuando estás dormido.'},
+      {icon:'💬',title:'Integra con WhatsApp',desc:'El chatbot responde directo en tu WhatsApp Business.'},
+      {icon:'📊',title:'Estadísticas de consultas',desc:'Ve qué preguntan más tus clientes para mejorar tu oferta.'},
+    ],
+    demo:'chatbot'
+  },
+  'contenido-ia': {
+    icon:'✍️', name:'Generador de Contenido IA', cat:'Inteligencia Artificial',
+    desc:'Crea posts para redes sociales, descripciones de productos y textos de marketing en segundos con IA.',
+    features:[
+      {icon:'📱',title:'Posts para redes',desc:'Instagram, Facebook, LinkedIn — adaptado a cada plataforma.'},
+      {icon:'🛒',title:'Descripciones de productos',desc:'Textos que convencen y posicionan en Google.'},
+      {icon:'📧',title:'Emails de marketing',desc:'Campañas de correo que abren y que convierten.'},
+      {icon:'🎯',title:'Tono ajustable',desc:'Formal, casual, urgente — el tono que necesites.'},
+    ],
+    demo:'contenido'
+  },
+  'propuestas-ia': {
+    icon:'💼', name:'Propuestas Comerciales IA', cat:'Inteligencia Artificial',
+    desc:'Genera propuestas de venta personalizadas y profesionales en minutos usando inteligencia artificial.',
+    features:[
+      {icon:'⚡',title:'Propuesta en 3 minutos',desc:'Ingresa los datos del cliente y la IA redacta la propuesta.'},
+      {icon:'🎨',title:'Diseño profesional',desc:'Propuestas con formato visual que impresionan.'},
+      {icon:'🎯',title:'Personalización por cliente',desc:'Cada propuesta adaptada al dolor específico del cliente.'},
+      {icon:'📊',title:'Incluye ROI proyectado',desc:'Muéstrale al cliente cuánto va a ganar contratándote.'},
+    ],
+    demo:'propuesta'
+  },
+  'resenas-ia': {
+    icon:'⭐', name:'Analizador de Reseñas', cat:'Inteligencia Artificial',
+    desc:'Analiza las reseñas de tus clientes con IA para identificar patrones, quejas frecuentes y fortalezas.',
+    features:[
+      {icon:'🔍',title:'Análisis de sentimiento',desc:'Clasifica automáticamente reseñas positivas, neutras y negativas.'},
+      {icon:'📊',title:'Tendencias detectadas',desc:'Identifica qué aspectos mencionan más tus clientes.'},
+      {icon:'💡',title:'Acciones sugeridas',desc:'La IA te recomienda qué mejorar según el feedback.'},
+      {icon:'🏆',title:'Comparativa temporal',desc:'¿Mejoró la satisfacción este mes vs el anterior?'},
+    ],
+    demo:'resenas'
+  },
+  'correos-ventas': {
+    icon:'📧', name:'Correos de Ventas IA', cat:'Inteligencia Artificial',
+    desc:'Redacta emails de prospección y seguimiento que consiguen respuesta, usando IA entrenada en ventas B2B.',
+    features:[
+      {icon:'🎯',title:'Personalización masiva',desc:'Cada correo personalizado para cada prospecto.'},
+      {icon:'📈',title:'Mayor tasa de apertura',desc:'Asuntos optimizados por IA para que los abran.'},
+      {icon:'🔄',title:'Secuencias automáticas',desc:'Follow-ups programados sin esfuerzo manual.'},
+      {icon:'📊',title:'Métricas de apertura',desc:'Sabe quién abrió tu correo y cuándo.'},
+    ],
+    demo:'correos'
+  },
+  'resumidor': {
+    icon:'🎙️', name:'Resumidor de Reuniones', cat:'Inteligencia Artificial',
+    desc:'Transcribe y resume tus reuniones automáticamente. Nunca más pierdas un acuerdo o tarea por no haberlo anotado.',
+    features:[
+      {icon:'🎤',title:'Transcripción automática',desc:'Convierte el audio de la reunión en texto en segundos.'},
+      {icon:'📋',title:'Resumen ejecutivo',desc:'Los puntos clave y acuerdos extraídos por IA.'},
+      {icon:'✅',title:'Lista de tareas',desc:'Las acciones asignadas en la reunión en una lista lista.'},
+      {icon:'📤',title:'Comparte el resumen',desc:'Envía el resumen a todos los participantes al instante.'},
+    ],
+    demo:'resumidor'
+  },
+  'tareas': {
+    icon:'✅', name:'Kanban de Tareas', cat:'Operaciones',
+    desc:'Organiza el trabajo de tu equipo con un tablero visual. Cada tarea en su lugar, cada persona sabe qué hacer.',
+    features:[
+      {icon:'🗂️',title:'Tablero visual',desc:'Columnas de Por hacer, En progreso y Listo.'},
+      {icon:'👥',title:'Asignación de tareas',desc:'Cada tarea con responsable y fecha límite.'},
+      {icon:'🔔',title:'Alertas de vencimiento',desc:'Notificaciones antes de que venzan las tareas.'},
+      {icon:'📊',title:'Carga de trabajo',desc:'Ve qué tan ocupado está cada miembro del equipo.'},
+    ],
+    demo:'kanban'
+  },
+  'base-conocimiento': {
+    icon:'📚', name:'Base de Conocimiento', cat:'Operaciones',
+    desc:'Centraliza los procesos, manuales y documentos de tu empresa. Tu equipo siempre encuentra la información que necesita.',
+    features:[
+      {icon:'🔍',title:'Búsqueda instantánea',desc:'Encuentra cualquier documento en segundos.'},
+      {icon:'📁',title:'Organización por categorías',desc:'Estructura clara para que nadie se pierda.'},
+      {icon:'✏️',title:'Edición colaborativa',desc:'Todo el equipo puede contribuir y actualizar.'},
+      {icon:'🔒',title:'Control de accesos',desc:'Define quién puede ver qué documentos.'},
+    ],
+    demo:'wiki'
+  },
+  'encuestas': {
+    icon:'📋', name:'Encuestas y NPS', cat:'Operaciones',
+    desc:'Mide la satisfacción de tus clientes con encuestas rápidas. Descubre qué piensan y actúa antes de perderlos.',
+    features:[
+      {icon:'⭐',title:'NPS automático',desc:'Mide si tus clientes te recomendarían a otros.'},
+      {icon:'📊',title:'Resultados en tiempo real',desc:'Ve las respuestas apenas llegan.'},
+      {icon:'📬',title:'Envío por WhatsApp/email',desc:'Llega donde están tus clientes.'},
+      {icon:'🎯',title:'Segmentación',desc:'Envía encuestas específicas a grupos de clientes.'},
+    ],
+    demo:'encuesta'
+  },
+  'roi': {
+    icon:'💰', name:'Calculadora ROI', cat:'Operaciones',
+    desc:'Calcula el retorno de inversión de tus proyectos y decisiones. Justifica cada gasto con números claros.',
+    features:[
+      {icon:'🧮',title:'Cálculo automático',desc:'Ingresa inversión y retorno esperado, el resto lo hace la calculadora.'},
+      {icon:'📊',title:'Gráfica de proyección',desc:'Visualiza cuándo recuperas la inversión.'},
+      {icon:'📄',title:'Exporta el análisis',desc:'Comparte el cálculo con socios o clientes.'},
+      {icon:'🎯',title:'Escenarios comparativos',desc:'Compara varias opciones antes de decidir.'},
+    ],
+    demo:'roi'
+  },
+  'auditor-passwords': {
+    icon:'🔐', name:'Auditor de Contraseñas', cat:'Seguridad',
+    desc:'Detecta contraseñas débiles o repetidas en tu empresa antes de que un hacker lo haga por ti.',
+    features:[
+      {icon:'🔍',title:'Análisis de fortaleza',desc:'Clasifica contraseñas por nivel de riesgo.'},
+      {icon:'⚠️',title:'Alertas de riesgo',desc:'Identifica cuáles contraseñas exponen tu negocio.'},
+      {icon:'💡',title:'Recomendaciones',desc:'Sugerencias concretas para mejorar cada contraseña.'},
+      {icon:'📊',title:'Reporte de seguridad',desc:'Documento descargable con el estado de tu seguridad.'},
+    ],
+    demo:'auditoria'
+  },
+  'suite-seguridad': {
+    icon:'🛡️', name:'Suite de Seguridad', cat:'Seguridad',
+    desc:'Protege tu negocio digital con herramientas de seguridad pensadas para pymes, sin necesitar un experto en IT.',
+    features:[
+      {icon:'🔒',title:'Checklist de seguridad',desc:'Verifica que tu negocio cumple los básicos de seguridad.'},
+      {icon:'🕵️',title:'Detector de vulnerabilidades',desc:'Escanea tus sistemas en busca de puntos débiles.'},
+      {icon:'📋',title:'Plan de respuesta',desc:'Qué hacer si sufres un ciberataque — paso a paso.'},
+      {icon:'🎓',title:'Guía para tu equipo',desc:'Capacita a tu equipo en seguridad básica.'},
+    ],
+    demo:'seguridad'
+  }
+};
+
+var DEMOS = {
+  'crm': `<h3 style="font-family:'Syne',sans-serif;margin-bottom:20px;font-size:1rem">Pipeline de Clientes <span class="demo-badge">4 activos</span></h3>
+    <table class="demo-table"><thead><tr><th>Cliente</th><th>Etapa</th><th>Valor</th><th>Próximo paso</th></tr></thead><tbody>
+    <tr><td><strong>Ferretería López</strong></td><td><span class="tag tag-gold">Propuesta</span></td><td>$2.400.000</td><td>Llamar hoy</td></tr>
+    <tr><td><strong>Salud Total Cali</strong></td><td><span class="tag tag-green">Negociando</span></td><td>$850.000</td><td>Enviar contrato</td></tr>
+    <tr><td><strong>Tech Bogotá SAS</strong></td><td><span class="tag tag-gray">Prospecto</span></td><td>$5.100.000</td><td>Primer contacto</td></tr>
+    <tr><td><strong>Restaurante Mar</strong></td><td><span class="tag tag-green">Ganado ✓</span></td><td>$1.200.000</td><td>Onboarding</td></tr>
+    </tbody></table>`,
+  'cotizacion': `<h3 style="font-family:'Syne',sans-serif;margin-bottom:20px;font-size:1rem">Nueva Cotización</h3>
+    <div class="demo-row"><div class="demo-field"><label>Cliente</label><input class="demo-input" value="Ferretería López" readonly></div><div class="demo-field"><label>Fecha</label><input class="demo-input" value="11/05/2026" readonly></div></div>
+    <div class="demo-row"><div class="demo-field" style="flex:2"><label>Servicio / Producto</label><input class="demo-input" value="Diseño web + mantenimiento 6 meses" readonly></div><div class="demo-field"><label>Valor</label><input class="demo-input" value="$2.400.000 COP" readonly></div></div>
+    <button class="demo-btn">📄 Generar PDF</button>`,
+  'factura': `<h3 style="font-family:'Syne',sans-serif;margin-bottom:20px;font-size:1rem">Factura #0042</h3>
+    <div class="demo-row"><div class="demo-field"><label>Emisor</label><input class="demo-input" value="Tu Empresa SAS" readonly></div><div class="demo-field"><label>Cliente</label><input class="demo-input" value="Salud Total Cali" readonly></div></div>
+    <table class="demo-table" style="margin-top:16px"><thead><tr><th>Concepto</th><th>Cant</th><th>Valor</th></tr></thead><tbody>
+    <tr><td>Consultoría digital</td><td>1</td><td>$850.000</td></tr>
+    <tr><td>IVA 19%</td><td></td><td>$161.500</td></tr>
+    <tr><td><strong>Total</strong></td><td></td><td><strong>$1.011.500</strong></td></tr>
+    </tbody></table>`,
+  'reporte': `<h3 style="font-family:'Syne',sans-serif;margin-bottom:16px;font-size:1rem">Ventas — Mayo 2026</h3>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
+    <div style="background:#f0fdfb;border-radius:8px;padding:14px;text-align:center"><div style="font-size:1.4rem;font-weight:800;color:#00b8a6">$8.2M</div><div style="font-size:.78rem;color:#8b8fa8">Ventas mes</div></div>
+    <div style="background:#fef9e7;border-radius:8px;padding:14px;text-align:center"><div style="font-size:1.4rem;font-weight:800;color:#c9a000">12</div><div style="font-size:.78rem;color:#8b8fa8">Clientes nuevos</div></div>
+    <div style="background:#f0f0f3;border-radius:8px;padding:14px;text-align:center"><div style="font-size:1.4rem;font-weight:800">+24%</div><div style="font-size:.78rem;color:#8b8fa8">vs abril</div></div>
+    </div>
+    <table class="demo-table"><thead><tr><th>Producto</th><th>Unidades</th><th>Total</th></tr></thead><tbody>
+    <tr><td>Plan Pro</td><td>5</td><td>$2.745.000</td></tr>
+    <tr><td>Plan Starter</td><td>7</td><td>$1.743.000</td></tr>
+    <tr><td>Consultoría</td><td>3</td><td>$3.600.000</td></tr>
+    </tbody></table>`,
+  'kanban': `<h3 style="font-family:'Syne',sans-serif;margin-bottom:20px;font-size:1rem">Tablero del equipo</h3>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+    <div><div style="font-size:.75rem;font-weight:700;color:#8b8fa8;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">📋 Por hacer</div>
+    <div style="background:#f7f8fc;border-radius:8px;padding:10px;font-size:.85rem;margin-bottom:8px;border-left:3px solid #e8eaf2">Diseñar catálogo Q3</div>
+    <div style="background:#f7f8fc;border-radius:8px;padding:10px;font-size:.85rem;border-left:3px solid #e8eaf2">Reunión con proveedor</div></div>
+    <div><div style="font-size:.75rem;font-weight:700;color:#00b8a6;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">⚡ En progreso</div>
+    <div style="background:#e0faf8;border-radius:8px;padding:10px;font-size:.85rem;margin-bottom:8px;border-left:3px solid #00dcc8">Propuesta cliente X</div>
+    <div style="background:#e0faf8;border-radius:8px;padding:10px;font-size:.85rem;border-left:3px solid #00dcc8">Actualizar precios web</div></div>
+    <div><div style="font-size:.75rem;font-weight:700;color:#28c840;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">✅ Listo</div>
+    <div style="background:#f0fff0;border-radius:8px;padding:10px;font-size:.85rem;margin-bottom:8px;border-left:3px solid #28c840">Informe mensual</div>
+    <div style="background:#f0fff0;border-radius:8px;padding:10px;font-size:.85rem;border-left:3px solid #28c840">Factura #0041</div></div>
+    </div>`,
+  'roi': `<h3 style="font-family:'Syne',sans-serif;margin-bottom:20px;font-size:1rem">Calculadora ROI</h3>
+    <div class="demo-row"><div class="demo-field"><label>Inversión inicial</label><input class="demo-input" value="$549.000 COP" readonly></div><div class="demo-field"><label>Ahorro mensual estimado</label><input class="demo-input" value="$200.000 COP" readonly></div></div>
+    <div style="margin-top:16px;background:#e0faf8;border-radius:10px;padding:16px;display:flex;gap:20px;flex-wrap:wrap">
+    <div style="text-align:center"><div style="font-size:1.6rem;font-weight:800;color:#00b8a6">3 meses</div><div style="font-size:.78rem;color:#8b8fa8">Punto de equilibrio</div></div>
+    <div style="text-align:center"><div style="font-size:1.6rem;font-weight:800;color:#00b8a6">$1.851.000</div><div style="font-size:.78rem;color:#8b8fa8">Ahorro año 1</div></div>
+    <div style="text-align:center"><div style="font-size:1.6rem;font-weight:800;color:#00b8a6">337%</div><div style="font-size:.78rem;color:#8b8fa8">ROI año 1</div></div>
+    </div>`,
+  'chatbot': `<h3 style="font-family:'Syne',sans-serif;margin-bottom:16px;font-size:1rem">🤖 Chatbot ZAKARX — Preview</h3>
+    <div style="background:#f7f8fc;border-radius:12px;padding:16px;font-size:.88rem">
+    <div style="margin-bottom:12px"><span style="background:#e8eaf2;border-radius:12px 12px 12px 4px;padding:8px 14px;display:inline-block;color:#4a4d60">¡Hola! ¿En qué puedo ayudarte hoy?</span></div>
+    <div style="text-align:right;margin-bottom:12px"><span style="background:#00dcc8;border-radius:12px 12px 4px 12px;padding:8px 14px;display:inline-block;color:#fff">¿Cuánto cuesta el plan Pro?</span></div>
+    <div style="margin-bottom:12px"><span style="background:#e8eaf2;border-radius:12px 12px 12px 4px;padding:8px 14px;display:inline-block;color:#4a4d60">El Plan Pro incluye las 18 herramientas completas. Escribe a nuestro WhatsApp para conocer el precio actual 😊</span></div>
+    </div>`,
+  'contenido': `<h3 style="font-family:'Syne',sans-serif;margin-bottom:16px;font-size:1rem">✍️ Generar post para Instagram</h3>
+    <div class="demo-row"><div class="demo-field"><label>Tema</label><input class="demo-input" value="Lanzamiento nuevo servicio" readonly></div><div class="demo-field"><label>Tono</label><input class="demo-input" value="Entusiasta y cercano" readonly></div></div>
+    <div style="margin-top:14px;background:#f7f8fc;border-radius:10px;padding:16px;font-size:.88rem;color:#4a4d60;line-height:1.6">
+    🚀 <strong>¡Ya está aquí lo que esperabas!</strong><br>Presentamos nuestro nuevo servicio diseñado para que tu negocio crezca más rápido y con menos esfuerzo. ✨<br><br>
+    ¿Listo para dar el siguiente paso? Escríbenos y te contamos todo. 👇<br><br>
+    <span style="color:#00b8a6">#ZAKARX #NegocioDigital #Colombia #Emprendimiento</span>
+    </div>`,
+  'encuesta': `<h3 style="font-family:'Syne',sans-serif;margin-bottom:16px;font-size:1rem">Encuesta de satisfacción</h3>
+    <p style="font-size:.88rem;color:#4a4d60;margin-bottom:16px">¿Qué tan probable es que recomiendes nuestros servicios a un amigo o colega?</p>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">
+    ${[1,2,3,4,5,6,7,8,9,10].map(n=>`<div style="width:36px;height:36px;border-radius:8px;border:1.5px solid #e8eaf2;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;cursor:pointer;background:${n>=9?'#00dcc8':n>=7?'#e0faf8':'#f7f8fc'};color:${n>=9?'#fff':n>=7?'#00b8a6':'#4a4d60'}">${n}</div>`).join('')}
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:.75rem;color:#8b8fa8"><span>Muy improbable</span><span>Muy probable</span></div>`,
+  'default': `<div style="text-align:center;padding:40px 20px">
+    <div style="font-size:3rem;margin-bottom:16px" id="demo-icon-big">🛠️</div>
+    <h3 style="font-family:'Syne',sans-serif;margin-bottom:12px" id="demo-tool-name">Herramienta</h3>
+    <p style="color:#8b8fa8;font-size:.9rem;max-width:360px;margin:0 auto">Esta herramienta está disponible en los planes ZAKARX. Contáctanos para una demo personalizada.</p>
+    <button class="demo-btn" style="margin-top:20px" onclick="document.getElementById('wa-btn').click()">💬 Ver demo en vivo</button>
+    </div>`
+};
+
+function init() {
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('tool') || '';
+  var tool = TOOLS[id];
+  if (!tool) {
+    document.getElementById('t-title').innerHTML = 'Herramienta <span>no encontrada</span>';
+    document.getElementById('t-desc').textContent = 'El enlace puede estar incorrecto.';
+    return;
+  }
+  var waMsg = encodeURIComponent('Hola! Quiero acceder a la herramienta ' + tool.name + ' de ZAKARX');
+  var waLink = 'https://wa.me/573001234567?text=' + waMsg;
+  document.title = tool.name + ' — ZAKARX';
+  document.getElementById('t-icon').textContent = tool.icon;
+  document.getElementById('t-title').innerHTML = tool.name + ' <span>ZAKARX</span>';
+  document.getElementById('t-desc').textContent = tool.desc;
+  document.getElementById('wa-btn').href = waLink;
+  document.getElementById('wa-btn2').href = waLink;
+  document.getElementById('demo-title').textContent = 'ZAKARX — ' + tool.name;
+  document.getElementById('cta-name').textContent = tool.name;
+  // Features
+  var fg = document.getElementById('t-features');
+  tool.features.forEach(function(f) {
+    var d = document.createElement('div');
+    d.className = 'feat-card';
+    d.innerHTML = '<div class="feat-icon">'+f.icon+'</div><h3>'+f.title+'</h3><p>'+f.desc+'</p>';
+    fg.appendChild(d);
+  });
+  // Demo
+  var demoKey = tool.demo || 'default';
+  var demoHtml = DEMOS[demoKey] || DEMOS['default'];
+  if (demoKey === 'default' || !DEMOS[demoKey]) {
+    demoHtml = DEMOS['default'];
+    demoHtml = demoHtml.replace('id="demo-icon-big"','id="demo-icon-big"').replace('🛠️', tool.icon);
+  }
+  document.getElementById('demo-body').innerHTML = demoHtml;
+}
+
+init();
+</script>
+</body>
+</html>

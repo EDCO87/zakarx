@@ -1,0 +1,36 @@
+name: 🏆 Competitor Agent
+
+on:
+  schedule:
+    # Día 1 y 15 de cada mes a las 10am Colombia (15:00 UTC)
+    - cron: '0 15 1,15 * *'
+  workflow_dispatch:
+
+jobs:
+  monitor-competitors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Competitor Agent
+        run: python agents/competitor_agent.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Commit & Push changes
+        run: |
+          git config user.name "ZAKARX Bot 🤖"
+          git config user.email "corrales.elias@gmail.com"
+          git add index.html reporte-competidores.md
+          git diff --staged --quiet || git commit -m "🏆 Precios competidores actualizados $(date +'%d/%m/%Y')"
+          git push

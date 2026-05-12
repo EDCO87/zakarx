@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://formspree.io;">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<title>ZAKARX — Suite Digital para Pymes Latinoamericanas</title>
+<meta name="description" content="18 herramientas digitales que transforman tu pyme: CRM, facturación, IA, analíticas y más. Sin instalación, desde el navegador.">
+<meta name="keywords" content="software pymes, herramientas digitales, CRM, facturación, Colombia, latinoamérica, ZAKARX">
+<meta property="og:title" content="ZAKARX — Suite Digital para Pymes">
+<meta property="og:description" content="18 herramientas digitales para transformar tu negocio. Sin instalación.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ─────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;
+  background:#ffffff;
+  color:#0a0b14;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+
+/* ─── TOKENS ────────────────────────────────────────── */
+:root{
+  --bg:#ffffff;
+  --bg2:#f7f8fc;
+  --bg3:#f0fdfb;
+  --text:#0a0b14;
+  --text2:#4a4d60;
+  --text3:#8b8fa8;
+  --accent:#00dcc8;
+  --accent-dark:#00b8a6;
+  --accent-light:#e0faf8;
+  --gold:#f5c842;
+  --gold-light:#fef9e7;
+  --border:#e8eaf2;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shadow:0 4px 16px rgba(0,0,0,.08),0 1px 4px rgba(0,0,0,.04);
+  --shadow-lg:0 20px 60px rgba(0,0,0,.10),0 4px 16px rgba(0,0,0,.06);
+  --radius:12px;
+  --radius-lg:20px;
+  --radius-xl:28px;
+  --max:1200px;
+  --transition:200ms cubic-bezier(.4,0,.2,1);
+}
+
+/* ─── TYPOGRAPHY ────────────────────────────────────── */
+h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+h1{font-size:clamp(1.9rem,2.4vw,2.4rem);font-weight:800}
+h2{font-size:clamp(1.7rem,2.8vw,2.4rem)}
+h3{font-size:clamp(1.25rem,2.5vw,1.75rem)}
+p{color:var(--text2)}
+
+/* ─── UTILITIES ─────────────────────────────────────── */
+.container{max-width:var(--max);margin:0 auto;padding:0 24px}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--accent-light);color:var(--accent-dark);
+  font-family:'Syne',sans-serif;font-weight:600;font-size:.8rem;
+  padding:6px 14px;border-radius:100px;letter-spacing:.04em;
+  border:1px solid rgba(0,220,200,.2);
+}
+.badge-gold{background:var(--gold-light);color:#a07d00;border-color:rgba(245,200,66,.3)}
+.tag{
+  display:inline-block;padding:4px 10px;border-radius:6px;
+  font-size:.75rem;font-weight:600;font-family:'Syne',sans-serif;
+}
+.section-label{
+  font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);
+  margin-bottom:16px;display:block;
+}
+.text-accent{color:var(--accent-dark)}
+.text-gold{color:var(--gold)}
+.sr-only{position:absolute;width:1px;height:1px;clip:rect(0,0,0,0)}
+
+/* ─── BUTTONS ───────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 28px;border-radius:100px;font-family:'Syne',sans-serif;
+  font-weight:700;font-size:.95rem;letter-spacing:.01em;border:2px solid transparent;
+  transition:all var(--transition);white-space:nowrap;
+}
+.btn-primary{
+  background:var(--accent);color:#ffffff;
+  box-shadow:0 4px 20px rgba(0,220,200,.35);
+  animation:ctaGlow 2.5s ease-in-out infinite;
+}
+.btn-primary:hover{background:var(--accent-dark);box-shadow:0 6px 28px rgba(0,220,200,.55),0 0 40px 6px rgba(0,220,200,.2);transform:translateY(-2px);animation:none}
+.btn-outline{
+  background:transparent;color:var(--text);
+  border-color:var(--border);
+}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent-dark);background:var(--accent-light)}
+.btn-ghost{background:transparent;color:var(--text2);padding:14px 20px}
+.btn-ghost:hover{color:var(--text)}
+.btn-lg{padding:18px 36px;font-size:1.05rem}
+.btn-sm{padding:10px 20px;font-size:.85rem}
+
+/* ─── NAV ───────────────────────────────────────────── */
+#navbar{
+  position:fixed;top:40px;left:0;right:0;z-index:1000;
+  padding:0 24px;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 1px 0 var(--border);
+  transition:background var(--transition),box-shadow var(--transition),backdrop-filter var(--transition);
+}
+#navbar.scrolled{
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 1px 0 var(--border);
+}
+.nav-inner{
+  max-width:var(--max);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:70px;
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;
+  color:var(--text);letter-spacing:-.02em;display:flex;align-items:center;gap:10px;
+}
+.nav-logo-mark{
+  width:36px;height:36px;background:var(--accent);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;font-weight:800;color:#fff;
+}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{
+  padding:8px 14px;border-radius:8px;font-size:.9rem;font-weight:500;color:var(--text2);
+  transition:all var(--transition);
+}
+.nav-links a:hover{color:var(--text);background:var(--bg2)}
+.nav-cta{display:flex;align-items:center;gap:8px}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:8px}
+.nav-hamburger span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:all var(--transition)}
+
+/* Mobile menu */
+.mobile-menu{
+  display:none;position:fixed;inset:0;z-index:999;
+  background:#fff;flex-direction:column;padding:100px 32px 32px;gap:8px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  font-family:'Syne',sans-serif;font-weight:600;font-size:1.25rem;
+  padding:16px 0;border-bottom:1px solid var(--border);color:var(--text);
+}
+
+/* ─── HERO ──────────────────────────────────────────── */
+#hero{
+  min-height:auto;display:flex;flex-direction:column;justify-content:center;
+  padding:120px 24px 80px;position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 70% 50% at 60% 20%, rgba(0,220,200,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(245,200,66,.05) 0%, transparent 60%),
+    #fff;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size:48px 48px;
+  opacity:.4;mask-image:radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
+}
+.hero-inner{
+  max-width:760px;margin:0 auto;width:100%;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  position:relative;z-index:1;
+}
+.hero-content{width:100%}
+.hero-badge{margin-bottom:24px;animation:fadeUp .6s .1s both,badgeFloat 3s ease-in-out 1s infinite}
+.hero-title{margin-bottom:24px;animation:fadeUp .6s .2s both}
+.hero-highlight{
+  position:relative;display:inline;
+  background:linear-gradient(90deg,var(--accent) 0%,#a5f3ef 25%,var(--accent-dark) 50%,#a5f3ef 75%,var(--accent) 100%);
+  background-size:300% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shimmerText 5s linear infinite;
+}
+.hero-subtitle{
+  font-size:1.05rem;color:var(--text2);max-width:500px;
+  margin-bottom:28px;line-height:1.7;animation:fadeUp .6s .3s both;
+}
+.hero-actions{
+  display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
+  margin-bottom:32px;animation:fadeUp .6s .4s both;
+}
+.hero-social-proof{
+  display:flex;align-items:center;justify-content:center;gap:16px;animation:fadeUp .6s .5s both;
+}
+.hero-avatars{
+  display:flex;margin-right:4px;
+}
+.hero-avatars span{
+  width:36px;height:36px;border-radius:50%;
+  border:2px solid #fff;margin-left:-10px;
+  background:var(--accent-light);display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:700;color:var(--accent-dark);
+  font-family:'Syne',sans-serif;
+}
+.hero-avatars span:first-child{margin-left:0}
+.hero-social-proof p{font-size:.88rem;color:var(--text3)}
+.hero-social-proof strong{color:var(--text);font-weight:600}
+
+/* Hero visual */
+.hero-visual{position:relative;animation:fadeUp .8s .3s both;padding:20px 20px 20px 0}
+.hero-card-main{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius-xl);
+  padding:28px;box-shadow:var(--shadow-lg);
+}
+.hero-card-header{
+  display:flex;align-items:center;gap:12px;margin-bottom:20px;
+  padding-bottom:16px;border-bottom:1px solid var(--border);
+}
+.hero-card-icon{
+  width:44px;height:44px;border-radius:12px;background:var(--accent-light);
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+}
+.hero-card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--text)}
+.hero-card-sub{font-size:.8rem;color:var(--text3)}
+
+.hero-metric-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.hero-metric{
+  background:var(--bg2);border-radius:var(--radius);padding:16px;
+}
+.hero-metric-val{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;
+  color:var(--text);line-height:1;margin-bottom:4px;
+}
+.hero-metric-val span{color:var(--accent-dark)}
+.hero-metric-label{font-size:.78rem;color:var(--text3)}
+
+.hero-chart-bar{margin-bottom:12px}
+.hero-chart-label{display:flex;justify-content:space-between;margin-bottom:6px;font-size:.78rem}
+.hero-chart-label span:first-child{color:var(--text2)}
+.hero-chart-label span:last-child{color:var(--text);font-weight:600}
+.hero-bar-track{height:6px;background:var(--bg2);border-radius:10px;overflow:hidden}
+.hero-bar-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-dark));transition:width 1.5s cubic-bezier(.4,0,.2,1)}
+
+/* Floating cards */
+.hero-float{
+  position:absolute;background:#fff;border:1px solid var(--border);
+  border-radius:var(--radius);padding:12px 16px;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:10px;
+  animation:float 4s ease-in-out infinite;
+}
+.hero-float-1{top:-24px;right:-20px;animation-delay:0s}
+.hero-float-2{bottom:-20px;left:-28px;animation-delay:2s}
+.hero-float-icon{font-size:1.4rem}
+.hero-float-text{font-size:.8rem}
+.hero-float-text strong{font-family:'Syne',sans-serif;font-weight:700;color:var(--text);display:block;font-size:.85rem}
+.hero-float-text span{color:var(--text3)}
+
+/* ─── STATS BAR ─────────────────────────────────────── */
+#stats{
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--bg2);padding:40px 24px;
+}
+.stats-inner{
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+}
+.stat-item{
+  text-align:center;padding:16px 24px;
+  border-right:1px solid var(--border);
+}
+.stat-item:last-child{border-right:none}
+.stat-num{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:2.4rem;
+  color:var(--text);line-height:1;margin-bottom:6px;
+}
+.stat-num span{color:var(--accent-dark)}
+.stat-label{font-size:.88rem;color:var(--text3)}
+
+/* ─── SECTION BASE ──────────────────────────────────── */
+section{padding:80px 24px}
+.section-head{text-align:center;max-width:640px;margin:0 auto 48px}
+.section-head h2{margin-bottom:16px}
+.section-head p{font-size:1.05rem;color:var(--text2)}
+
+/* ─── PROBLEM ───────────────────────────────────────── */
+#problem{background:#fff}
+.problem-grid{
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+}
+.problem-pains{display:flex;flex-direction:column;gap:16px}
+.pain-card{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:20px 24px;border-radius:var(--radius);background:var(--bg2);
+  border:1px solid var(--border);transition:all var(--transition);
+}
+.pain-card:hover{border-color:rgba(0,220,200,.3);background:var(--accent-light)}
+.pain-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
+.pain-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--text);margin-bottom:4px}
+.pain-desc{font-size:.9rem;color:var(--text3);line-height:1.5}
+.problem-visual{position:relative}
+.problem-before-after{display:flex;flex-direction:column;gap:16px}
+.ba-label{
+  font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;
+}
+.ba-before .ba-label{color:#e05c5c}
+.ba-after .ba-label{color:var(--accent-dark)}
+.ba-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px;
+  box-shadow:var(--shadow-sm);
+}
+.ba-before .ba-card{border-left:3px solid #e05c5c}
+.ba-after .ba-card{border-left:3px solid var(--accent)}
+.ba-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ba-list li{display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--text2)}
+.ba-list li::before{content:'✗';color:#e05c5c;font-weight:700;flex-shrink:0}
+.ba-after .ba-list li::before{content:'✓';color:var(--accent-dark)}
+.ba-arrow{
+  text-align:center;padding:8px;font-size:1.5rem;color:var(--accent-dark);
+}
+
+/* ─── TOOLS ─────────────────────────────────────────── */
+#tools{background:var(--bg2)}
+.tools-inner{max-width:var(--max);margin:0 auto}
+.tools-filter{
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;
+}
+.filter-btn{
+  padding:8px 18px;border-radius:100px;border:1.5px solid var(--border);
+  background:#fff;font-family:'Syne',sans-serif;font-weight:600;font-size:.85rem;
+  color:var(--text2);transition:all var(--transition);cursor:pointer;
+}
+.filter-btn:hover,.filter-btn.active{
+  border-color:var(--accent);color:var(--accent-dark);background:var(--accent-light);
+}
+.tools-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.tool-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:24px;transition:all .25s cubic-bezier(.4,0,.2,1);
+  cursor:pointer;display:flex;flex-direction:column;gap:14px;
+  position:relative;overflow:hidden;
+}
+.tool-card::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(135deg,var(--accent-light),transparent 60%);
+  opacity:0;transition:opacity var(--transition);
+}
+.tool-card:hover{
+  border-color:rgba(0,220,200,.5);
+  box-shadow:0 8px 32px rgba(0,220,200,.18),0 0 0 1px rgba(0,220,200,.15);
+  transform:translateY(-4px);
+}
+.tool-card:hover::before{opacity:1}
+.tool-card-head{display:flex;align-items:center;justify-content:space-between}
+.tool-emoji{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+  background:var(--bg2);position:relative;z-index:1;
+}
+.tool-price{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.95rem;
+  color:var(--accent-dark);background:var(--accent-light);
+  padding:4px 10px;border-radius:8px;position:relative;z-index:1;
+}
+.tool-name{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;
+  color:var(--text);position:relative;z-index:1;
+}
+.tool-desc{font-size:.88rem;color:var(--text3);line-height:1.5;position:relative;z-index:1}
+.tool-tag{
+  font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:4px 10px;border-radius:6px;position:relative;z-index:1;
+  background:var(--bg2);color:var(--text2);width:fit-content;
+}
+.tool-tag.ai{background:rgba(139,92,246,.08);color:#7c3aed}
+.tool-tag.ventas{background:rgba(0,220,200,.08);color:var(--accent-dark)}
+.tool-tag.ops{background:rgba(245,200,66,.1);color:#a07d00}
+.tool-tag.seg{background:rgba(224,92,92,.08);color:#c0392b}
+.tool-tag.finanzas{background:rgba(34,197,94,.1);color:#16a34a}
+.tools-cta{text-align:center;margin-top:40px}
+/* ─── TOOLS PILL STRIP ───────────────────────────────── */
+.tools-also{
+  max-width:var(--max);margin:36px auto 0;
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+}
+.tools-also-label{
+  width:100%;text-align:center;margin-bottom:12px;
+  font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--text3);
+}
+.tool-pill{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:6px 14px;border-radius:100px;
+  background:#fff;border:1px solid var(--border);
+  font-size:.83rem;color:var(--text2);font-weight:500;
+  transition:all var(--transition);
+}
+.tool-pill:hover{border-color:var(--accent);color:var(--accent-dark);background:var(--accent-light)}
+
+/* ─── HOW ───────────────────────────────────────────── */
+#how{background:#fff}
+.how-inner{max-width:900px;margin:0 auto}
+.steps{display:flex;flex-direction:column;gap:0;position:relative}
+.steps::before{
+  content:'';position:absolute;left:27px;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--accent) 0%,var(--accent-light) 100%);
+}
+.step{
+  display:flex;gap:32px;padding:0 0 48px;position:relative;
+}
+.step:last-child{padding-bottom:0}
+.step-num{
+  width:56px;height:56px;border-radius:50%;
+  background:#fff;border:2px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--accent-dark);
+  flex-shrink:0;z-index:1;position:relative;
+}
+.step-body{padding-top:12px}
+.step-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;color:var(--text);margin-bottom:8px}
+.step-desc{font-size:.95rem;color:var(--text2);max-width:520px}
+
+/* ─── PRICING ───────────────────────────────────────── */
+#pricing{
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,220,200,.05) 0%, transparent 60%),
+    var(--bg2);
+}
+.pricing-grid{
+  max-width:1000px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.plan-card{
+  background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-xl);
+  padding:32px;position:relative;display:flex;flex-direction:column;gap:24px;
+  transition:all .25s ease;
+}
+.plan-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.plan-card.featured{
+  border-color:var(--accent);
+  box-shadow:0 0 0 1px var(--accent),var(--shadow-lg);
+}
+.plan-popular{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;
+  font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 16px;border-radius:100px;white-space:nowrap;
+}
+.plan-name{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;
+  color:var(--text3);text-transform:uppercase;letter-spacing:.08em;
+}
+.plan-price{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:3rem;
+  color:var(--text);line-height:1;
+}
+.plan-price sup{font-size:1.2rem;margin-top:.5rem;display:inline-block;vertical-align:top}
+.plan-price span{font-size:1rem;font-weight:400;color:var(--text3)}
+.plan-desc{font-size:.9rem;color:var(--text3);margin-top:-12px}
+.plan-features{display:flex;flex-direction:column;gap:10px;list-style:none;flex:1}
+.plan-features li{
+  display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text2);
+}
+.plan-features li::before{
+  content:'✓';color:var(--accent-dark);font-weight:700;flex-shrink:0;margin-top:1px;
+}
+.plan-features li.off{color:var(--text3)}
+.plan-features li.off::before{content:'—';color:var(--border)}
+.plan-btn{width:100%;text-align:center}
+
+/* ─── TESTIMONIALS ──────────────────────────────────── */
+#testimonials{background:#fff;padding-top:60px}
+.testi-grid{
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.testi-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:28px;display:flex;flex-direction:column;gap:20px;
+  transition:all var(--transition);
+}
+.testi-card:hover{border-color:rgba(0,220,200,.3);box-shadow:var(--shadow)}
+.testi-stars{color:var(--gold);font-size:1.1rem;letter-spacing:2px}
+.testi-quote{
+  font-size:.95rem;color:var(--text2);line-height:1.7;font-style:italic;
+  position:relative;flex:1;
+}
+.testi-quote::before{
+  content:'"';font-family:'Syne',sans-serif;font-size:3rem;color:var(--border);
+  position:absolute;top:-12px;left:-8px;line-height:1;
+}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--accent-light);display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:700;color:var(--accent-dark);font-size:1rem;
+  flex-shrink:0;
+}
+.testi-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:var(--text)}
+.testi-role{font-size:.8rem;color:var(--text3)}
+
+/* ─── NOTICIAS ──────────────────────────────────────── */
+#noticias{background:var(--bg2)}
+.news-grid{
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.news-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:0;display:flex;flex-direction:column;
+  transition:all var(--transition);position:relative;overflow:hidden;
+}
+.news-card:hover{border-color:rgba(0,220,200,.35);box-shadow:var(--shadow);transform:translateY(-3px)}
+.news-card-img{
+  width:100%;height:168px;object-fit:cover;display:block;
+  transition:transform .4s ease;
+}
+.news-card:hover .news-card-img{transform:scale(1.04)}
+.news-card-body{
+  padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px;flex:1;
+}
+.news-cat{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.7rem;
+  letter-spacing:.07em;text-transform:uppercase;
+  padding:3px 10px;border-radius:6px;width:fit-content;
+}
+.news-cat.tech{background:rgba(0,220,200,.1);color:var(--accent-dark)}
+.news-cat.fintech{background:rgba(245,200,66,.15);color:#a07d00}
+.news-cat.emprendimiento{background:rgba(139,92,246,.1);color:#7c3aed}
+.news-cat.negocios{background:rgba(224,92,92,.08);color:#c0392b}
+.news-cat.ia{background:rgba(0,220,200,.1);color:var(--accent-dark)}
+.news-title{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;
+  color:var(--text);line-height:1.35;
+}
+.news-title a{transition:color var(--transition)}
+.news-title a:hover{color:var(--accent-dark)}
+.news-desc{font-size:.88rem;color:var(--text3);line-height:1.6;flex:1}
+.news-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:12px;border-top:1px solid var(--border);
+  font-size:.8rem;
+}
+.news-source{color:var(--text3);font-weight:500}
+.news-link{
+  color:var(--accent-dark);font-family:'Syne',sans-serif;font-weight:700;
+  font-size:.8rem;display:flex;align-items:center;gap:4px;
+  transition:gap var(--transition);
+}
+.news-link:hover{gap:8px}
+.news-footer{
+  text-align:center;margin-top:32px;
+  font-size:.82rem;color:var(--text3);
+}
+.news-footer strong{color:var(--text2)}
+@media(max-width:768px){.news-grid{grid-template-columns:1fr}}
+@media(max-width:1024px){.news-grid{grid-template-columns:1fr 1fr}}
+
+/* ─── FAQ ───────────────────────────────────────────── */
+#faq{background:#fff}
+.faq-inner{max-width:720px;margin:0 auto}
+.faq-item{
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+}
+.faq-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:22px 0;background:none;border:none;text-align:left;gap:16px;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--text);
+  cursor:pointer;transition:color var(--transition);
+}
+.faq-q:hover{color:var(--accent-dark)}
+.faq-icon{
+  width:28px;height:28px;border-radius:50%;background:var(--bg2);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:all var(--transition);font-size:1.1rem;color:var(--text3);
+}
+.faq-item.open .faq-icon{background:var(--accent-light);border-color:var(--accent);color:var(--accent-dark);transform:rotate(45deg)}
+.faq-a{
+  height:0;overflow:hidden;transition:height .3s ease;
+}
+.faq-a-inner{padding:0 0 20px;font-size:.95rem;color:var(--text2);line-height:1.7}
+
+/* ─── CTA BANNER ────────────────────────────────────── */
+#cta{
+  background:linear-gradient(135deg,#0a0b14 0%,#12141f 100%);
+  color:#fff;text-align:center;
+}
+#cta h2{color:#fff}
+#cta p{color:rgba(255,255,255,.65)}
+.cta-inner{max-width:640px;margin:0 auto}
+.cta-inner h2{margin-bottom:16px}
+.cta-inner p{margin-bottom:40px;font-size:1.1rem}
+.cta-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--text);border-color:#fff}
+.btn-white:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-outline-white{border-color:rgba(255,255,255,.3);color:#fff}
+.btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.cta-logos{
+  display:flex;align-items:center;justify-content:center;gap:32px;
+  margin-top:48px;flex-wrap:wrap;
+}
+.cta-trust{font-size:.82rem;color:rgba(255,255,255,.4);letter-spacing:.06em;text-transform:uppercase}
+
+/* ─── FOOTER ────────────────────────────────────────── */
+footer{background:#fff;border-top:1px solid var(--border);padding:60px 24px 32px}
+.footer-grid{
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;
+}
+.footer-brand{}
+.footer-logo{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;
+  color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;
+}
+.footer-logo-mark{
+  width:30px;height:30px;background:var(--accent);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;font-weight:800;color:#fff;
+}
+.footer-tagline{font-size:.9rem;color:var(--text3);margin-bottom:20px;max-width:260px}
+.footer-socials{display:flex;gap:8px}
+.footer-social{
+  display:flex;align-items:center;gap:6px;
+  padding:7px 12px;border-radius:8px;border:1px solid var(--border);
+  font-size:.82rem;font-weight:600;font-family:'Syne',sans-serif;
+  color:var(--text3);transition:all var(--transition);
+}
+.footer-social:hover{border-color:var(--accent);color:var(--accent-dark);background:var(--accent-light)}
+.footer-col-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:16px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:.88rem;color:var(--text3);transition:color var(--transition)}
+.footer-links a:hover{color:var(--accent-dark)}
+.footer-bottom{
+  max-width:var(--max);margin:0 auto;
+  border-top:1px solid var(--border);padding-top:24px;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.footer-copy{font-size:.85rem;color:var(--text3)}
+.footer-legal{display:flex;gap:16px}
+.footer-legal a{font-size:.85rem;color:var(--text3);transition:color var(--transition)}
+.footer-legal a:hover{color:var(--text)}
+
+/* ─── WHATSAPP ──────────────────────────────────────── */
+#wa-btn{
+  position:fixed;bottom:28px;right:28px;z-index:900;
+  width:58px;height:58px;border-radius:50%;
+  background:#25d366;box-shadow:0 4px 20px rgba(37,211,102,.4);
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+  transition:all var(--transition);border:none;color:#fff;
+  animation:pulse 2.5s ease-in-out infinite;
+}
+#wa-btn:hover{background:#1db954;transform:scale(1.1);animation:none}
+#wa-tooltip{
+  position:fixed;bottom:42px;right:96px;z-index:900;
+  background:var(--text);color:#fff;border-radius:8px;
+  padding:8px 14px;font-size:.82rem;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity var(--transition);
+  font-family:'Syne',sans-serif;font-weight:600;
+}
+#wa-btn:hover~#wa-tooltip{opacity:1}
+
+/* ─── POPUP LEAD CAPTURE ─────────────────────────────── */
+#popup-overlay{
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(10,11,20,.6);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+#popup-overlay.open{opacity:1;pointer-events:all}
+#popup-box{
+  background:#fff;border-radius:var(--radius-xl);max-width:480px;width:100%;
+  padding:40px 36px;position:relative;box-shadow:var(--shadow-lg);
+  transform:translateY(20px) scale(.97);transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+#popup-overlay.open #popup-box{transform:none}
+#popup-close{
+  position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;
+  border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;
+  justify-content:center;font-size:1rem;color:var(--text3);cursor:pointer;
+  transition:all var(--transition);
+}
+#popup-close:hover{border-color:var(--text);color:var(--text)}
+.popup-gift{font-size:2.8rem;text-align:center;margin-bottom:12px}
+.popup-badge{
+  display:inline-block;background:var(--gold-light);color:#a07d00;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.72rem;
+  letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;
+  margin-bottom:14px;border:1px solid rgba(245,200,66,.3);
+}
+.popup-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;color:var(--text);margin-bottom:8px;line-height:1.2}
+.popup-desc{font-size:.9rem;color:var(--text2);margin-bottom:24px;line-height:1.6}
+.popup-highlight{color:var(--accent-dark);font-weight:600}
+.popup-form{display:flex;flex-direction:column;gap:10px}
+.popup-form input{
+  padding:13px 16px;border:1.5px solid var(--border);border-radius:10px;
+  font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text);outline:none;
+  transition:border-color var(--transition);
+}
+.popup-form input:focus{border-color:var(--accent)}
+.popup-form button{
+  padding:14px;border-radius:100px;border:none;background:var(--accent);color:#fff;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.95rem;cursor:pointer;
+  transition:all var(--transition);box-shadow:0 4px 16px rgba(0,220,200,.3);
+}
+.popup-form button:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.popup-skip{
+  text-align:center;margin-top:12px;font-size:.8rem;color:var(--text3);
+  cursor:pointer;transition:color var(--transition);
+}
+.popup-skip:hover{color:var(--text)}
+.popup-trust{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;font-size:.78rem;color:var(--text3)}
+/* Urgency banner */
+#urgency-bar{
+  position:fixed;top:0;left:0;right:0;z-index:1001;
+  background:linear-gradient(90deg,#0a0b14,#12141f);
+  color:#fff;text-align:center;padding:10px 24px;font-size:.82rem;
+  display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
+}
+#urgency-bar strong{color:var(--gold)}
+#urgency-bar a{color:var(--accent);font-weight:600;text-decoration:underline}
+/* OFERTA badge on tool cards */
+.oferta-badge{
+  position:absolute;top:12px;right:12px;z-index:2;
+  background:linear-gradient(135deg,var(--gold),#e6b800);color:#5a4000;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.65rem;
+  letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:5px;
+}
+.oferta-badge:has(+ *):not(:empty)[style*="NUEVO"],.oferta-badge.nuevo-badge{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
+.price-old{font-size:.75rem;color:var(--text3);text-decoration:line-through;margin-right:4px}
+/* Tool price badge "Incluido" style */
+.tool-price-incl{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;
+  color:var(--accent-dark);background:var(--accent-light);
+  padding:4px 10px;border-radius:8px;position:relative;z-index:1;
+  border:1px solid rgba(0,220,200,.25);
+}
+
+/* ─── SCROLL REVEAL ─────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ─── HERO BLOBS ─────────────────────────────────────── */
+.hero-blob{
+  position:absolute;border-radius:50%;
+  filter:blur(80px);pointer-events:none;z-index:0;will-change:transform;
+}
+.hero-blob-1{
+  width:560px;height:560px;
+  background:radial-gradient(circle,rgba(0,220,200,.22) 0%,transparent 65%);
+  top:-130px;right:-100px;
+  animation:blobDrift 9s ease-in-out infinite;
+}
+.hero-blob-2{
+  width:420px;height:420px;
+  background:radial-gradient(circle,rgba(139,92,246,.16) 0%,transparent 65%);
+  bottom:-80px;left:-80px;
+  animation:blobDrift 13s ease-in-out infinite reverse;
+}
+.hero-blob-3{
+  width:280px;height:280px;
+  background:radial-gradient(circle,rgba(245,200,66,.12) 0%,transparent 65%);
+  top:35%;right:8%;
+  animation:blobDrift 16s ease-in-out infinite 4s;
+}
+
+/* ─── CTA GLOW ───────────────────────────────────────── */
+#cta{position:relative;overflow:hidden}
+#cta::after{
+  content:'';position:absolute;
+  width:700px;height:350px;
+  background:radial-gradient(ellipse,rgba(0,220,200,.18) 0%,transparent 60%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;animation:blobDrift 8s ease-in-out infinite;
+}
+#cta .cta-inner{position:relative;z-index:1}
+
+/* ─── STAGGER REVEALS ────────────────────────────────── */
+.tools-grid .tool-card:nth-child(1){transition-delay:.00s}
+.tools-grid .tool-card:nth-child(2){transition-delay:.07s}
+.tools-grid .tool-card:nth-child(3){transition-delay:.14s}
+.tools-grid .tool-card:nth-child(4){transition-delay:.00s}
+.tools-grid .tool-card:nth-child(5){transition-delay:.07s}
+.tools-grid .tool-card:nth-child(6){transition-delay:.14s}
+.tools-grid .tool-card:nth-child(7){transition-delay:.00s}
+.tools-grid .tool-card:nth-child(8){transition-delay:.07s}
+.tools-grid .tool-card:nth-child(9){transition-delay:.14s}
+.news-grid .news-card:nth-child(1){transition-delay:.00s}
+.news-grid .news-card:nth-child(2){transition-delay:.12s}
+.news-grid .news-card:nth-child(3){transition-delay:.24s}
+
+/* ─── CUSTOM SCROLLBAR ───────────────────────────────── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent-dark)}
+
+/* ─── SELECTION ──────────────────────────────────────── */
+::selection{background:rgba(0,220,200,.25);color:var(--text)}
+
+/* ─── ANIMATIONS ─────────────────────────────────────── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:none}
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}
+  50%{box-shadow:0 4px 32px rgba(37,211,102,.7)}
+}
+@keyframes countUp{from{opacity:0}to{opacity:1}}
+@keyframes blobDrift{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(24px,-20px) scale(1.06)}
+  66%{transform:translate(-16px,14px) scale(.96)}
+}
+@keyframes shimmerText{
+  0%{background-position:200% center}
+  100%{background-position:-200% center}
+}
+@keyframes badgeFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+@keyframes ctaGlow{
+  0%,100%{box-shadow:0 4px 20px rgba(0,220,200,.35)}
+  50%{box-shadow:0 4px 20px rgba(0,220,200,.35),0 0 40px 10px rgba(0,220,200,.15)}
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:40px}
+  .hero-visual{display:none}
+  .problem-grid{grid-template-columns:1fr;gap:40px}
+  .tools-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .nav-hamburger{display:flex}
+  h1{font-size:2.4rem}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat-item{border-right:none;border-bottom:1px solid var(--border)}
+  .stat-item:nth-child(even){border-right:none}
+  .pricing-grid{grid-template-columns:1fr}
+  .tools-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .cta-actions{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ URGENCY BAR ════════════════════════════════════════ -->
+<div id="urgency-bar" role="banner">
+  🔥 <strong>Precio de lanzamiento</strong> — Suite Pro a solo <strong>$0 COP</strong> · Equivale a 3 meses de Siigo · <a href="precios.html">Ver planes →</a>
+</div>
+
+<!-- ═══ POPUP LEAD CAPTURE ═══════════════════════════════ -->
+<div id="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+  <div id="popup-box">
+    <button id="popup-close" aria-label="Cerrar">✕</button>
+    <div class="popup-gift">🎁</div>
+    <div style="text-align:center">
+      <span class="popup-badge">Regalo exclusivo</span>
+    </div>
+    <h2 class="popup-title" id="popup-title" style="text-align:center">Obtén la Calculadora<br>ROI <span style="color:var(--accent-dark)">totalmente gratis</span></h2>
+    <p class="popup-desc" style="text-align:center">Suscríbete a nuestro boletín y recibe al instante la herramienta que le muestra a tus clientes el retorno exacto de invertir en tu servicio. <span class="popup-highlight">Valor: $0 COP — hoy gratis.</span></p>
+    <form class="popup-form" id="popup-form">
+      <input type="text" name="nombre" placeholder="Tu nombre" required autocomplete="given-name">
+      <input type="email" name="email" placeholder="tu@empresa.com" required autocomplete="email">
+      <button type="submit">Quiero mi regalo gratis →</button>
+    </form>
+    <p class="popup-skip" id="popup-skip">No gracias, no me interesa ahorrar</p>
+    <div class="popup-trust">🔒 Sin spam · Puedes darte de baja cuando quieras</div>
+  </div>
+</div>
+
+<!-- ═══ NAVBAR ═══════════════════════════════════════════ -->
+<nav id="navbar" role="navigation" aria-label="Menú principal">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="ZAKARX Inicio">
+      <div class="nav-logo-mark" aria-hidden="true">Z</div>
+      ZAKARX
+    </a>
+    <div class="nav-links" role="menubar">
+      <a href="#tools" role="menuitem">Herramientas</a>
+      <a href="#pricing" role="menuitem">Precios</a>
+      <a href="#how" role="menuitem">Cómo funciona</a>
+      <a href="#faq" role="menuitem">FAQ</a>
+      <a href="#noticias" role="menuitem">Noticias</a>
+      <a href="#" role="menuitem">Guía</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#cta" class="btn btn-outline btn-sm">Contacto</a>
+      <a href="herramientas.html" class="btn btn-primary btn-sm">Ver herramientas</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+  <a href="#tools" onclick="closeMobileMenu()">Herramientas</a>
+  <a href="#pricing" onclick="closeMobileMenu()">Precios</a>
+  <a href="#how" onclick="closeMobileMenu()">Cómo funciona</a>
+  <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+  <a href="#noticias" onclick="closeMobileMenu()">Noticias</a>
+  <a href="#" onclick="closeMobileMenu()">Guía</a>
+  <a href="herramientas.html" class="btn btn-primary" style="text-align:center;margin-top:16px">Ver herramientas</a>
+</div>
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<section id="hero" aria-labelledby="hero-title">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge badge" aria-label="Nuevo">
+        <span>✦</span> Suite Digital · 18 herramientas
+      </div>
+      <h1 id="hero-title" class="hero-title">
+        Digitaliza tu pyme<br>
+        <span class="hero-highlight">sin complicaciones</span>
+      </h1>
+      <p class="hero-subtitle">
+        Una suite completa de herramientas digitales diseñada para pymes latinoamericanas.
+        CRM, facturación, IA y más — todo desde el navegador, sin instalación.
+      </p>
+      <div class="hero-actions">
+        <a href="herramientas.html" class="btn btn-primary btn-lg">
+          Explorar herramientas
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="https://wa.me/573001234567?text=Hola!%20Estoy%20viendo%20ZAKARX%20y%20quiero%20ver%20una%20demo%20de%20las%20herramientas%20%F0%9F%9A%80" target="_blank" rel="noopener" class="btn btn-outline btn-lg">▶ Ver demo</a>
+      </div>
+      <div class="hero-social-proof">
+        <div class="hero-avatars" aria-hidden="true">
+          <span>MG</span><span>CP</span><span>AR</span><span>+</span>
+        </div>
+        <p>
+          <strong>+200 pymes</strong> ya digitalizadas<br>
+          <span>en Colombia, México y Argentina</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ══════════════════════════════════════════════ -->
+<div id="stats" aria-label="Estadísticas ZAKARX">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num"><span class="count" data-target="18">0</span></div>
+      <div class="stat-label">Herramientas digitales</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num"><span class="count" data-target="200">0</span><span>+</span></div>
+      <div class="stat-label">Pymes activas</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num"><span class="count" data-target="0">0</span><span style="font-size:1.4rem">$ install</span></div>
+      <div class="stat-label">Sin instalación requerida</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num"><span class="count" data-target="3">0</span><span> países</span></div>
+      <div class="stat-label">Colombia · México · Argentina</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NOTICIAS ══════════════════════════════════════════ -->
+<section id="noticias" aria-labelledby="noticias-title" style="padding:56px 24px;">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:32px;">
+      <span class="section-label">📰 Noticias pyme</span>
+      <h2 id="noticias-title" style="font-size:clamp(1.5rem,2.5vw,2rem);">Lo que está pasando<br>en el mundo pyme</h2>
+      <p style="font-size:.95rem;">Tendencias y noticias relevantes para emprendedores latinoamericanos — actualizadas cada 4 días.</p>
+    </div>
+    <div class="news-grid" id="news-grid">
+
+      <!-- NOTICIA 1 -->
+      <article class="news-card reveal">
+        <img class="news-card-img" src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=168&fit=crop&q=80" alt="Inteligencia artificial para pymes" loading="lazy">
+        <div class="news-card-body">
+          <span class="news-cat ia">💡 IA para negocios</span>
+          <h3 class="news-title">
+            <a href="https://www.portafolio.co" target="_blank" rel="noopener">
+              Cómo las pymes colombianas están adoptando la IA para competir con grandes empresas
+            </a>
+          </h3>
+          <p class="news-desc">Cada vez más pequeñas y medianas empresas en Colombia integran herramientas de inteligencia artificial para automatizar cotizaciones, responder clientes y analizar sus ventas sin necesidad de equipos técnicos.</p>
+          <div class="news-meta">
+            <span class="news-source">📰 Portafolio · May 2026</span>
+            <a href="https://www.portafolio.co" target="_blank" rel="noopener" class="news-link">Leer más →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- NOTICIA 2 -->
+      <article class="news-card reveal">
+        <img class="news-card-img" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=168&fit=crop&q=80" alt="Facturación electrónica fintech" loading="lazy">
+        <div class="news-card-body">
+          <span class="news-cat fintech">💳 Fintech LATAM</span>
+          <h3 class="news-title">
+            <a href="https://www.larepublica.co" target="_blank" rel="noopener">
+              Facturación electrónica obligatoria: lo que toda pyme debe saber antes del cierre fiscal
+            </a>
+          </h3>
+          <p class="news-desc">La DIAN amplía los requerimientos de facturación electrónica para 2026. Las pymes que aún usan facturas en Word o Excel corren el riesgo de sanciones. Aquí explicamos qué hacer y cómo prepararse.</p>
+          <div class="news-meta">
+            <span class="news-source">📰 La República · May 2026</span>
+            <a href="https://www.larepublica.co" target="_blank" rel="noopener" class="news-link">Leer más →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- NOTICIA 3 -->
+      <article class="news-card reveal">
+        <img class="news-card-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=168&fit=crop&q=80" alt="Emprendimiento LATAM startup" loading="lazy">
+        <div class="news-card-body">
+          <span class="news-cat emprendimiento">🚀 Emprendimiento</span>
+          <h3 class="news-title">
+            <a href="https://forbes.co" target="_blank" rel="noopener">
+              El ecosistema emprendedor de LATAM creció un 38% en 2025: Colombia lidera la región
+            </a>
+          </h3>
+          <p class="news-desc">Un nuevo informe de iNNpulsa Colombia revela que el número de startups y pymes digitales en el país aumentó considerablemente, impulsado por herramientas de bajo costo y mayor acceso a internet en ciudades intermedias.</p>
+          <div class="news-meta">
+            <span class="news-source">📰 Forbes Colombia · May 2026</span>
+            <a href="https://forbes.co" target="_blank" rel="noopener" class="news-link">Leer más →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <p class="news-footer">📅 Última actualización: <strong id="news-date">11 de mayo, 2026</strong> · Noticias seleccionadas para pymes latinoamericanas</p>
+  </div>
+</section>
+
+<!-- ═══ PROBLEM ════════════════════════════════════════════ -->
+<section id="problem" aria-labelledby="problem-title">
+  <div class="problem-grid container">
+    <div class="problem-pains">
+      <span class="section-label">El problema</span>
+      <h2 id="problem-title">La tecnología<br>no debería ser un obstáculo</h2>
+      <p style="margin-bottom:32px;font-size:1.05rem">Las pymes latinoamericanas pierden tiempo y dinero con software caro, complicado o que no está pensado para su realidad.</p>
+      <div class="pain-card reveal">
+        <div class="pain-icon">💸</div>
+        <div>
+          <div class="pain-title">Software empresarial prohibitivo</div>
+          <div class="pain-desc">Las grandes plataformas cobran cientos de dólares por mes con funciones que no necesitas.</div>
+        </div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">🔧</div>
+        <div>
+          <div class="pain-title">Implementaciones complicadas</div>
+          <div class="pain-desc">Meses de configuración, consultores caros y capacitaciones interminables antes de usar el sistema.</div>
+        </div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">🌐</div>
+        <div>
+          <div class="pain-title">No diseñado para LATAM</div>
+          <div class="pain-desc">Software gringo que no entiende facturación colombiana, pesos mexicanos ni la cultura del negocio latino.</div>
+        </div>
+      </div>
+    </div>
+    <div class="problem-visual reveal">
+      <div class="problem-before-after">
+        <div class="ba-before">
+          <div class="ba-label">Antes de ZAKARX</div>
+          <div class="ba-card">
+            <ul class="ba-list">
+              <li>Hojas de cálculo para todo</li>
+              <li>WhatsApp para gestionar clientes</li>
+              <li>Sin visibilidad de métricas</li>
+              <li>Facturas en Word</li>
+              <li>Contratos sin estándar</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ba-arrow" aria-hidden="true">↓</div>
+        <div class="ba-after">
+          <div class="ba-label">Con ZAKARX</div>
+          <div class="ba-card">
+            <ul class="ba-list">
+              <li>CRM centralizado con pipeline</li>
+              <li>Cotizaciones automáticas en segundos</li>
+              <li>Dashboard de métricas en tiempo real</li>
+              <li>Facturador simple y legal</li>
+              <li>Contratos generados con IA</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TOOLS ══════════════════════════════════════════════ -->
+<section id="tools" aria-labelledby="tools-title">
+  <div class="tools-inner">
+    <div class="section-head">
+      <span class="section-label">La suite</span>
+      <h2 id="tools-title">18 herramientas.<br>Un solo ecosistema.</h2>
+      <p>Ventas, finanzas, operaciones e IA — todo lo que tu pyme necesita, en un solo lugar.</p>
+    </div>
+    <div class="tools-grid" id="tools-grid" style="grid-template-columns:repeat(3,1fr);">
+
+      <!-- ── 6 HERRAMIENTAS DESTACADAS ── -->
+      <a href="herramientas.html?tool=crm" class="tool-card reveal" data-cat="ventas" aria-label="CRM Liviano" style="position:relative">
+        <span class="oferta-badge">POPULAR</span>
+        <div class="tool-card-head">
+          <div class="tool-emoji">🤝</div>
+          <div class="tool-price-incl">Incluido</div>
+        </div>
+        <div class="tool-name">CRM Liviano</div>
+        <div class="tool-desc">Gestiona clientes, pipeline de ventas y seguimientos con kanban visual y recordatorios automáticos.</div>
+        <span class="tool-tag ventas">Ventas</span>
+      </a>
+
+      <a href="herramientas.html?tool=facturador" class="tool-card reveal" data-cat="ventas" aria-label="Facturador Simple" style="position:relative">
+        <span class="oferta-badge">OFERTA</span>
+        <div class="tool-card-head">
+          <div class="tool-emoji">🧾</div>
+          <div class="tool-price-incl">Incluido</div>
+        </div>
+        <div class="tool-name">Facturador Simple</div>
+        <div class="tool-desc">Facturas legales con numeración automática, descuentos, impuestos y exportación a PDF. Cumple DIAN.</div>
+        <span class="tool-tag ventas">Ventas</span>
+      </a>
+
+      <a href="herramientas.html?tool=chatbot" class="tool-card reveal" data-cat="ai" aria-label="Chatbot IA" style="position:relative">
+        <span class="oferta-badge">POPULAR</span>
+        <div class="tool-card-head">
+          <div class="tool-emoji">🤖</div>
+          <div class="tool-price-incl">Incluido</div>
+        </div>
+        <div class="tool-name">Chatbot IA</div>
+        <div class="tool-desc">Asistente virtual con IA que atiende clientes 24/7, responde preguntas y agenda citas por ti.</div>
+        <span class="tool-tag ai">IA</span>
+      </a>
+
+      <a href="herramientas.html?tool=gastos" class="tool-card reveal" data-cat="finanzas" aria-label="Control de Gastos" style="position:relative">
+        <span class="oferta-badge nuevo-badge">NUEVO</span>
+        <div class="tool-card-head">
+          <div class="tool-emoji">💸</div>
+          <div class="tool-price-incl">Incluido</div>
+        </div>
+        <div class="tool-name">Control de Gastos</div>
+        <div class="tool-desc">Registra gastos por categoría, visualiza tu flujo de caja y detecta dónde se va el dinero de tu pyme.</div>
+        <span class="tool-tag finanzas">Finanzas</span>
+      </a>
+
+      <a href="herramientas.html?tool=inventario" class="tool-card reveal" data-cat="finanzas" aria-label="Control de Inventario" style="position:relative">
+        <span class="oferta-badge nuevo-badge">NUEVO</span>
+        <div class="tool-card-head">
+          <div class="tool-emoji">📦</div>
+          <div class="tool-price-incl">Incluido</div>
+        </div>
+        <div class="tool-name">Control de Inventario</div>
+        <div class="tool-desc">Gestiona tu stock con alertas de bajo inventario, historial de movimientos y valoración de productos.</div>
+        <span class="tool-tag finanzas">Finanzas</span>
+      </a>
+
+      <a href="herramientas.html?tool=contratos" class="tool-card reveal" data-cat="ops" aria-label="Generador de Contratos">
+        <div class="tool-card-head">
+          <div class="tool-emoji">📄</div>
+          <div class="tool-price-incl">Incluido</div>
+        </div>
+        <div class="tool-name">Generador de Contratos</div>
+        <div class="tool-desc">Contratos de servicios, NDA y más con plantillas legales adaptadas a Colombia y LATAM.</div>
+        <span class="tool-tag ops">Operaciones</span>
+      </a>
+
+    </div>
+
+    <!-- Tira compacta: las otras 12 herramientas -->
+    <div class="tools-also">
+      <span class="tools-also-label">+ 12 herramientas más incluidas en tu plan</span>
+      <a href="herramientas.html?tool=cotizaciones" class="tool-pill">📋 Cotizaciones & Propuestas IA</a>
+      <a href="herramientas.html?tool=catalogo" class="tool-pill">📲 Catálogo WhatsApp</a>
+      <a href="herramientas.html?tool=correos" class="tool-pill">📧 Correos de Ventas IA</a>
+      <a href="herramientas.html?tool=metricas" class="tool-pill">📊 Panel de Métricas</a>
+      <a href="herramientas.html?tool=rentabilidad" class="tool-pill">🧮 Simulador de Rentabilidad</a>
+      <a href="herramientas.html?tool=agenda" class="tool-pill">📅 Agenda de Citas</a>
+      <a href="herramientas.html?tool=kanban" class="tool-pill">🗂️ Kanban de Tareas</a>
+      <a href="herramientas.html?tool=encuestas" class="tool-pill">📝 Encuestas y NPS</a>
+      <a href="herramientas.html?tool=contenido" class="tool-pill">✍️ Contenido & Marketing IA</a>
+      <a href="herramientas.html?tool=resenas" class="tool-pill">⭐ Analizador de Reseñas</a>
+      <a href="herramientas.html?tool=actas" class="tool-pill">🎙️ Actas de Reuniones IA</a>
+      <a href="herramientas.html?tool=seguridad" class="tool-pill">🛡️ Suite de Seguridad</a>
+    </div>
+
+    <div class="tools-cta">
+      <a href="herramientas.html" class="btn btn-primary btn-lg">Ver el catálogo completo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ══════════════════════════════════════ -->
+<section id="how" aria-labelledby="how-title">
+  <div class="how-inner">
+    <div class="section-head">
+      <span class="section-label">Proceso</span>
+      <h2 id="how-title">Empiezas en<br>3 pasos simples</h2>
+      <p>Sin instalaciones, sin configuraciones complicadas. Abre el navegador y listo.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Elige tu herramienta</div>
+          <div class="step-desc">Navega el catálogo de 18 herramientas y selecciona la que resuelve tu problema más urgente. Cada una tiene una demo gratuita.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Ábrela en tu navegador</div>
+          <div class="step-desc">Sin instalación, sin registro complicado. Solo abre el archivo HTML en Chrome o Edge y empieza a usarla inmediatamente.</div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Personaliza y crece</div>
+          <div class="step-desc">Adapta cada herramienta a tu marca, conecta las que necesitas entre sí y escala tu operación con soporte incluido.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ════════════════════════════════════════════ -->
+<section id="pricing" aria-labelledby="pricing-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">Precios</span>
+      <h2 id="pricing-title">Inversión justa<br>para tu pyme</h2>
+      <p>Sin suscripciones mensuales. Pago único, tuyo para siempre.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- Starter -->
+      <div class="plan-card reveal" aria-label="Plan Starter">
+        <div>
+          <div class="plan-name">Starter</div>
+          <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+            <div class="plan-price" style="margin-bottom:0"><sup>$</sup>0<span> COP</span></div>
+          </div>
+          <div style="font-size:.82rem;color:var(--text3);margin-bottom:8px">≈ USD 59 · <s>$0</s> <span style="color:#e05c5c;font-weight:700">–44%</span></div>
+          <p class="plan-desc">Para emprendedores que quieren comenzar a digitalizar.</p>
+        </div>
+        <ul class="plan-features">
+          <li>5 herramientas a tu elección</li>
+          <li>Actualizaciones por 1 año</li>
+          <li>Soporte por email</li>
+          <li>Guía de implementación</li>
+          <li class="off">Herramientas IA</li>
+          <li class="off">Personalización de marca</li>
+          <li class="off">Soporte prioritario</li>
+        </ul>
+        <a href="precios.html" class="btn btn-outline plan-btn">Ver detalles</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="plan-card featured reveal" aria-label="Plan Pro (Recomendado)">
+        <div class="plan-popular">Más popular</div>
+        <div>
+          <div class="plan-name">Pro</div>
+          <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+            <div class="plan-price" style="margin-bottom:0"><sup>$</sup>0<span> COP</span></div>
+          </div>
+          <div style="font-size:.82rem;color:var(--text3);margin-bottom:8px">≈ USD 131 · <s>$1.490.000</s> <span style="color:#e05c5c;font-weight:700">–63%</span></div>
+          <p class="plan-desc">La suite completa para pymes en crecimiento.</p>
+        </div>
+        <ul class="plan-features">
+          <li>Las 18 herramientas completas</li>
+          <li>Actualizaciones por 2 años</li>
+          <li>Soporte prioritario</li>
+          <li>Herramientas IA incluidas</li>
+          <li>Personalización con tu marca</li>
+          <li>Sesión de onboarding 1:1</li>
+          <li class="off">Acceso API dedicado</li>
+        </ul>
+        <a href="precios.html" class="btn btn-primary plan-btn">Comenzar ahora</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="plan-card reveal" aria-label="Plan Enterprise">
+        <div>
+          <div class="plan-name">Enterprise</div>
+          <div class="plan-price" style="font-size:2rem">A medida</div>
+          <div style="font-size:.82rem;color:var(--text3);margin-bottom:8px">Desde $0 COP</div>
+          <p class="plan-desc">Para empresas con necesidades específicas y equipos grandes.</p>
+        </div>
+        <ul class="plan-features">
+          <li>Todo el plan Pro</li>
+          <li>Desarrollo de funciones custom</li>
+          <li>Integración con tus sistemas</li>
+          <li>API key Anthropic dedicada</li>
+          <li>Capacitación para tu equipo</li>
+          <li>SLA garantizado</li>
+          <li>Soporte 24/7</li>
+        </ul>
+        <a href="https://wa.me/573001234567?text=Hola!%20Quiero%20información%20sobre%20el%20plan%20Enterprise%20de%20ZAKARX" target="_blank" rel="noopener" class="btn btn-outline plan-btn">Hablemos por WhatsApp</a>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:32px;font-size:.9rem;color:var(--text3)">
+      Precios en COP · Pago único sin suscripción mensual · Garantía de satisfacción 30 días<br>
+      <strong style="color:var(--text2)">💡 Equivale a solo 3 meses de Siigo o Alegra — pero lo pagas una sola vez y es tuyo para siempre.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══════════════════════════════════════ -->
+<section id="testimonials" aria-labelledby="testi-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">Testimonios</span>
+      <h2 id="testi-title">Lo que dicen<br>nuestros clientes</h2>
+    </div>
+    <div class="testi-grid">
+
+      <div class="testi-card reveal">
+        <div class="testi-stars" aria-label="5 estrellas">★★★★★</div>
+        <p class="testi-quote">Antes manejaba mis clientes en una hoja de Excel y perdía seguimientos todo el tiempo. Con el CRM de ZAKARX cerré 3 contratos nuevos en el primer mes.</p>
+        <div class="testi-author">
+          <div class="testi-avatar" aria-hidden="true">MG</div>
+          <div>
+            <div class="testi-name">María González</div>
+            <div class="testi-role">Consultora de Marketing · Bogotá</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal">
+        <div class="testi-stars" aria-label="5 estrellas">★★★★★</div>
+        <p class="testi-quote">El facturador me ahorró horas cada semana. Lo tengo corriendo en Chrome y en segundos genero facturas que antes me tomaban 20 minutos en Word.</p>
+        <div class="testi-author">
+          <div class="testi-avatar" aria-hidden="true">CP</div>
+          <div>
+            <div class="testi-name">Carlos Pérez</div>
+            <div class="testi-role">Arquitecto independiente · Medellín</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal">
+        <div class="testi-stars" aria-label="5 estrellas">★★★★★</div>
+        <p class="testi-quote">El chatbot IA para mi tienda virtual es una locura. Responde preguntas de clientes mientras duermo. Mis ventas subieron 40% el primer trimestre.</p>
+        <div class="testi-author">
+          <div class="testi-avatar" aria-hidden="true">AR</div>
+          <div>
+            <div class="testi-name">Ana Rodríguez</div>
+            <div class="testi-role">E-commerce · Ciudad de México</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ════════════════════════════════════════════════ -->
+<section id="faq" aria-labelledby="faq-title">
+  <div class="faq-inner">
+    <div class="section-head">
+      <span class="section-label">Preguntas frecuentes</span>
+      <h2 id="faq-title">Resolvemos tus<br>dudas</h2>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Necesito instalar algo para usar las herramientas?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a" role="region">
+        <div class="faq-a-inner">No. Todas las herramientas funcionan directamente en tu navegador (Chrome, Edge, Firefox). Solo abre el archivo HTML y listo. No requieren servidor, base de datos ni instalación de ningún tipo.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Mis datos están seguros? ¿Se guardan en la nube?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a" role="region">
+        <div class="faq-a-inner">Tus datos se guardan localmente en tu navegador (localStorage). No enviamos nada a servidores externos. Las herramientas IA solo envían el texto que ingresas a la API de Anthropic para generar respuestas, y eso es todo.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Para las herramientas IA necesito pagar a Anthropic?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a" role="region">
+        <div class="faq-a-inner">Las herramientas IA requieren una API key de Anthropic que configuras una sola vez. El costo es mínimo — menos de $1 USD al mes para uso típico de una pyme. Te explicamos cómo obtenerla en nuestra guía incluida.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Puedo personalizar las herramientas con mi logo y colores?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a" role="region">
+        <div class="faq-a-inner">Sí, a partir del plan Pro incluimos personalización de marca: logo, colores corporativos, nombre de tu empresa. Al ser HTML/CSS puro, es completamente configurable. También ofrecemos personalizaciones adicionales como servicio.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Cómo funciona el soporte?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a" role="region">
+        <div class="faq-a-inner">Starter incluye soporte por email con respuesta en 48h. Pro tiene soporte prioritario con respuesta en 24h y sesión de onboarding 1:1 por videollamada. Enterprise tiene soporte dedicado con WhatsApp directo al equipo técnico.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Ofrecen garantía o período de prueba?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a" role="region">
+        <div class="faq-a-inner">Sí. Todos los planes tienen garantía de satisfacción de 30 días. Si por cualquier razón no estás satisfecho, te devolvemos el dinero sin preguntas. También puedes solicitar una demo gratuita antes de comprar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BANNER ═════════════════════════════════════════ -->
+<section id="cta" aria-labelledby="cta-title">
+  <div class="cta-inner">
+    <span class="section-label" style="color:rgba(0,220,200,.7)">Empieza hoy</span>
+    <h2 id="cta-title">Tu pyme merece<br>tecnología de primer nivel</h2>
+    <p>Únete a más de 200 empresas que ya digitalizaron sus operaciones con ZAKARX.</p>
+    <div class="cta-actions">
+      <a href="herramientas.html" class="btn btn-white btn-lg">Ver herramientas</a>
+      <a href="https://wa.me/573001234567?text=Hola!%20Estoy%20en%20la%20p%C3%A1gina%20principal%20de%20ZAKARX%20y%20quiero%20saber%20m%C3%A1s%20sobre%20las%20herramientas%20para%20mi%20negocio%20%F0%9F%9A%80" class="btn btn-outline-white btn-lg" target="_blank" rel="noopener">
+        💬 Hablar por WhatsApp
+      </a>
+    </div>
+    <div class="cta-logos">
+      <span class="cta-trust">🔒 Cumplimiento Ley 1581</span>
+      <span class="cta-trust">✓ Sin suscripción mensual</span>
+      <span class="cta-trust">⚡ Disponible 24/7</span>
+      <span class="cta-trust">🇨🇴 Hecho para LATAM</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═════════════════════════════════════════════ -->
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-logo-mark" aria-hidden="true">Z</div>
+        ZAKARX
+      </div>
+      <p class="footer-tagline">Suite digital para pymes latinoamericanas. Herramientas que funcionan, precios que caben.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social" aria-label="Instagram">📷 Instagram</a>
+        <a href="#" class="footer-social" aria-label="LinkedIn">💼 LinkedIn</a>
+        <a href="https://wa.me/573001234567" class="footer-social" aria-label="WhatsApp" target="_blank" rel="noopener">💬 WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Herramientas</div>
+      <ul class="footer-links">
+        <li><a href="#">CRM Liviano</a></li>
+        <li><a href="#">Facturador</a></li>
+        <li><a href="#">Chatbot IA</a></li>
+        <li><a href="#">Métricas</a></li>
+        <li><a href="herramientas.html">Ver todas →</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Empresa</div>
+      <ul class="footer-links">
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="#">Guía de uso</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#cta">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <ul class="footer-links">
+        <li><a href="#">Política de privacidad</a></li>
+        <li><a href="#">Términos de uso</a></li>
+      </ul>
+      <div style="margin-top:24px">
+        <div class="footer-col-title">Contacto</div>
+        <ul class="footer-links">
+          <li><a href="mailto:hola@zakarx.com">hola@zakarx.com</a></li>
+          <li><a href="https://wa.me/573001234567" target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 ZAKARX · Colombia</p>
+    <nav class="footer-legal" aria-label="Legal">
+      <a href="#">Privacidad</a>
+      <a href="#">Términos</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- ═══ WHATSAPP FLOATING ═════════════════════════════════ -->
+<a href="https://wa.me/573001234567?text=Hola,%20quiero%20información%20sobre%20ZAKARX"
+   id="wa-btn" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  💬
+</a>
+<div id="wa-tooltip" aria-hidden="true">¿Tienes dudas? Escríbenos</div>
+
+<!-- ═══ SCRIPTS ════════════════════════════════════════════ -->
+<script>
+(function(){
+'use strict';
+
+// ── XSS Helper ──────────────────────────────────────────
+function escHtml(s){
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+}
+
+// ── Silence logs in production ──────────────────────────
+if(location.hostname !== 'localhost' && location.hostname !== '127.0.0.1'){
+  console.log = console.warn = console.error = function(){};
+}
+
+// ── Navbar scroll ───────────────────────────────────────
+var navbar = document.getElementById('navbar');
+var lastScroll = 0;
+window.addEventListener('scroll', function(){
+  var y = window.scrollY;
+  if(y > 20) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+  lastScroll = y;
+}, {passive:true});
+
+// ── Mobile menu ─────────────────────────────────────────
+var hamburger = document.getElementById('hamburger');
+var mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', function(){
+  var isOpen = mobileMenu.classList.contains('open');
+  mobileMenu.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', String(!isOpen));
+  document.body.style.overflow = isOpen ? '' : 'hidden';
+});
+window.closeMobileMenu = function(){
+  mobileMenu.classList.remove('open');
+  hamburger.setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+};
+
+// ── Scroll reveal ────────────────────────────────────────
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)});
+
+// ── Count up animation ───────────────────────────────────
+function animateCount(el, target, duration){
+  var start = 0;
+  var startTime = null;
+  function step(timestamp){
+    if(!startTime) startTime = timestamp;
+    var progress = Math.min((timestamp - startTime) / duration, 1);
+    var ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target);
+    if(progress < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(step);
+}
+var countObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var el = e.target;
+      var target = parseInt(el.getAttribute('data-target'),10);
+      if(!isNaN(target)) animateCount(el, target, 1200);
+      countObserver.unobserve(el);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.count').forEach(function(el){countObserver.observe(el)});
+
+// ── Hero bar animation ───────────────────────────────────
+var barObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.hero-bar-fill').forEach(function(bar){
+        var w = bar.getAttribute('data-w');
+        bar.style.width = w + '%';
+      });
+      barObserver.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+var heroCard = document.querySelector('.hero-card-main');
+if(heroCard) barObserver.observe(heroCard);
+
+// Hero metric count-up
+function heroCount(id, target, suffix){
+  var el = document.getElementById(id);
+  if(!el) return;
+  var obs = new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){
+      animateCount(el, target, 1500);
+      obs.unobserve(el);
+    }
+  },{threshold:.5});
+  obs.observe(el);
+}
+heroCount('m1', 34, '%');
+heroCount('m2', 128, 'K');
+
+// ── Tool filter ──────────────────────────────────────────
+var filterBtns = document.querySelectorAll('.filter-btn');
+filterBtns.forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var filter = this.getAttribute('data-filter');
+    filterBtns.forEach(function(b){b.classList.remove('active')});
+    this.classList.add('active');
+    document.querySelectorAll('.tool-card').forEach(function(card){
+      var cat = card.getAttribute('data-cat');
+      if(filter === 'all' || cat === filter){
+        card.style.display = 'flex';
+        setTimeout(function(){card.style.opacity='1';card.style.transform=''},10);
+      } else {
+        card.style.opacity = '0';
+        card.style.transform = 'scale(.95)';
+        setTimeout(function(){card.style.display='none'},200);
+      }
+    });
+  });
+});
+
+// ── FAQ accordion ────────────────────────────────────────
+document.querySelectorAll('.faq-q').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var item = this.closest('.faq-item');
+    var answer = item.querySelector('.faq-a');
+    var isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(function(i){
+      i.classList.remove('open');
+      var a = i.querySelector('.faq-a');
+      a.style.height = '0';
+      i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    });
+    // Open clicked (if was closed)
+    if(!isOpen){
+      item.classList.add('open');
+      answer.style.height = answer.querySelector('.faq-a-inner').offsetHeight + 'px';
+      this.setAttribute('aria-expanded','true');
+    }
+  });
+});
+
+// ── Active nav link ──────────────────────────────────────
+var sections = document.querySelectorAll('section[id]');
+var navLinks = document.querySelectorAll('.nav-links a');
+var sectionObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var id = e.target.getAttribute('id');
+      navLinks.forEach(function(link){
+        var href = link.getAttribute('href');
+        if(href === '#' + id) link.style.color = 'var(--accent-dark)';
+        else link.style.color = '';
+      });
+    }
+  });
+},{threshold:.4});
+sections.forEach(function(s){sectionObserver.observe(s)});
+
+// ── Popup lead capture ───────────────────────────────
+  var POPUP_KEY = 'zx_popup_seen';
+  var overlay   = document.getElementById('popup-overlay');
+  var popupForm = document.getElementById('popup-form');
+
+  function openPopup(){
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closePopup(){
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+    try{localStorage.setItem(POPUP_KEY,'1')}catch(e){}
+  }
+
+  // Show after 8 seconds if not seen before
+  if(!localStorage.getItem(POPUP_KEY)){
+    setTimeout(openPopup, 8000);
+  }
+
+  document.getElementById('popup-close').addEventListener('click', closePopup);
+  document.getElementById('popup-skip').addEventListener('click', closePopup);
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) closePopup(); });
+
+  popupForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = popupForm.querySelector('button');
+    btn.textContent = '¡Listo! Revisá tu email 🎉';
+    btn.style.background = '#059669';
+    btn.disabled = true;
+    setTimeout(closePopup, 2500);
+  });
+
+})();
+</script>
+</body>
+</html>

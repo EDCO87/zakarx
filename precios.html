@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io;">
+<title>Precios — ZAKARX Suite Digital</title>
+<meta name="description" content="Planes ZAKARX desde $0 COP. Pago único, sin suscripciones. Suite digital para pymes colombianas y latinoamericanas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:#0a0b14;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+
+:root{
+  --bg:#fff;--bg2:#f7f8fc;--bg3:#f0fdfb;
+  --text:#0a0b14;--text2:#4a4d60;--text3:#8b8fa8;
+  --accent:#00dcc8;--accent-dark:#00b8a6;--accent-light:#e0faf8;
+  --gold:#f5c842;--gold-light:#fef9e7;
+  --border:#e8eaf2;
+  --shadow:0 4px 16px rgba(0,0,0,.07);
+  --shadow-lg:0 20px 60px rgba(0,0,0,.10);
+  --radius:12px;--radius-lg:20px;
+  --max:1100px;--transition:200ms cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Navbar ── */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--border);
+}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:66px}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);display:flex;align-items:center;gap:8px}
+.nav-logo-mark{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:#fff}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{padding:8px 12px;border-radius:8px;font-size:.88rem;font-weight:500;color:var(--text2);transition:all var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--accent-dark)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;border:2px solid transparent;transition:all var(--transition);white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 4px 16px rgba(0,220,200,.3)}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--text);border-color:var(--border)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent-dark);background:var(--accent-light)}
+.btn-lg{padding:16px 32px;font-size:1rem}
+.btn-sm{padding:8px 18px;font-size:.82rem}
+
+/* ── Page header ── */
+#page-header{
+  padding:140px 24px 80px;text-align:center;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,220,200,.06),transparent 60%),#fff;
+  border-bottom:1px solid var(--border);
+}
+.container{max-width:var(--max);margin:0 auto}
+.section-label{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);display:block;margin-bottom:14px}
+#page-header h1{font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:16px}
+#page-header h1 span{
+  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+#page-header > .container > p{font-size:1.05rem;color:var(--text2);max-width:520px;margin:0 auto 36px}
+
+/* ── Toggle billing (placeholder UX) ── */
+.billing-toggle{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:100px;padding:6px;margin-bottom:12px;
+}
+.bt-option{
+  padding:8px 22px;border-radius:100px;font-family:'Syne',sans-serif;
+  font-weight:600;font-size:.88rem;border:none;background:transparent;color:var(--text3);
+  transition:all var(--transition);cursor:pointer;
+}
+.bt-option.active{background:#fff;color:var(--text);box-shadow:var(--shadow)}
+.billing-note{font-size:.82rem;color:var(--text3);margin-top:8px}
+.billing-note strong{color:var(--accent-dark)}
+
+/* ── Pricing grid ── */
+#pricing{padding:80px 24px}
+.pricing-grid{
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  align-items:start;
+}
+
+.plan-card{
+  background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);
+  padding:36px 32px;position:relative;display:flex;flex-direction:column;gap:28px;
+  transition:all .25s cubic-bezier(.4,0,.2,1);
+}
+.plan-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.plan-card.featured{
+  border-color:var(--accent);
+  box-shadow:0 0 0 1px var(--accent), 0 20px 60px rgba(0,220,200,.12);
+  transform:scale(1.02);
+}
+.plan-card.featured:hover{transform:scale(1.02) translateY(-4px)}
+.plan-popular{
+  position:absolute;top:-15px;left:50%;transform:translateX(-50%);
+  background:var(--accent);color:#fff;font-family:'Syne',sans-serif;
+  font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 18px;border-radius:100px;white-space:nowrap;
+}
+
+.plan-header{}
+.plan-icon{font-size:2rem;margin-bottom:12px}
+.plan-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+.plan-price{font-family:'Syne',sans-serif;font-weight:800;line-height:1;margin-bottom:6px;display:flex;align-items:flex-start;gap:4px}
+.plan-price sup{font-size:1.4rem;margin-top:6px;font-weight:700;color:var(--text2)}
+.plan-price .amount{font-size:3.8rem;color:var(--text)}
+.plan-price .currency{font-size:1rem;font-weight:500;color:var(--text3);align-self:flex-end;padding-bottom:8px}
+.plan-desc{font-size:.9rem;color:var(--text3);line-height:1.5}
+.plan-divider{height:1px;background:var(--border)}
+
+.plan-features-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:14px}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:11px;flex:1}
+.plan-features li{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text2);line-height:1.4}
+.feat-check{
+  width:18px;height:18px;border-radius:5px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:.7rem;margin-top:1px;
+}
+.feat-check.yes{background:var(--accent-light);color:var(--accent-dark)}
+.feat-check.no{background:var(--bg2);color:var(--text3)}
+.plan-features li.off{color:var(--text3)}
+
+.plan-cta{width:100%;text-align:center;padding:16px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;border:2px solid transparent;transition:all var(--transition)}
+.cta-primary{background:var(--accent);color:#fff;box-shadow:0 4px 16px rgba(0,220,200,.3)}
+.cta-primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.cta-outline{background:transparent;color:var(--text);border-color:var(--border)}
+.cta-outline:hover{border-color:var(--accent);color:var(--accent-dark);background:var(--accent-light)}
+
+/* ── Guarantee ── */
+#guarantee{padding:60px 24px;background:var(--bg2);text-align:center}
+.guarantee-box{
+  max-width:600px;margin:0 auto;
+  background:#fff;border-radius:var(--radius-lg);padding:40px;
+  border:1px solid var(--border);box-shadow:var(--shadow);
+}
+.guarantee-icon{font-size:3rem;margin-bottom:16px}
+.guarantee-box h3{font-family:'Syne',sans-serif;font-size:1.4rem;margin-bottom:12px}
+.guarantee-box p{font-size:.95rem;color:var(--text2);line-height:1.7}
+
+/* ── Compare table ── */
+#compare{padding:80px 24px;background:#fff}
+.compare-head{text-align:center;margin-bottom:48px}
+.compare-head h2{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:12px}
+.compare-head p{color:var(--text2)}
+.compare-table{
+  max-width:var(--max);margin:0 auto;
+  border:1px solid var(--border);border-radius:var(--radius-lg);
+  overflow:hidden;
+}
+table{width:100%;border-collapse:collapse}
+thead{background:var(--bg2)}
+th{padding:18px 20px;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;color:var(--text2);text-align:left;border-bottom:1px solid var(--border)}
+th:not(:first-child){text-align:center}
+th.featured-col{color:var(--accent-dark);background:var(--accent-light)}
+td{padding:14px 20px;border-bottom:1px solid var(--border);font-size:.9rem;color:var(--text2)}
+td:not(:first-child){text-align:center}
+td.featured-col{background:rgba(0,220,200,.03)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--bg2)}
+tr:hover td.featured-col{background:rgba(0,220,200,.05)}
+.check-yes{color:var(--accent-dark);font-size:1.1rem;font-weight:700}
+.check-no{color:var(--border);font-size:1rem}
+.check-partial{color:var(--gold);font-size:.85rem;font-weight:600}
+.feature-name{font-weight:500;color:var(--text)}
+.feature-note{display:block;font-size:.78rem;color:var(--text3);margin-top:2px}
+
+/* ── Add-ons ── */
+#addons{padding:80px 24px;background:var(--bg2)}
+.addons-head{text-align:center;margin-bottom:48px}
+.addons-head h2{font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:12px}
+.addons-grid{
+  max-width:900px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.addon-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:22px;transition:all var(--transition);
+}
+.addon-card:hover{border-color:rgba(0,220,200,.35);box-shadow:var(--shadow);transform:translateY(-2px)}
+.addon-icon{font-size:1.5rem;margin-bottom:10px}
+.addon-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--text);margin-bottom:6px}
+.addon-desc{font-size:.82rem;color:var(--text3);line-height:1.5;margin-bottom:12px}
+.addon-price{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--accent-dark)}
+
+/* ── FAQ ── */
+#faq{padding:80px 24px;background:#fff}
+.faq-inner{max-width:680px;margin:0 auto}
+.faq-head{text-align:center;margin-bottom:48px}
+.faq-head h2{font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:12px}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 0;background:none;border:none;text-align:left;
+  font-family:'Syne',sans-serif;font-weight:600;font-size:1rem;color:var(--text);
+  cursor:pointer;transition:color var(--transition);
+}
+.faq-q:hover{color:var(--accent-dark)}
+.faq-icon{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--text3);flex-shrink:0;transition:all var(--transition)}
+.faq-item.open .faq-icon{background:var(--accent-light);border-color:var(--accent);color:var(--accent-dark);transform:rotate(45deg)}
+.faq-a{height:0;overflow:hidden;transition:height .3s ease}
+.faq-a-inner{padding:0 0 18px;font-size:.93rem;color:var(--text2);line-height:1.7}
+
+/* ── Contact form ── */
+#contact{padding:80px 24px;background:var(--bg2)}
+.contact-inner{
+  max-width:680px;margin:0 auto;
+  background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);
+  padding:48px;box-shadow:var(--shadow);
+}
+.contact-head{text-align:center;margin-bottom:36px}
+.contact-head h2{font-size:1.8rem;margin-bottom:10px}
+.contact-head p{color:var(--text2)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.form-group label{font-family:'Syne',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.04em;color:var(--text)}
+.form-group input,.form-group select,.form-group textarea{
+  padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;
+  font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text);
+  background:#fff;outline:none;transition:border-color var(--transition),box-shadow var(--transition);
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,220,200,.1);
+}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-submit{width:100%;padding:16px;border:none;border-radius:100px;background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:all var(--transition);box-shadow:0 4px 16px rgba(0,220,200,.3)}
+.form-submit:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.form-note{text-align:center;margin-top:12px;font-size:.8rem;color:var(--text3)}
+#form-msg{display:none;padding:14px;border-radius:10px;text-align:center;font-size:.9rem;font-weight:600;margin-top:16px}
+#form-msg.success{background:var(--accent-light);color:var(--accent-dark)}
+#form-msg.error{background:#fee2e2;color:#c0392b}
+
+/* ── Trust bar ── */
+#trust{padding:48px 24px;border-top:1px solid var(--border)}
+.trust-inner{max-width:var(--max);margin:0 auto;display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--text3);font-weight:500}
+.trust-item strong{color:var(--text)}
+
+/* ── Footer ── */
+footer{background:#fff;border-top:1px solid var(--border);padding:24px;text-align:center}
+footer p{font-size:.85rem;color:var(--text3)}
+footer a{color:var(--accent-dark);font-weight:500}
+
+/* ── WA ── */
+#wa-btn{position:fixed;bottom:24px;right:24px;z-index:900;width:54px;height:54px;border-radius:50%;background:#25d366;box-shadow:0 4px 16px rgba(37,211,102,.4);display:flex;align-items:center;justify-content:center;font-size:1.5rem;transition:all var(--transition);border:none;color:#fff;animation:pulse 3s ease-in-out infinite}
+#wa-btn:hover{background:#1db954;transform:scale(1.08);animation:none}
+@keyframes pulse{0%,100%{box-shadow:0 4px 16px rgba(37,211,102,.4)}50%{box-shadow:0 4px 28px rgba(37,211,102,.65)}}
+
+/* ── Reveal ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .pricing-grid{grid-template-columns:1fr;max-width:440px}
+  .plan-card.featured{transform:scale(1)}
+  .plan-card.featured:hover{transform:translateY(-4px)}
+  .addons-grid{grid-template-columns:1fr 1fr}
+  .form-row{grid-template-columns:1fr}
+  .compare-table{overflow-x:auto;display:block}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .trust-inner{gap:20px}
+}
+@media(max-width:540px){
+  .addons-grid{grid-template-columns:1fr}
+  .contact-inner{padding:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">Z</div>
+      ZAKARX
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="herramientas.html">Herramientas</a>
+      <a href="precios.html" class="active">Precios</a>
+      <a href="#">Guía</a>
+    </div>
+    <a href="#contact" class="btn btn-primary">Contactar →</a>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<!-- Urgency bar -->
+<div style="background:linear-gradient(90deg,#0a0b14,#12141f);color:#fff;text-align:center;padding:10px 24px;font-size:.82rem;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
+  🔥 <strong style="color:#f5c842">Precio de lanzamiento</strong> — Plan Pro a solo <strong>$0 COP</strong> · Solo 3 meses de Siigo y es tuyo para siempre
+</div>
+<header id="page-header">
+  <div class="container">
+    <span class="section-label">Planes y precios</span>
+    <h1>Inversión justa,<br><span>sin sorpresas</span></h1>
+    <p>Pago único, tuyo para siempre. Sin suscripciones mensuales ni costos ocultos.</p>
+    <div class="billing-toggle" role="group" aria-label="Tipo de pago">
+      <button class="bt-option active" id="bt-unique">Pago único ✓</button>
+      <button class="bt-option" id="bt-custom">Empresarial</button>
+    </div>
+    <p class="billing-note">💡 Todos los planes incluyen <strong>garantía de 30 días</strong></p>
+  </div>
+</header>
+
+<!-- Pricing Cards -->
+<section id="pricing">
+  <div class="pricing-grid">
+
+    <!-- Starter -->
+    <div class="plan-card reveal" id="plan-starter">
+      <div class="plan-header">
+        <div class="plan-icon">🌱</div>
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">
+          <sup>$</sup>
+          <span class="amount">0</span>
+          <span class="currency">.000 COP</span>
+        </div>
+        <p style="font-size:.8rem;color:var(--text3);margin-top:-18px;margin-bottom:4px"><s>antes $0 USD</s> · <strong style="color:var(--accent-dark)">–44%</strong></p>
+        <p class="plan-desc">Para emprendedores y freelancers que dan sus primeros pasos en la digitalización.</p>
+      </div>
+      <div class="plan-divider"></div>
+      <div>
+        <div class="plan-features-title">Incluye</div>
+        <ul class="plan-features">
+          <li><span class="feat-check yes">✓</span> 5 herramientas a tu elección</li>
+          <li><span class="feat-check yes">✓</span> Facturador Simple</li>
+          <li><span class="feat-check yes">✓</span> Calculadora ROI</li>
+          <li><span class="feat-check yes">✓</span> Actualizaciones por 12 meses</li>
+          <li><span class="feat-check yes">✓</span> Soporte por email (48h)</li>
+          <li><span class="feat-check yes">✓</span> Guía de implementación PDF</li>
+          <li><span class="feat-check no" aria-label="No incluido">—</span> <span class="off">Herramientas con IA</span></li>
+          <li><span class="feat-check no" aria-label="No incluido">—</span> <span class="off">Personalización de marca</span></li>
+          <li><span class="feat-check no" aria-label="No incluido">—</span> <span class="off">Sesión de onboarding</span></li>
+        </ul>
+      </div>
+      <a href="#contact" class="plan-cta cta-outline">Comenzar con Starter</a>
+    </div>
+
+    <!-- Pro -->
+    <div class="plan-card featured reveal" id="plan-pro">
+      <div class="plan-popular">Más popular</div>
+      <div class="plan-header">
+        <div class="plan-icon">🚀</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">
+          <sup>$</sup>
+          <span class="amount">0</span>
+          <span class="currency">.000 COP</span>
+        </div>
+        <p style="font-size:.8rem;color:var(--text3);margin-top:-18px;margin-bottom:4px"><s>antes $0 USD</s> · <strong style="color:var(--accent-dark)">–63%</strong></p>
+        <p class="plan-desc">La suite completa para pymes en crecimiento que quieren ventaja competitiva.</p>
+      </div>
+      <div class="plan-divider"></div>
+      <div>
+        <div class="plan-features-title">Todo lo de Starter, más:</div>
+        <ul class="plan-features">
+          <li><span class="feat-check yes">✓</span> <strong>Las 18 herramientas completas</strong></li>
+          <li><span class="feat-check yes">✓</span> 6 herramientas con IA (Claude Sonnet)</li>
+          <li><span class="feat-check yes">✓</span> Personalización con tu marca</li>
+          <li><span class="feat-check yes">✓</span> Actualizaciones por 24 meses</li>
+          <li><span class="feat-check yes">✓</span> Soporte prioritario (24h)</li>
+          <li><span class="feat-check yes">✓</span> Sesión de onboarding 1:1 (60 min)</li>
+          <li><span class="feat-check yes">✓</span> Guía avanzada + video tutoriales</li>
+          <li><span class="feat-check yes">✓</span> Canal WhatsApp directo</li>
+          <li><span class="feat-check no" aria-label="No incluido">—</span> <span class="off">API key Anthropic dedicada</span></li>
+        </ul>
+      </div>
+      <a href="#contact" class="plan-cta cta-primary">Obtener plan Pro</a>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="plan-card reveal" id="plan-enterprise">
+      <div class="plan-header">
+        <div class="plan-icon">🏢</div>
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price">
+          <span class="amount" style="font-size:2.4rem">A medida</span>
+        </div>
+        <p class="plan-desc">Para empresas con necesidades específicas, equipos grandes o requerimientos técnicos avanzados.</p>
+      </div>
+      <div class="plan-divider"></div>
+      <div>
+        <div class="plan-features-title">Todo lo de Pro, más:</div>
+        <ul class="plan-features">
+          <li><span class="feat-check yes">✓</span> Funciones custom a tu medida</li>
+          <li><span class="feat-check yes">✓</span> Integración con tus sistemas actuales</li>
+          <li><span class="feat-check yes">✓</span> API key Anthropic dedicada</li>
+          <li><span class="feat-check yes">✓</span> Capacitación para tu equipo</li>
+          <li><span class="feat-check yes">✓</span> Actualizaciones ilimitadas</li>
+          <li><span class="feat-check yes">✓</span> SLA garantizado</li>
+          <li><span class="feat-check yes">✓</span> Soporte 24/7 dedicado</li>
+          <li><span class="feat-check yes">✓</span> Deployment en tu servidor</li>
+        </ul>
+      </div>
+      <a href="#contact" class="plan-cta cta-outline">Hablemos de tu proyecto</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Guarantee -->
+<section id="guarantee">
+  <div class="guarantee-box reveal">
+    <div class="guarantee-icon">🛡️</div>
+    <h3>Garantía de satisfacción 30 días</h3>
+    <p>Si por cualquier motivo las herramientas no funcionan para tu negocio en los primeros 30 días, te devolvemos el 100% de tu inversión. Sin preguntas, sin formularios complicados. Solo escríbenos.</p>
+  </div>
+</section>
+
+<!-- Comparison Table -->
+<section id="compare">
+  <div class="compare-head reveal">
+    <span class="section-label">Comparativa</span>
+    <h2>¿Qué incluye cada plan?</h2>
+    <p>Detalle completo de funciones por plan</p>
+  </div>
+  <div class="compare-table reveal">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:40%">Característica</th>
+          <th>Starter</th>
+          <th class="featured-col">Pro ⭐</th>
+          <th>Enterprise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="feature-name">Herramientas incluidas</span></td>
+          <td>5 a elegir</td>
+          <td class="featured-col"><strong>18 completas</strong></td>
+          <td>18 + custom</td>
+        </tr>
+        <tr>
+          <td><span class="feature-name">Herramientas con IA</span></td>
+          <td><span class="check-no">—</span></td>
+          <td class="featured-col"><span class="check-yes">✓</span> 6 herramientas</td>
+          <td><span class="check-yes">✓</span> Ilimitadas</td>
+        </tr>
+        <tr>
+          <td><span class="feature-name">Personalización de marca</span></td>
+          <td><span class="check-no">—</span></td>
+          <td class="featured-col"><span class="check-yes">✓</span></td>
+          <td><span class="check-yes">✓</span> Completa</td>
+        </tr>
+        <tr>
+          <td><span class="feature-name">Actualizaciones</span></td>
+          <td>12 meses</td>
+          <td class="featured-col">24 meses</td>
+          <td>Ilimitadas</td>
+        </tr>
+        <tr>
+          <td><span class="feature-name">Soporte</span></td>
+          <td>Email 48h</td>
+          <td class="featured-col">Prioritario 24h</td>
+          <td>24/7 dedicado</td>
+        </tr>
+        <tr>
+          <td><span class="feature-name">Sesión de onboarding</span></td>
+          <td><span class="check-no">—</span></td>
+          <td class="featured-col"><span class="check-yes">✓</span> 60 min 1:1</td>
+          <td><span class="check-yes">✓</span> Múltiples</td>
+        </tr>
+        <tr>
+          <td><span class="feature-name">API key Anthropic dedicada</span></td>
+          <td><span class="check-no">—</span></td>
+          <td class="featured-col"><span class="check-no">—</span></td>
+          <td><span class="check-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td><span class="feature-name">Funciones custom</span></td>
+          <td><span class="check-no">—</span></td>
+          <td class="featured-col"><span class="check-no">—</span></td>
+          <td><span class="check-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td><span class="feature-name">Integración con sistemas</span></td>
+          <td><span class="check-no">—</span></td>
+          <td class="featured-col"><span class="check-no">—</span></td>
+          <td><span class="check-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td><span class="feature-name">Garantía 30 días</span></td>
+          <td><span class="check-yes">✓</span></td>
+          <td class="featured-col"><span class="check-yes">✓</span></td>
+          <td><span class="check-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td><span class="feature-name">Precio</span></td>
+          <td><strong>$0 COP</strong></td>
+          <td class="featured-col"><strong>$0 COP</strong></td>
+          <td><strong>Desde $0 COP</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Add-ons -->
+<section id="addons">
+  <div class="addons-head reveal">
+    <span class="section-label">Servicios adicionales</span>
+    <h2>Personaliza tu experiencia</h2>
+    <p>Complementos disponibles para todos los planes</p>
+  </div>
+  <div class="addons-grid">
+    <div class="addon-card reveal">
+      <div class="addon-icon">🎨</div>
+      <div class="addon-name">Branding personalizado</div>
+      <div class="addon-desc">Logo, colores y nombre de tu empresa en todas las herramientas. Incluye favicon y metadatos.</div>
+      <div class="addon-price">+$0 COP</div>
+    </div>
+    <div class="addon-card reveal">
+      <div class="addon-icon">🎓</div>
+      <div class="addon-name">Capacitación en equipo</div>
+      <div class="addon-desc">Sesión de capacitación de 2 horas por videollamada para hasta 10 personas de tu equipo.</div>
+      <div class="addon-price">+$0 COP</div>
+    </div>
+    <div class="addon-card reveal">
+      <div class="addon-icon">⚙️</div>
+      <div class="addon-name">Integración custom</div>
+      <div class="addon-desc">Conectamos una herramienta con tu sistema actual (ERP, ecommerce, CRM). Cotización a medida.</div>
+      <div class="addon-price">Desde $0 COP</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-inner">
+    <div class="faq-head">
+      <span class="section-label">Preguntas frecuentes</span>
+      <h2>Sobre precios y compra</h2>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">¿Por qué es pago único y no suscripción? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Creemos que las pymes no deberían pagar mensualmente por herramientas que ya funcionan. Con el pago único recibes el software, actualizaciones por el período del plan y soporte. Sin sorpresas cada mes.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">¿Puedo cambiar de plan después? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Sí, puedes hacer upgrade pagando la diferencia entre planes en cualquier momento. Si empezaste con Starter y quieres pasar a Pro, solo pagas $0 COP adicionales.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">¿Aceptan pagos en pesos colombianos o mexicanos? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Sí. Aceptamos pagos en COP, MXN y USD. También puedes pagar con transferencia bancaria, Nequi, PSE o tarjeta de crédito. Contáctanos para coordinar el método más cómodo para ti.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">¿La garantía aplica si ya usé las herramientas? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Sí. La garantía de 30 días aplica sin importar cuánto hayas usado las herramientas. Si no están cumpliendo tus expectativas, te devolvemos el dinero completo.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">¿Hay descuentos para ONGs o instituciones educativas? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Sí, ofrecemos 30% de descuento para ONGs verificadas y 20% para instituciones educativas. Escríbenos con tu certificación y te enviamos el código de descuento.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">¿Emiten factura electrónica? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Sí, emitimos factura electrónica con NIT colombiano para todas las compras. Si necesitas factura de otro país, lo coordinamos según tu requerimiento.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form -->
+<section id="contact">
+  <div class="contact-inner reveal">
+    <div class="contact-head">
+      <h2>¿Listo para empezar?</h2>
+      <p>Cuéntanos sobre tu negocio y te respondemos en menos de 24 horas.</p>
+    </div>
+    <form id="contact-form" action="https://formspree.io/f/TU_ID_FORMSPREE" method="POST" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-name">Nombre completo *</label>
+          <input type="text" id="f-name" name="nombre" placeholder="Tu nombre" required autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="f-email">Correo electrónico *</label>
+          <input type="email" id="f-email" name="email" placeholder="tu@empresa.com" required autocomplete="email">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-empresa">Empresa</label>
+          <input type="text" id="f-empresa" name="empresa" placeholder="Nombre de tu empresa" autocomplete="organization">
+        </div>
+        <div class="form-group">
+          <label for="f-plan">Plan de interés</label>
+          <select id="f-plan" name="plan">
+            <option value="">Selecciona un plan</option>
+            <option value="starter">Starter ($199)</option>
+            <option value="pro">Pro ($499) — Recomendado</option>
+            <option value="enterprise">Enterprise (a medida)</option>
+            <option value="addon">Solo un add-on</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="f-msg">¿Qué herramientas te interesan o qué problema quieres resolver?</label>
+        <textarea id="f-msg" name="mensaje" placeholder="Cuéntanos sobre tu negocio y tus necesidades..."></textarea>
+      </div>
+      <input type="hidden" name="_subject" value="Nueva consulta ZAKARX">
+      <input type="text" name="_gotcha" style="display:none">
+      <button type="submit" class="form-submit">Enviar mensaje →</button>
+      <p class="form-note">🔒 Tu información está segura. No compartimos tus datos con terceros.</p>
+      <div id="form-msg" role="alert" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<!-- Trust bar -->
+<section id="trust">
+  <div class="trust-inner">
+    <div class="trust-item">🛡️ <strong>Ley 1581</strong> Colombia</div>
+    <div class="trust-item">💳 <strong>Pago seguro</strong> SSL</div>
+    <div class="trust-item">🔄 <strong>30 días</strong> garantía</div>
+    <div class="trust-item">📦 <strong>Sin suscripción</strong> mensual</div>
+    <div class="trust-item">⚡ <strong>Entrega</strong> inmediata</div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 ZAKARX · NIT: [Tu NIT] · <a href="#">Privacidad</a> · <a href="#">Términos</a> · <a href="index.html">Inicio</a></p>
+</footer>
+
+<a href="https://wa.me/573001234567" id="wa-btn" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+<script>
+(function(){
+'use strict';
+
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+
+if(location.hostname!=='localhost'&&location.hostname!=='127.0.0.1'){
+  console.log=console.warn=console.error=function(){};
+}
+
+// Reveal
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}
+  });
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)});
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var item = this.closest('.faq-item');
+    var answer = item.querySelector('.faq-a');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i){
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.height='0';
+      i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      answer.style.height = answer.querySelector('.faq-a-inner').offsetHeight+'px';
+      this.setAttribute('aria-expanded','true');
+    }
+  });
+});
+
+// Billing toggle (cosmetic)
+document.getElementById('bt-unique').addEventListener('click',function(){
+  this.classList.add('active');
+  document.getElementById('bt-custom').classList.remove('active');
+});
+document.getElementById('bt-custom').addEventListener('click',function(){
+  this.classList.add('active');
+  document.getElementById('bt-unique').classList.remove('active');
+  document.querySelector('#plan-enterprise').scrollIntoView({behavior:'smooth',block:'center'});
+});
+
+// URL plan pre-select
+var urlParams = new URLSearchParams(window.location.search);
+var planParam = urlParams.get('plan');
+if(planParam){
+  var sel = document.getElementById('f-plan');
+  if(sel) sel.value = planParam;
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+}
+
+// Contact form
+var form = document.getElementById('contact-form');
+var formMsg = document.getElementById('form-msg');
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var submitBtn = form.querySelector('.form-submit');
+  // Basic validation
+  var name = form.querySelector('#f-name').value.trim();
+  var email = form.querySelector('#f-email').value.trim();
+  if(!name || !email){
+    showMsg('Por favor completa nombre y correo electrónico.','error');
+    return;
+  }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    showMsg('Por favor ingresa un correo electrónico válido.','error');
+    return;
+  }
+  submitBtn.textContent = 'Enviando...';
+  submitBtn.disabled = true;
+  var data = new FormData(form);
+  fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
+    .then(function(r){
+      if(r.ok){
+        showMsg('✓ ¡Mensaje enviado! Te respondemos en menos de 24 horas.','success');
+        form.reset();
+      } else {
+        showMsg('Hubo un error al enviar. Por favor escríbenos directamente a hola@zakarx.com','error');
+      }
+    })
+    .catch(function(){
+      showMsg('Sin conexión. Por favor escríbenos dir

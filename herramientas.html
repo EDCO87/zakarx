@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+<title>Herramientas — ZAKARX Suite Digital</title>
+<meta name="description" content="Explora las 18 herramientas digitales de ZAKARX: CRM, facturación, IA, métricas, seguridad y más para tu pyme.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:#0a0b14;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+
+:root{
+  --bg:#fff;--bg2:#f7f8fc;--bg3:#f0fdfb;
+  --text:#0a0b14;--text2:#4a4d60;--text3:#8b8fa8;
+  --accent:#00dcc8;--accent-dark:#00b8a6;--accent-light:#e0faf8;
+  --gold:#f5c842;--gold-light:#fef9e7;
+  --border:#e8eaf2;
+  --shadow:0 4px 16px rgba(0,0,0,.07);
+  --shadow-lg:0 20px 60px rgba(0,0,0,.10);
+  --radius:12px;--radius-lg:18px;
+  --max:1200px;--transition:200ms cubic-bezier(.4,0,.2,1);
+}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+
+/* ── Navbar ── */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--border);
+}
+.nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:66px}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text);display:flex;align-items:center;gap:8px}
+.nav-logo-mark{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:#fff}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{padding:8px 12px;border-radius:8px;font-size:.88rem;font-weight:500;color:var(--text2);transition:all var(--transition)}
+.nav-links a:hover{color:var(--text);background:var(--bg2)}
+.nav-links a.active{color:var(--accent-dark)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;border:2px solid transparent;transition:all var(--transition)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 4px 16px rgba(0,220,200,.3)}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--text);border-color:var(--border)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent-dark);background:var(--accent-light)}
+
+/* ── Page header ── */
+#page-header{
+  padding:140px 24px 60px;text-align:center;
+  background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(0,220,200,.06),transparent 60%),#fff;
+  border-bottom:1px solid var(--border);
+}
+.container{max-width:var(--max);margin:0 auto}
+.section-label{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);display:block;margin-bottom:14px}
+#page-header h1{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:16px}
+#page-header p{font-size:1.05rem;color:var(--text2);max-width:540px;margin:0 auto 36px}
+
+/* ── Search ── */
+.search-wrap{position:relative;max-width:480px;margin:0 auto}
+.search-wrap input{
+  width:100%;padding:14px 48px 14px 20px;
+  border:1.5px solid var(--border);border-radius:100px;
+  font-size:.95rem;font-family:'DM Sans',sans-serif;
+  color:var(--text);background:#fff;
+  transition:border-color var(--transition),box-shadow var(--transition);
+  outline:none;
+}
+.search-wrap input::placeholder{color:var(--text3)}
+.search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,220,200,.12)}
+.search-wrap svg{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
+
+/* ── Stats chips ── */
+.stats-chips{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.chip{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:100px;
+  background:var(--bg2);border:1px solid var(--border);
+  font-size:.82rem;font-weight:600;font-family:'Syne',sans-serif;color:var(--text2);
+}
+.chip span{color:var(--accent-dark)}
+
+/* ── Main layout ── */
+#main{padding:60px 24px 100px}
+.main-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start}
+
+/* ── Sidebar filters ── */
+.sidebar{position:sticky;top:86px}
+.sidebar-section{margin-bottom:32px}
+.sidebar-title{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.sidebar-links{display:flex;flex-direction:column;gap:2px}
+.sidebar-btn{
+  width:100%;text-align:left;padding:9px 14px;border-radius:10px;
+  background:none;border:none;font-family:'DM Sans',sans-serif;
+  font-size:.9rem;font-weight:500;color:var(--text2);
+  transition:all var(--transition);display:flex;align-items:center;justify-content:space-between;
+}
+.sidebar-btn:hover{background:var(--bg2);color:var(--text)}
+.sidebar-btn.active{background:var(--accent-light);color:var(--accent-dark);font-weight:600}
+.sidebar-count{font-size:.75rem;background:var(--bg2);padding:2px 7px;border-radius:20px;font-weight:700}
+.sidebar-btn.active .sidebar-count{background:rgba(0,220,200,.2);color:var(--accent-dark)}
+
+.price-range{padding:0 4px}
+.price-range input[type=range]{
+  width:100%;accent-color:var(--accent);margin:8px 0;
+}
+.price-labels{display:flex;justify-content:space-between;font-size:.8rem;color:var(--text3);font-weight:600}
+
+/* ── Content area ── */
+.content-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+.content-count{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--text)}
+.sort-select{
+  padding:8px 14px;border-radius:8px;border:1.5px solid var(--border);
+  font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--text);
+  background:#fff;outline:none;transition:border-color var(--transition);
+}
+.sort-select:focus{border-color:var(--accent)}
+
+/* ── Category label ── */
+.cat-header{
+  display:flex;align-items:center;gap:12px;margin:36px 0 20px;
+}
+.cat-header:first-child{margin-top:0}
+.cat-icon{font-size:1.3rem}
+.cat-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--text)}
+.cat-line{flex:1;height:1px;background:var(--border)}
+
+/* ── Tool cards grid ── */
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+.tool-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:22px;display:flex;flex-direction:column;gap:12px;
+  transition:all .22s cubic-bezier(.4,0,.2,1);
+  position:relative;overflow:hidden;
+}
+.tool-card::after{
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(135deg,rgba(0,220,200,.04),transparent);
+  opacity:0;transition:opacity var(--transition);
+}
+.tool-card:hover{border-color:rgba(0,220,200,.4);box-shadow:0 8px 28px rgba(0,220,200,.1);transform:translateY(-2px)}
+.tool-card:hover::after{opacity:1}
+
+.tc-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.tc-emoji{
+  width:46px;height:46px;border-radius:12px;background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;
+  position:relative;z-index:1;
+}
+.tc-price-wrap{text-align:right;position:relative;z-index:1}
+.tc-price{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--accent-dark)}
+.tc-price-label{font-size:.72rem;color:var(--text3);margin-top:1px}
+
+.tc-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--text);position:relative;z-index:1}
+.tc-desc{font-size:.85rem;color:var(--text3);line-height:1.5;position:relative;z-index:1;flex:1}
+
+.tc-footer{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
+.tc-tag{
+  font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 8px;border-radius:5px;
+}
+.tc-tag.ventas{background:rgba(0,220,200,.1);color:var(--accent-dark)}
+.tc-tag.ai{background:rgba(139,92,246,.08);color:#7c3aed}
+.tc-tag.ops{background:rgba(245,200,66,.1);color:#a07d00}
+.tc-tag.seg{background:rgba(224,92,92,.08);color:#c0392b}
+.tc-cta{
+  font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;
+  color:var(--accent-dark);display:flex;align-items:center;gap:3px;
+  opacity:0;transition:opacity var(--transition);
+}
+.tool-card:hover .tc-cta{opacity:1}
+
+/* Featured card */
+.tool-card.featured{border-color:var(--accent);background:var(--bg3)}
+.featured-badge{
+  position:absolute;top:12px;right:12px;
+  background:var(--gold);color:#5a4000;font-family:'Syne',sans-serif;
+  font-weight:700;font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 8px;border-radius:5px;z-index:2;
+}
+
+/* ── No results ── */
+.no-results{
+  grid-column:1/-1;text-align:center;padding:60px 20px;
+  color:var(--text3);
+}
+.no-results p{font-size:1rem;margin-top:8px}
+
+/* ── CTA bottom ── */
+#bottom-cta{
+  background:linear-gradient(135deg,#0a0b14,#12141f);
+  color:#fff;text-align:center;padding:80px 24px;
+}
+#bottom-cta h2{color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;margin-bottom:12px}
+#bottom-cta p{color:rgba(255,255,255,.6);margin-bottom:32px}
+.cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn-white{background:#fff;color:#0a0b14;border-color:#fff}
+.btn-white:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-outline-white{border:2px solid rgba(255,255,255,.3);color:#fff}
+.btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+
+/* ── Footer ── */
+footer{background:#fff;border-top:1px solid var(--border);padding:28px 24px;text-align:center}
+footer p{font-size:.85rem;color:var(--text3)}
+footer a{color:var(--accent-dark);font-weight:500}
+
+/* ── WA ── */
+#wa-btn{
+  position:fixed;bottom:24px;right:24px;z-index:900;
+  width:54px;height:54px;border-radius:50%;background:#25d366;
+  box-shadow:0 4px 16px rgba(37,211,102,.4);
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+  transition:all var(--transition);border:none;color:#fff;
+  animation:pulse 3s ease-in-out infinite;
+}
+#wa-btn:hover{background:#1db954;transform:scale(1.08);animation:none}
+@keyframes pulse{0%,100%{box-shadow:0 4px 16px rgba(37,211,102,.4)}50%{box-shadow:0 4px 28px rgba(37,211,102,.65)}}
+
+/* ── Reveal ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── Responsive ── */
+@media(max-width:1024px){
+  .main-inner{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .sidebar-links{flex-direction:row;flex-wrap:wrap}
+  .sidebar-btn{width:auto}
+}
+@media(max-width:768px){
+  .tools-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+@media(max-width:480px){
+  .tools-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">Z</div>
+      ZAKARX
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="herramientas.html" class="active">Herramientas</a>
+      <a href="precios.html">Precios</a>
+      <a href="#">Guía</a>
+    </div>
+    <a href="precios.html" class="btn btn-primary">Ver planes →</a>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<header id="page-header">
+  <div class="container">
+    <span class="section-label">Suite ZAKARX</span>
+    <h1>18 herramientas para<br>transformar tu pyme</h1>
+    <p>Sin instalación, sin servidores. Cada herramienta funciona desde tu navegador el mismo día.</p>
+    <div class="search-wrap">
+      <input type="search" id="search-input" placeholder="Buscar herramienta..." aria-label="Buscar herramienta">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </div>
+    <div class="stats-chips">
+      <div class="chip">📦 <span>18</span> herramientas</div>
+      <div class="chip">⚡ Sin instalación</div>
+      <div class="chip">🔒 100% privado</div>
+      <div class="chip">🤖 6 con IA</div>
+    </div>
+  </div>
+</header>
+
+<!-- Main -->
+<section id="main">
+  <div class="main-inner">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Filtros">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Categoría</div>
+        <div class="sidebar-links">
+          <button class="sidebar-btn active" data-filter="all">Todas <span class="sidebar-count">18</span></button>
+          <button class="sidebar-btn" data-filter="ventas">Ventas <span class="sidebar-count">4</span></button>
+          <button class="sidebar-btn" data-filter="ai">IA <span class="sidebar-count">6</span></button>
+          <button class="sidebar-btn" data-filter="ops">Operaciones <span class="sidebar-count">6</span></button>
+          <button class="sidebar-btn" data-filter="seg">Seguridad <span class="sidebar-count">2</span></button>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Precio máximo</div>
+        <div class="price-range">
+          <input type="range" id="price-filter" min="0" max="0" value="849" step="10" aria-label="Precio máximo">
+          <div class="price-labels">
+            <span>$0</span>
+            <span id="price-val">$730</span>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Acceso rápido</div>
+        <div class="sidebar-links">
+          <button class="sidebar-btn" data-filter="featured">⭐ Más populares</button>
+          <button class="sidebar-btn" data-filter="low">💰 Menor precio</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <div class="content">
+      <div class="content-bar">
+        <div class="content-count" id="result-count">Mostrando <strong>18</strong> herramientas</div>
+        <select class="sort-select" id="sort-select" aria-label="Ordenar por">
+          <option value="default">Orden predeterminado</option>
+          <option value="price-asc">Menor precio</option>
+          <option value="price-desc">Mayor precio</option>
+          <option value="name">Nombre A-Z</option>
+        </select>
+      </div>
+      <div id="tools-container"><!-- JS rendered --></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Bottom CTA -->
+<section id="bottom-cta">
+  <h2>¿No sabes cuál elegir?</h2>
+  <p>Cuéntanos tu negocio y te recomendamos las herramientas ideales.</p>
+  <div class="cta-btns">
+    <a href="precios.html" class="btn btn-white btn-lg">Ver planes completos</a>
+    <a href="https://wa.me/573001234567" target="_blank" rel="noopener" class="btn btn-outline-white btn-lg">💬 Hablar con un asesor</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 ZAKARX · <a href="#">Privacidad</a> · <a href="#">Términos</a> · <a href="index.html">Inicio</a></p>
+</footer>
+
+<a href="https://wa.me/573001234567" id="wa-btn" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+<script>
+(function(){
+'use strict';
+
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+
+if(location.hostname!=='localhost'&&location.hostname!=='127.0.0.1'){
+  console.log=console.warn=console.error=function(){};
+}
+
+// ── Tool data ──────────────────────────────────────────
+var TOOLS = [
+  {id:'crm',emoji:'🤝',name:'CRM Liviano',desc:'Gestiona clientes y pipeline de ventas con kanban, seguimientos y recordatorios automáticos.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ventas',file:'crm.html',featured:true},
+  {id:'cotizaciones',emoji:'📋',name:'Cotizaciones Automáticas',desc:'Genera cotizaciones profesionales en segundos con cálculo de totales, IVA y descuentos.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ventas',file:'cotizaciones.html'},
+  {id:'facturador',emoji:'🧾',name:'Facturador Simple',desc:'Facturas legales con numeración automática, impuestos configurables y exportación PDF.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ventas',file:'facturador.html',featured:true},
+  {id:'reportes',emoji:'📈',name:'Reportes de Ventas',desc:'Visualiza tus ventas con gráficos interactivos, tendencias y exportación a Excel.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ventas',file:'reportes-ventas.html'},
+  {id:'metricas',emoji:'📊',name:'Panel de Métricas',desc:'Dashboard ejecutivo con KPIs clave, comparativas de períodos y alertas personalizables.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ops',file:'metricas.html',featured:true},
+  {id:'contratos',emoji:'📄',name:'Generador de Contratos',desc:'Contratos de servicios, NDA y prestación de servicios con plantillas legales colombianas.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ops',file:'contratos.html'},
+  {id:'chatbot',emoji:'🤖',name:'Chatbot IA',desc:'Asistente virtual con Claude AI para atender clientes 24/7, responder preguntas y calificar leads.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ai',file:'chatbot-ia.html',featured:true},
+  {id:'contenido',emoji:'✍️',name:'Generador de Contenido IA',desc:'Posts para redes sociales, blogs y emails adaptados a tu marca, tono y audiencia.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ai',file:'contenido-ia.html'},
+  {id:'propuestas',emoji:'💼',name:'Propuestas Comerciales IA',desc:'Crea propuestas de venta persuasivas y personalizadas en minutos con inteligencia artificial.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ai',file:'propuestas-ia.html'},
+  {id:'resenas',emoji:'⭐',name:'Analizador de Reseñas IA',desc:'Analiza el sentimiento de reseñas de clientes y genera respuestas profesionales automáticamente.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ai',file:'resenas-ia.html'},
+  {id:'correos',emoji:'📧',name:'Correos de Ventas IA',desc:'Secuencias de emails personalizados para cada prospecto que aumentan la tasa de conversión.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ai',file:'correos-ventas.html'},
+  {id:'resumidor',emoji:'🎙️',name:'Resumidor de Reuniones IA',desc:'Pega la transcripción de tu reunión y obtén un resumen ejecutivo con próximos pasos.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ai',file:'resumidor.html'},
+  {id:'tareas',emoji:'🗂️',name:'Kanban de Tareas',desc:'Tablero Kanban drag & drop para gestionar proyectos, equipos y flujos de trabajo visualmente.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ops',file:'tareas.html'},
+  {id:'wiki',emoji:'📚',name:'Base de Conocimiento',desc:'Wiki interna para documentar procesos, manuales, procedimientos y el conocimiento de tu empresa.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ops',file:'base-conocimiento.html'},
+  {id:'encuestas',emoji:'📝',name:'Encuestas y NPS',desc:'Crea encuestas de satisfacción y mide el Net Promoter Score de tus clientes con reportes automáticos.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ops',file:'encuestas.html'},
+  {id:'roi',emoji:'💰',name:'Calculadora ROI',desc:'Demuestra el retorno de inversión de tus proyectos con reportes visuales exportables para clientes.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ops',file:'roi.html'},
+  {id:'auditor',emoji:'🔐',name:'Auditor de Contraseñas',desc:'Evalúa la fortaleza de contraseñas y detecta vulnerabilidades de seguridad en tu empresa.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'seg',file:'auditor-passwords.html'},
+  {id:'seguridad',emoji:'🛡️',name:'Suite Seguridad 3 en 1',desc:'Auditoría completa, gestor de contraseñas y monitor de vulnerabilidades en un solo lugar.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'seg',file:'suite-seguridad.html',featured:true},
+];
+
+var CAT_META = {
+  ventas:{label:'Ventas & CRM',icon:'💹',desc:'Captura, gestiona y cierra más negocios'},
+  ai:{label:'Inteligencia Artificial',icon:'🤖',desc:'Automatiza con el poder de Claude AI'},
+  ops:{label:'Operaciones',icon:'⚙️',desc:'Gestiona y optimiza tu día a día'},
+  seg:{label:'Seguridad',icon:'🛡️',desc:'Protege tu negocio y datos sensibles'},
+};
+
+// State
+var state = {filter:'all', search:'', maxPrice:730, sort:'default'};
+var container = document.getElementById('tools-container');
+
+function filterTools(){
+  return TOOLS.filter(function(t){
+    if(state.filter === 'featured') return t.featured;
+    if(state.filter === 'low') return t.price < 250;
+    if(state.filter !== 'all' && t.cat !== state.filter) return false;
+    if(t.price > state.maxPrice) return false;
+    if(state.search){
+      var q = state.search.toLowerCase();
+      return t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.cat.toLowerCase().includes(q);
+    }
+    return true;
+  });
+}
+
+function sortTools(list){
+  var sorted = list.slice();
+  if(state.sort === 'price-asc') return sorted.sort(function(a,b){return a.price-b.price});
+  if(state.sort === 'price-desc') return sorted.sort(function(a,b){return b.price-a.price});
+  if(state.sort === 'name') return sorted.sort(function(a,b){return a.name.localeCompare(b.name)});
+  return sorted;
+}
+
+function renderCard(t){
+  return '<a href="'+escHtml(t.file)+'" class="tool-card'+(t.featured?' featured':'')+'" data-cat="'+escHtml(t.cat)+'" data-price="'+t.price+'" aria-label="'+escHtml(t.name)+'">'
+    +(t.featured?'<div class="featured-badge">Popular</div>':'')
+    +'<div class="tc-head">'
+      +'<div class="tc-emoji">'+escHtml(t.emoji)+'</div>'
+      +'<div class="tc-price-wrap"><div class="tc-price">'+t.priceCOP+'</div><div class="tc-price-label"><s style="color:#aaa">$'+t.priceOld+'.000</s> pago único</div></div>'
+    +'</div>'
+    +'<div class="tc-name">'+escHtml(t.name)+'</div>'
+    +'<div class="tc-desc">'+escHtml(t.desc)+'</div>'
+    +'<div class="tc-footer">'
+      +'<span class="tc-tag '+escHtml(t.cat)+'">'+escHtml(CAT_META[t.cat]?CAT_META[t.cat].label:t.cat)+'</span>'
+      +'<span class="tc-cta">Abrir →</span>'
+    +'</div>'
+  +'</a>';
+}
+
+function render(){
+  var filtered = sortTools(filterTools());
+  document.getElementById('result-count').innerHTML = 'Mostrando <strong>'+filtered.length+'</strong> herramienta'+(filtered.length!==1?'s':'');
+
+  if(!filtered.length){
+    container.innerHTML = '<div class="no-results"><div style="font-size:3rem">🔍</div><p>No encontramos herramientas con esos filtros.</p></div>';
+    return;
+  }
+
+  // Group by category if not filtered/sorted
+  var html = '';
+  if(state.filter === 'all' && !state.search && state.sort === 'default'){
+    var cats = ['ventas','ai','ops','seg'];
+    cats.forEach(function(cat){
+      var catTools = filtered.filter(function(t){return t.cat===cat});
+      if(!catTools.length) return;
+      var m = CAT_META[cat];
+      html += '<div class="cat-header"><span class="cat-icon">'+m.icon+'</span><span class="cat-title">'+escHtml(m.label)+'</span><div class="cat-line"></div></div>';
+      html += '<div class="tools-grid">';
+      catTools.forEach(function(t){html+=renderCard(t)});
+      html += '</div>';
+    });
+  } else {
+    html = '<div class="tools-grid">';
+    filtered.forEach(function(t){html+=renderCard(t)});
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+
+  // Reveal
+  setTimeout(function(){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}
+      });
+    },{threshold:.05});
+    container.querySelectorAll('.tool-card').forEach(function(el){
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  },50);
+}
+
+// ── Event listeners ────────────────────────────────────
+document.querySelectorAll('.sidebar-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.sidebar-btn').forEach(function(b){b.classList.remove('active')});
+    this.classList.add('active');
+    state.filter = this.getAttribute('data-filter');
+    render();
+  });
+});
+
+var searchInput = document.getElementById('search-input');
+var searchTimeout;
+searchInput.addEventListener('input',function(){
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(function(){
+    state.search = searchInput.value.trim();
+    render();
+  },200);
+});
+
+document.getElementById('price-filter').addEventListener('input',function(){
+  state.maxPrice = parseInt(this.value,10);
+  document.getElementById('price-val').textContent = '$'+state.maxPrice+'K COP';
+  render();
+});
+
+document.getElementById('sort-select').addEventListener('change',function(){
+  state.sort = this.value;
+  render();
+});
+
+// Initial render
+render();
+
+})();
+</script>
+</body>
+</html>

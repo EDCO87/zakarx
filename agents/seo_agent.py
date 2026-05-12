@@ -4,7 +4,7 @@ Actualiza meta tags, description, keywords y OG tags en index.html
 según tendencias de búsqueda actuales para pymes colombianas.
 """
 import os, re, json, feedparser
-import google.generativeai as genai
+from google import genai
 from datetime import datetime
 
 TREND_FEEDS = [
@@ -25,8 +25,7 @@ def fetch_trending_topics():
     return topics[:15]
 
 def generate_seo_with_claude(topics, current_html):
-    genai.configure(api_key=os.environ['GEMINI_API_KEY'])
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
 
     # Extraer meta tags actuales del HTML
     desc_match = re.search(r'<meta name="description" content="([^"]*)"', current_html)
@@ -67,7 +66,7 @@ Responde ÚNICAMENTE con JSON válido:
   "og_title": "ZAKARX — Suite Digital para Pymes | Pago Único"
 }}"""
 
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(model='gemini-2.0-flash', contents=prompt)
     raw = response.text.strip()
     match = re.search(r'\{.*\}', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)

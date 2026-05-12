@@ -4,7 +4,7 @@ Genera posts listos para publicar en Instagram, LinkedIn y Twitter/X
 basados en las noticias actuales del sitio y tendencias del mercado.
 """
 import os, re, json, feedparser
-import google.generativeai as genai
+from google import genai
 from datetime import datetime
 from bs4 import BeautifulSoup
 
@@ -46,8 +46,7 @@ def fetch_trending():
     return topics[:5]
 
 def generate_posts_with_gemini(news, trends):
-    genai.configure(api_key=os.environ['GEMINI_API_KEY'])
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
 
     news_text = "\n".join([f"- [{n['cat']}] {n['title']}: {n['desc']}" for n in news])
     trends_text = "\n".join([f"- {t}" for t in trends])
@@ -87,7 +86,7 @@ Responde ÚNICAMENTE con JSON válido:
   }}
 }}"""
 
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(model='gemini-2.0-flash', contents=prompt)
     raw = response.text.strip()
     match = re.search(r'\{.*\}', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)

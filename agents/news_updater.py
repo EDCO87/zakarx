@@ -105,14 +105,38 @@ Responde ÚNICAMENTE con JSON válido:
     match = re.search(r'\[.*\]', raw, re.DOTALL)
     return json.loads(match.group(0) if match else raw)
 
+def replace_news_grid(html, new_content):
+    """Reemplaza el contenido completo de div#news-grid contando divs anidados."""
+    marker = 'id="news-grid"'
+    start_idx = html.find(marker)
+    if start_idx == -1:
+        return html
+    open_end = html.find('>', start_idx)
+    depth, pos = 1, open_end + 1
+    while pos < len(html) and depth > 0:
+        next_open  = html.find('<div', pos)
+        next_close = html.find('</div>', pos)
+        if next_close == -1:
+            break
+        if next_open != -1 and next_open < next_close:
+            depth += 1
+            pos = next_open + 4
+        else:
+            depth -= 1
+            if depth == 0:
+                return html[:open_end + 1] + new_content + html[next_close:]
+            pos = next_close + 6
+    return html
+
 def update_html(articles_data):
     with open('index.html', 'r', encoding='utf-8') as f:
         html = f.read()
 
-    cards_html = "\n"
+    cards_html = ""
     for i, a in enumerate(articles_data):
         img = UNSPLASH_IMAGES[i % len(UNSPLASH_IMAGES)]
-        cards_html += f'''        <article class="news-card">
+        cards_html += f'''
+        <article class="news-card">
           <img class="news-card-img" src="{img}" alt="{a['title']}" loading="lazy">
           <div class="news-card-body">
             <span class="news-cat">{a['cat']}</span>
@@ -120,13 +144,9 @@ def update_html(articles_data):
             <p class="news-desc">{a['desc']}</p>
             <span class="news-meta">{a['meta']}</span>
           </div>
-        </article>\n'''
+        </article>'''
 
-    html = re.sub(
-        r'(<div[^>]*id="news-grid"[^>]*>).*?(</div>)',
-        f'\\1{cards_html}      \\2',
-        html, flags=re.DOTALL
-    )
+    html = replace_news_grid(html, cards_html + "\n      ")
 
     now = datetime.now()
     date_str = f"{now.day} de {MONTHS_ES[now.month-1]} de {now.year}"

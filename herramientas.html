@@ -298,10 +298,10 @@ footer a{color:var(--accent-dark);font-weight:500}
       <div class="sidebar-section">
         <div class="sidebar-title">Precio máximo</div>
         <div class="price-range">
-          <input type="range" id="price-filter" min="0" max="0" value="849" step="10" aria-label="Precio máximo">
+          <input type="range" id="price-filter" min="0" max="200" value="200" step="10" aria-label="Precio máximo">
           <div class="price-labels">
             <span>$0</span>
-            <span id="price-val">$730</span>
+            <span id="price-val">$200.000</span>
           </div>
         </div>
       </div>
@@ -359,24 +359,24 @@ if(location.hostname!=='localhost'&&location.hostname!=='127.0.0.1'){
 
 // ── Tool data ──────────────────────────────────────────
 var TOOLS = [
-  {id:'crm',emoji:'🤝',name:'CRM Liviano',desc:'Gestiona clientes y pipeline de ventas con kanban, seguimientos y recordatorios automáticos.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ventas',file:'crm.html',featured:true},
-  {id:'cotizaciones',emoji:'📋',name:'Cotizaciones Automáticas',desc:'Genera cotizaciones profesionales en segundos con cálculo de totales, IVA y descuentos.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ventas',file:'cotizaciones.html'},
-  {id:'facturador',emoji:'🧾',name:'Facturador Simple',desc:'Facturas legales con numeración automática, impuestos configurables y exportación PDF.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ventas',file:'facturador.html',featured:true},
-  {id:'reportes',emoji:'📈',name:'Reportes de Ventas',desc:'Visualiza tus ventas con gráficos interactivos, tendencias y exportación a Excel.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ventas',file:'reportes-ventas.html'},
-  {id:'metricas',emoji:'📊',name:'Panel de Métricas',desc:'Dashboard ejecutivo con KPIs clave, comparativas de períodos y alertas personalizables.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ops',file:'metricas.html',featured:true},
-  {id:'contratos',emoji:'📄',name:'Generador de Contratos',desc:'Contratos de servicios, NDA y prestación de servicios con plantillas legales colombianas.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ops',file:'contratos.html'},
-  {id:'chatbot',emoji:'🤖',name:'Chatbot IA',desc:'Asistente virtual con Claude AI para atender clientes 24/7, responder preguntas y calificar leads.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ai',file:'chatbot-ia.html',featured:true},
-  {id:'contenido',emoji:'✍️',name:'Generador de Contenido IA',desc:'Posts para redes sociales, blogs y emails adaptados a tu marca, tono y audiencia.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ai',file:'contenido-ia.html'},
-  {id:'propuestas',emoji:'💼',name:'Propuestas Comerciales IA',desc:'Crea propuestas de venta persuasivas y personalizadas en minutos con inteligencia artificial.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ai',file:'propuestas-ia.html'},
-  {id:'resenas',emoji:'⭐',name:'Analizador de Reseñas IA',desc:'Analiza el sentimiento de reseñas de clientes y genera respuestas profesionales automáticamente.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ai',file:'resenas-ia.html'},
-  {id:'correos',emoji:'📧',name:'Correos de Ventas IA',desc:'Secuencias de emails personalizados para cada prospecto que aumentan la tasa de conversión.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ai',file:'correos-ventas.html'},
-  {id:'resumidor',emoji:'🎙️',name:'Resumidor de Reuniones IA',desc:'Pega la transcripción de tu reunión y obtén un resumen ejecutivo con próximos pasos.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ai',file:'resumidor.html'},
-  {id:'tareas',emoji:'🗂️',name:'Kanban de Tareas',desc:'Tablero Kanban drag & drop para gestionar proyectos, equipos y flujos de trabajo visualmente.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ops',file:'tareas.html'},
-  {id:'wiki',emoji:'📚',name:'Base de Conocimiento',desc:'Wiki interna para documentar procesos, manuales, procedimientos y el conocimiento de tu empresa.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ops',file:'base-conocimiento.html'},
-  {id:'encuestas',emoji:'📝',name:'Encuestas y NPS',desc:'Crea encuestas de satisfacción y mide el Net Promoter Score de tus clientes con reportes automáticos.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ops',file:'encuestas.html'},
-  {id:'roi',emoji:'💰',name:'Calculadora ROI',desc:'Demuestra el retorno de inversión de tus proyectos con reportes visuales exportables para clientes.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'ops',file:'roi.html'},
-  {id:'auditor',emoji:'🔐',name:'Auditor de Contraseñas',desc:'Evalúa la fortaleza de contraseñas y detecta vulnerabilidades de seguridad en tu empresa.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'seg',file:'auditor-passwords.html'},
-  {id:'seguridad',emoji:'🛡️',name:'Suite Seguridad 3 en 1',desc:'Auditoría completa, gestor de contraseñas y monitor de vulnerabilidades en un solo lugar.',price:0,priceOld:0,priceCOP:'$0 COP',cat:'seg',file:'suite-seguridad.html',featured:true},
+  {id:'crm',emoji:'🤝',name:'CRM Liviano',desc:'Gestiona clientes y pipeline de ventas con kanban, seguimientos y recordatorios automáticos.',price:119,priceOld:238,priceCOP:'$119.000 COP',cat:'ventas',file:'crm.html',featured:true},
+  {id:'cotizaciones',emoji:'📋',name:'Cotizaciones Automáticas',desc:'Genera cotizaciones profesionales en segundos con cálculo de totales, IVA y descuentos.',price:99,priceOld:198,priceCOP:'$99.000 COP',cat:'ventas',file:'cotizaciones.html'},
+  {id:'facturador',emoji:'🧾',name:'Facturador Simple',desc:'Facturas legales con numeración automática, impuestos configurables y exportación PDF.',price:89,priceOld:178,priceCOP:'$89.000 COP',cat:'ventas',file:'facturador.html',featured:true},
+  {id:'reportes',emoji:'📈',name:'Reportes de Ventas',desc:'Visualiza tus ventas con gráficos interactivos, tendencias y exportación a Excel.',price:89,priceOld:178,priceCOP:'$89.000 COP',cat:'ventas',file:'reportes-ventas.html'},
+  {id:'metricas',emoji:'📊',name:'Panel de Métricas',desc:'Dashboard ejecutivo con KPIs clave, comparativas de períodos y alertas personalizables.',price:99,priceOld:198,priceCOP:'$99.000 COP',cat:'ops',file:'metricas.html',featured:true},
+  {id:'contratos',emoji:'📄',name:'Generador de Contratos',desc:'Contratos de servicios, NDA y prestación de servicios con plantillas legales colombianas.',price:119,priceOld:238,priceCOP:'$119.000 COP',cat:'ops',file:'contratos.html'},
+  {id:'chatbot',emoji:'🤖',name:'Chatbot IA',desc:'Asistente virtual con Claude AI para atender clientes 24/7, responder preguntas y calificar leads.',price:149,priceOld:298,priceCOP:'$149.000 COP',cat:'ai',file:'chatbot-ia.html',featured:true},
+  {id:'contenido',emoji:'✍️',name:'Generador de Contenido IA',desc:'Posts para redes sociales, blogs y emails adaptados a tu marca, tono y audiencia.',price:139,priceOld:278,priceCOP:'$139.000 COP',cat:'ai',file:'contenido-ia.html'},
+  {id:'propuestas',emoji:'💼',name:'Propuestas Comerciales IA',desc:'Crea propuestas de venta persuasivas y personalizadas en minutos con inteligencia artificial.',price:149,priceOld:298,priceCOP:'$149.000 COP',cat:'ai',file:'propuestas-ia.html'},
+  {id:'resenas',emoji:'⭐',name:'Analizador de Reseñas IA',desc:'Analiza el sentimiento de reseñas de clientes y genera respuestas profesionales automáticamente.',price:119,priceOld:238,priceCOP:'$119.000 COP',cat:'ai',file:'resenas-ia.html'},
+  {id:'correos',emoji:'📧',name:'Correos de Ventas IA',desc:'Secuencias de emails personalizados para cada prospecto que aumentan la tasa de conversión.',price:119,priceOld:238,priceCOP:'$119.000 COP',cat:'ai',file:'correos-ventas.html'},
+  {id:'resumidor',emoji:'🎙️',name:'Resumidor de Reuniones IA',desc:'Pega la transcripción de tu reunión y obtén un resumen ejecutivo con próximos pasos.',price:99,priceOld:198,priceCOP:'$99.000 COP',cat:'ai',file:'resumidor.html'},
+  {id:'tareas',emoji:'🗂️',name:'Kanban de Tareas',desc:'Tablero Kanban drag & drop para gestionar proyectos, equipos y flujos de trabajo visualmente.',price:69,priceOld:138,priceCOP:'$69.000 COP',cat:'ops',file:'tareas.html'},
+  {id:'wiki',emoji:'📚',name:'Base de Conocimiento',desc:'Wiki interna para documentar procesos, manuales, procedimientos y el conocimiento de tu empresa.',price:79,priceOld:158,priceCOP:'$79.000 COP',cat:'ops',file:'base-conocimiento.html'},
+  {id:'encuestas',emoji:'📝',name:'Encuestas y NPS',desc:'Crea encuestas de satisfacción y mide el Net Promoter Score de tus clientes con reportes automáticos.',price:79,priceOld:158,priceCOP:'$79.000 COP',cat:'ops',file:'encuestas.html'},
+  {id:'roi',emoji:'💰',name:'Calculadora ROI',desc:'Demuestra el retorno de inversión de tus proyectos con reportes visuales exportables para clientes.',price:59,priceOld:118,priceCOP:'$59.000 COP',cat:'ops',file:'roi.html'},
+  {id:'auditor',emoji:'🔐',name:'Auditor de Contraseñas',desc:'Evalúa la fortaleza de contraseñas y detecta vulnerabilidades de seguridad en tu empresa.',price:59,priceOld:118,priceCOP:'$59.000 COP',cat:'seg',file:'auditor-passwords.html'},
+  {id:'seguridad',emoji:'🛡️',name:'Suite Seguridad 3 en 1',desc:'Auditoría completa, gestor de contraseñas y monitor de vulnerabilidades en un solo lugar.',price:79,priceOld:158,priceCOP:'$79.000 COP',cat:'seg',file:'suite-seguridad.html',featured:true},
 ];
 
 var CAT_META = {
@@ -417,7 +417,7 @@ function renderCard(t){
     +(t.featured?'<div class="featured-badge">Popular</div>':'')
     +'<div class="tc-head">'
       +'<div class="tc-emoji">'+escHtml(t.emoji)+'</div>'
-      +'<div class="tc-price-wrap"><div class="tc-price">'+t.priceCOP+'</div><div class="tc-price-label"><s style="color:#aaa">$'+t.priceOld+'.000</s> pago único</div></div>'
+      +'<div class="tc-price-wrap"><div class="tc-price">'+t.priceCOP+'</div><div class="tc-price-label"><s style="color:#aaa">$'+t.priceOld+'.000</s> /año</div></div>'
     +'</div>'
     +'<div class="tc-name">'+escHtml(t.name)+'</div>'
     +'<div class="tc-desc">'+escHtml(t.desc)+'</div>'

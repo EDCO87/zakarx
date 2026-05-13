@@ -820,6 +820,141 @@ footer{background:#fff;border-top:1px solid var(--border);padding:60px 24px 32px
   .footer-grid{grid-template-columns:1fr}
   .cta-actions{flex-direction:column;align-items:center}
 }
+
+/* ═══════════════════════════════════════════════════════════
+   MODERNIZACIÓN — efectos visuales avanzados
+   Inspirado en Cult UI · adaptado a HTML/CSS/JS puro
+═══════════════════════════════════════════════════════════ */
+
+/* ── Grain texture en hero (premium feel) ─────────────── */
+#hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:256px 256px;
+}
+
+/* ── Shimmer sweep en botón primario ──────────────────── */
+.btn-primary{overflow:hidden}
+.btn-primary::after{
+  content:'';position:absolute;
+  top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+  transform:skewX(-20deg);
+  animation:btnSweep 3.2s ease-in-out infinite;
+}
+@keyframes btnSweep{
+  0%{left:-100%}
+  42%,100%{left:160%}
+}
+
+/* ── Cursor glow (solo desktop) ───────────────────────── */
+#cursor-glow{
+  position:fixed;pointer-events:none;
+  width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,220,200,.07) 0%,transparent 70%);
+  transform:translate(-50%,-50%);
+  z-index:9998;
+  transition:left .1s ease,top .1s ease;
+  will-change:left,top;
+}
+
+/* ── Tool card 3D tilt ────────────────────────────────── */
+.tool-card{transform-style:preserve-3d;will-change:transform}
+
+/* ── Emoji pop en hover de tool card ─────────────────── */
+.tool-card:hover .tool-emoji{
+  animation:emojiPop .4s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+@keyframes emojiPop{
+  0%{transform:scale(1) rotate(0deg)}
+  60%{transform:scale(1.3) rotate(-8deg)}
+  100%{transform:scale(1.15) rotate(0deg)}
+}
+
+/* ── Plan card featured — glow pulsante ───────────────── */
+@keyframes featuredPulse{
+  0%,100%{box-shadow:0 0 0 2px var(--accent),0 20px 60px rgba(0,220,200,.18)}
+  50%{box-shadow:0 0 0 2px var(--accent),0 20px 60px rgba(0,220,200,.35),0 0 70px rgba(0,220,200,.14)}
+}
+.plan-card.featured{animation:featuredPulse 3s ease-in-out infinite}
+
+/* ── Pain cards — slide al hover ─────────────────────── */
+.pain-card{
+  border-left:3px solid transparent;
+  transition:all .3s cubic-bezier(.4,0,.2,1),border-left-color .3s ease;
+}
+.pain-card:hover{
+  border-left-color:var(--accent);
+  transform:translateX(8px);
+  box-shadow:var(--shadow);
+}
+
+/* ── Step number — glow al hover ─────────────────────── */
+.step-num{transition:all .35s cubic-bezier(.4,0,.2,1)}
+.step:hover .step-num{
+  background:var(--accent);
+  color:#fff;
+  box-shadow:0 0 0 6px rgba(0,220,200,.14),0 0 24px rgba(0,220,200,.25);
+}
+
+/* ── Tool pills — shimmer al hover ───────────────────── */
+.tool-pill{position:relative;overflow:hidden}
+.tool-pill::after{
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(90deg,transparent,rgba(0,220,200,.15),transparent);
+  transform:translateX(-100%);
+  transition:transform .45s ease;
+}
+.tool-pill:hover::after{transform:translateX(100%)}
+
+/* ── Stats — texto glow al hover ─────────────────────── */
+.stat-item{cursor:default;transition:transform .25s ease}
+.stat-item:hover{transform:translateY(-3px)}
+.stat-item:hover .stat-num{
+  color:var(--accent-dark);
+  text-shadow:0 0 30px rgba(0,220,200,.4);
+  transition:color .3s,text-shadow .3s;
+}
+
+/* ── News cards — lift pronunciado ───────────────────── */
+a.news-card{transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .3s ease}
+a.news-card:hover{
+  transform:translateY(-8px) scale(1.01);
+  box-shadow:0 20px 50px rgba(0,0,0,.13),0 0 0 1px rgba(0,220,200,.18);
+}
+
+/* ── Urgency bar — shimmer continuo ──────────────────── */
+#urgency-bar{overflow:hidden;position:relative}
+#urgency-bar::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+  animation:urgencyShimmer 4.5s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes urgencyShimmer{
+  0%{transform:translateX(-100%)}
+  50%,100%{transform:translateX(200%)}
+}
+
+/* ── Nav logo mark — rotación sutil ──────────────────── */
+.nav-logo:hover .nav-logo-mark{
+  transform:rotate(-8deg) scale(1.08);
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.nav-logo-mark{transition:transform .3s ease}
+
+/* ── Section labels — underline animado ──────────────── */
+.section-label{
+  position:relative;display:inline-block;
+}
+.section-label::after{
+  content:'';position:absolute;bottom:-4px;left:0;
+  width:0%;height:2px;border-radius:2px;
+  background:var(--accent);
+  transition:width .6s cubic-bezier(.4,0,.2,1);
+}
+.section-label.visible-label::after{width:100%}
 </style>
 </head>
 <body>
@@ -1614,6 +1749,59 @@ var sectionObserver = new IntersectionObserver(function(entries){
   });
 },{threshold:.4});
 sections.forEach(function(s){sectionObserver.observe(s)});
+
+// ── Cursor glow (solo dispositivos con mouse) ─────────────
+if(window.matchMedia('(pointer:fine)').matches){
+  var cursorGlow = document.createElement('div');
+  cursorGlow.id = 'cursor-glow';
+  document.body.appendChild(cursorGlow);
+  document.addEventListener('mousemove', function(e){
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top  = e.clientY + 'px';
+  });
+}
+
+// ── Tool card 3D tilt (Shift Card de Cult UI) ────────────
+document.querySelectorAll('.tool-card').forEach(function(card){
+  card.addEventListener('mousemove', function(e){
+    var r   = card.getBoundingClientRect();
+    var x   = e.clientX - r.left;
+    var y   = e.clientY - r.top;
+    var cx  = r.width  / 2;
+    var cy  = r.height / 2;
+    var rX  = ((y - cy) / cy) * -7;
+    var rY  = ((x - cx) / cx) *  7;
+    card.style.transition = 'transform .05s ease,box-shadow .25s,border-color .25s';
+    card.style.transform  = 'perspective(700px) rotateX('+rX+'deg) rotateY('+rY+'deg) translateY(-6px)';
+  });
+  card.addEventListener('mouseleave', function(){
+    card.style.transition = 'transform .5s cubic-bezier(.4,0,.2,1),box-shadow .25s,border-color .25s';
+    card.style.transform  = '';
+  });
+});
+
+// ── Botones primarios — efecto magnético suave ───────────
+document.querySelectorAll('.btn-primary').forEach(function(btn){
+  btn.addEventListener('mousemove', function(e){
+    var r = btn.getBoundingClientRect();
+    var x = (e.clientX - r.left - r.width  / 2) * .12;
+    var y = (e.clientY - r.top  - r.height / 2) * .12;
+    btn.style.transform = 'translate('+x+'px,'+y+'px) translateY(-2px)';
+  });
+  btn.addEventListener('mouseleave', function(){
+    btn.style.transform = '';
+  });
+});
+
+// ── Section labels underline animado ─────────────────────
+var labelObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting) e.target.classList.add('visible-label');
+  });
+},{threshold:.8});
+document.querySelectorAll('.section-label').forEach(function(el){
+  labelObserver.observe(el);
+});
 
 })();
 </script>

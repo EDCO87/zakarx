@@ -570,8 +570,8 @@ section{padding:80px 24px}
   font-size:.82rem;color:var(--text3);
 }
 .news-footer strong{color:var(--text2)}
-@media(max-width:768px){.news-grid{grid-template-columns:1fr}}
 @media(max-width:1024px){.news-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.news-grid{grid-template-columns:1fr}}
 
 /* ─── FAQ ───────────────────────────────────────────── */
 #faq{background:#fff}
@@ -1052,7 +1052,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:60px 24px 32px
       <h2 id="tools-title">18 herramientas.<br>Un solo ecosistema.</h2>
       <p>Ventas, finanzas, operaciones e IA — todo lo que tu pyme necesita, en un solo lugar.</p>
     </div>
-    <div class="tools-grid" id="tools-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="tools-grid" id="tools-grid">
 
       <!-- ── 6 HERRAMIENTAS DESTACADAS ── -->
       <a href="herramientas.html?tool=crm" class="tool-card reveal" data-cat="ventas" aria-label="CRM Liviano" style="position:relative">

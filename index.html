@@ -1568,22 +1568,53 @@ filterBtns.forEach(function(btn){
       var cat = card.getAttribute('data-cat');
       if(filter === 'all' || cat === filter){
         card.style.display = 'flex';
-          var overlay   =     }
-
-  // Show after 8 seconds if not seen before
-  if(!localStorage.getItem(POPUP_KEY)){
-        overlay.addEventListener('click', function(e){ if(e.target===overlay) closePopup(); });
-
-  popupForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    var btn = popupForm.querySelector('button');
-    btn.textContent = '¡Listo! Revisá tu email 🎉';
-    btn.style.background = '#059669';
-    btn.disabled = true;
-    setTimeout(closePopup, 2500);
+        setTimeout(function(){card.style.opacity='1';card.style.transform=''},10);
+      } else {
+        card.style.opacity = '0';
+        card.style.transform = 'scale(.95)';
+        setTimeout(function(){card.style.display='none'},200);
+      }
+    });
   });
+});
 
-})();
+// ── FAQ accordion ────────────────────────────────────────
+document.querySelectorAll('.faq-q').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var item = this.closest('.faq-item');
+    var answer = item.querySelector('.faq-a');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i){
+      i.classList.remove('open');
+      var a = i.querySelector('.faq-a');
+      a.style.height = '0';
+      i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      answer.style.height = answer.querySelector('.faq-a-inner').offsetHeight + 'px';
+      this.setAttribute('aria-expanded','true');
+    }
+  });
+});
+
+// ── Active nav link ──────────────────────────────────────
+var sections = document.querySelectorAll('section[id]');
+var navLinks = document.querySelectorAll('.nav-links a');
+var sectionObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var id = e.target.getAttribute('id');
+      navLinks.forEach(function(link){
+        var href = link.getAttribute('href');
+        if(href === '#' + id) link.style.color = 'var(--accent-dark)';
+        else link.style.color = '';
+      });
+    }
+  });
+},{threshold:.4});
+sections.forEach(function(s){sectionObserver.observe(s)});
+
 </script>
 </body>
 </html>

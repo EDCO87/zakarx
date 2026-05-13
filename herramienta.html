@@ -209,7 +209,7 @@ var TOOLS = {
     ],
     demo:'factura'
   },
-  'reportes-ventas': {
+  'reportes': {
     icon:'📈', name:'Reportes de Ventas', cat:'Ventas',
     desc:'Visualiza el rendimiento de tu negocio con gráficas claras. Toma decisiones basadas en datos reales.',
     features:[
@@ -242,7 +242,7 @@ var TOOLS = {
     ],
     demo:'contrato'
   },
-  'chatbot-ia': {
+  'chatbot': {
     icon:'🤖', name:'Chatbot IA', cat:'Inteligencia Artificial',
     desc:'Atiende a tus clientes 24/7 con un asistente inteligente entrenado con la información de tu negocio.',
     features:[
@@ -253,7 +253,7 @@ var TOOLS = {
     ],
     demo:'chatbot'
   },
-  'contenido-ia': {
+  'contenido': {
     icon:'✍️', name:'Generador de Contenido IA', cat:'Inteligencia Artificial',
     desc:'Crea posts para redes sociales, descripciones de productos y textos de marketing en segundos con IA.',
     features:[
@@ -264,7 +264,7 @@ var TOOLS = {
     ],
     demo:'contenido'
   },
-  'propuestas-ia': {
+  'propuestas': {
     icon:'💼', name:'Propuestas Comerciales IA', cat:'Inteligencia Artificial',
     desc:'Genera propuestas de venta personalizadas y profesionales en minutos usando inteligencia artificial.',
     features:[
@@ -275,7 +275,7 @@ var TOOLS = {
     ],
     demo:'propuesta'
   },
-  'resenas-ia': {
+  'resenas': {
     icon:'⭐', name:'Analizador de Reseñas', cat:'Inteligencia Artificial',
     desc:'Analiza las reseñas de tus clientes con IA para identificar patrones, quejas frecuentes y fortalezas.',
     features:[
@@ -286,7 +286,7 @@ var TOOLS = {
     ],
     demo:'resenas'
   },
-  'correos-ventas': {
+  'correos': {
     icon:'📧', name:'Correos de Ventas IA', cat:'Inteligencia Artificial',
     desc:'Redacta emails de prospección y seguimiento que consiguen respuesta, usando IA entrenada en ventas B2B.',
     features:[
@@ -319,7 +319,7 @@ var TOOLS = {
     ],
     demo:'kanban'
   },
-  'base-conocimiento': {
+  'wiki': {
     icon:'📚', name:'Base de Conocimiento', cat:'Operaciones',
     desc:'Centraliza los procesos, manuales y documentos de tu empresa. Tu equipo siempre encuentra la información que necesita.',
     features:[
@@ -352,7 +352,7 @@ var TOOLS = {
     ],
     demo:'roi'
   },
-  'auditor-passwords': {
+  'auditor': {
     icon:'🔐', name:'Auditor de Contraseñas', cat:'Seguridad',
     desc:'Detecta contraseñas débiles o repetidas en tu empresa antes de que un hacker lo haga por ti.',
     features:[
@@ -363,7 +363,7 @@ var TOOLS = {
     ],
     demo:'auditoria'
   },
-  'suite-seguridad': {
+  'seguridad': {
     icon:'🛡️', name:'Suite de Seguridad', cat:'Seguridad',
     desc:'Protege tu negocio digital con herramientas de seguridad pensadas para pymes, sin necesitar un experto en IT.',
     features:[
@@ -373,6 +373,83 @@ var TOOLS = {
       {icon:'🎓',title:'Guía para tu equipo',desc:'Capacita a tu equipo en seguridad básica.'},
     ],
     demo:'seguridad'
+  },
+  'gastos': {
+    icon:'💸', name:'Control de Gastos', cat:'Finanzas',
+    desc:'Registra y categoriza todos los gastos de tu empresa. Controla en qué se va el dinero y optimiza tus costos.',
+    features:[
+      {icon:'📊',title:'Categorización automática',desc:'Clasifica gastos por proveedor, área o tipo de gasto.'},
+      {icon:'📅',title:'Gastos por período',desc:'Compara lo gastado este mes vs el anterior al instante.'},
+      {icon:'⚠️',title:'Alertas de presupuesto',desc:'Recibe aviso cuando te acercas al límite de gasto mensual.'},
+      {icon:'📄',title:'Reportes descargables',desc:'Exporta el detalle de gastos para contabilidad o socios.'},
+    ],
+    demo:'default'
+  },
+  'inventario': {
+    icon:'📦', name:'Control de Inventario', cat:'Operaciones',
+    desc:'Gestiona el stock de tus productos en tiempo real. Evita faltantes y excesos con alertas inteligentes.',
+    features:[
+      {icon:'🔔',title:'Alertas de stock bajo',desc:'Notificación automática cuando un producto está por agotarse.'},
+      {icon:'📥',title:'Entradas y salidas',desc:'Registro de cada movimiento de inventario con fecha y usuario.'},
+      {icon:'🏷️',title:'Gestión por categorías',desc:'Organiza productos por línea, proveedor o ubicación.'},
+      {icon:'📊',title:'Valoración de inventario',desc:'Conoce el valor total de tu stock en cualquier momento.'},
+    ],
+    demo:'default'
+  },
+  'catalogo': {
+    icon:'📲', name:'Catálogo WhatsApp', cat:'Ventas',
+    desc:'Crea un catálogo digital de tus productos para compartir por WhatsApp. Tus clientes compran con un clic.',
+    features:[
+      {icon:'📸',title:'Fotos y descripciones',desc:'Sube fotos de productos con precio, descripción y variantes.'},
+      {icon:'🔗',title:'Link compartible',desc:'Un solo enlace que lleva a todos tus productos.'},
+      {icon:'💬',title:'Pedido por WhatsApp',desc:'El cliente hace su pedido directamente por chat.'},
+      {icon:'🛒',title:'Carrito de compras',desc:'Tus clientes pueden seleccionar varios productos a la vez.'},
+    ],
+    demo:'default'
+  },
+  'rentabilidad': {
+    icon:'🧮', name:'Simulador de Rentabilidad', cat:'Finanzas',
+    desc:'Simula diferentes escenarios financieros para tu negocio. Toma decisiones de precio y costos con datos claros.',
+    features:[
+      {icon:'💰',title:'Punto de equilibrio',desc:'Calcula cuánto necesitas vender para cubrir todos tus costos.'},
+      {icon:'📊',title:'Margen por producto',desc:'Descubre qué tan rentable es cada cosa que vendes.'},
+      {icon:'🎯',title:'Simulador de precios',desc:'¿Qué pasa si subes o bajas el precio? Véelo al instante.'},
+      {icon:'📈',title:'Proyección de utilidad',desc:'Estima la ganancia mensual según diferentes escenarios de venta.'},
+    ],
+    demo:'default'
+  },
+  'agenda': {
+    icon:'📅', name:'Agenda de Citas', cat:'Operaciones',
+    desc:'Gestiona citas y reuniones con tus clientes de forma sencilla. Elimina los cruces de horario y los olvidos.',
+    features:[
+      {icon:'📆',title:'Calendario visual',desc:'Vista semanal y mensual de todas tus citas de un vistazo.'},
+      {icon:'🔔',title:'Recordatorios automáticos',desc:'Aviso automático al cliente y a ti antes de cada cita.'},
+      {icon:'🔗',title:'Reserva online',desc:'Comparte un link para que los clientes reserven solos.'},
+      {icon:'📊',title:'Historial de citas',desc:'Registro completo de todas las reuniones con cada cliente.'},
+    ],
+    demo:'default'
+  },
+  'actas': {
+    icon:'🎙️', name:'Actas de Reuniones IA', cat:'Inteligencia Artificial',
+    desc:'Genera actas profesionales de tus reuniones automáticamente con IA. Nunca más pierdas un acuerdo o compromiso.',
+    features:[
+      {icon:'🎤',title:'Transcripción automática',desc:'Convierte el audio de la reunión en texto en segundos.'},
+      {icon:'📋',title:'Acta estructurada',desc:'Puntos tratados, decisiones y responsables en formato profesional.'},
+      {icon:'✅',title:'Lista de compromisos',desc:'Las tareas y compromisos asignados en la reunión listos para actuar.'},
+      {icon:'📤',title:'Comparte el acta',desc:'Envía el acta a todos los participantes al instante por email.'},
+    ],
+    demo:'resumidor'
+  },
+  'kanban': {
+    icon:'✅', name:'Kanban de Tareas', cat:'Operaciones',
+    desc:'Organiza el trabajo de tu equipo con un tablero visual. Cada tarea en su lugar, cada persona sabe qué hacer.',
+    features:[
+      {icon:'🗂️',title:'Tablero visual',desc:'Columnas de Por hacer, En progreso y Listo.'},
+      {icon:'👥',title:'Asignación de tareas',desc:'Cada tarea con responsable y fecha límite clara.'},
+      {icon:'🔔',title:'Alertas de vencimiento',desc:'Notificaciones antes de que venzan las tareas del equipo.'},
+      {icon:'📊',title:'Carga de trabajo',desc:'Ve qué tan ocupado está cada miembro del equipo.'},
+    ],
+    demo:'kanban'
   }
 };
 

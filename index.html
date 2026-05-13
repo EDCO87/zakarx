@@ -678,55 +678,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:60px 24px 32px
 #wa-btn:hover~#wa-tooltip{opacity:1}
 
 /* ─── POPUP LEAD CAPTURE ─────────────────────────────── */
-#popup-overlay{
-  position:fixed;inset:0;z-index:2000;
-  background:rgba(10,11,20,.6);backdrop-filter:blur(6px);
-  display:flex;align-items:center;justify-content:center;padding:24px;
-  opacity:0;pointer-events:none;transition:opacity .3s ease;
-}
-#popup-overlay.open{opacity:1;pointer-events:all}
-#popup-box{
-  background:#fff;border-radius:var(--radius-xl);max-width:480px;width:100%;
-  padding:40px 36px;position:relative;box-shadow:var(--shadow-lg);
-  transform:translateY(20px) scale(.97);transition:transform .35s cubic-bezier(.4,0,.2,1);
-}
-#popup-overlay.open #popup-box{transform:none}
-#popup-close{
-  position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;
-  border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;
-  justify-content:center;font-size:1rem;color:var(--text3);cursor:pointer;
-  transition:all var(--transition);
-}
-#popup-close:hover{border-color:var(--text);color:var(--text)}
-.popup-gift{font-size:2.8rem;text-align:center;margin-bottom:12px}
-.popup-badge{
-  display:inline-block;background:var(--gold-light);color:#a07d00;
-  font-family:'Syne',sans-serif;font-weight:700;font-size:.72rem;
-  letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;
-  margin-bottom:14px;border:1px solid rgba(245,200,66,.3);
-}
-.popup-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;color:var(--text);margin-bottom:8px;line-height:1.2}
-.popup-desc{font-size:.9rem;color:var(--text2);margin-bottom:24px;line-height:1.6}
-.popup-highlight{color:var(--accent-dark);font-weight:600}
-.popup-form{display:flex;flex-direction:column;gap:10px}
-.popup-form input{
-  padding:13px 16px;border:1.5px solid var(--border);border-radius:10px;
-  font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text);outline:none;
-  transition:border-color var(--transition);
-}
-.popup-form input:focus{border-color:var(--accent)}
-.popup-form button{
-  padding:14px;border-radius:100px;border:none;background:var(--accent);color:#fff;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:.95rem;cursor:pointer;
-  transition:all var(--transition);box-shadow:0 4px 16px rgba(0,220,200,.3);
-}
-.popup-form button:hover{background:var(--accent-dark);transform:translateY(-1px)}
-.popup-skip{
-  text-align:center;margin-top:12px;font-size:.8rem;color:var(--text3);
-  cursor:pointer;transition:color var(--transition);
-}
-.popup-skip:hover{color:var(--text)}
-.popup-trust{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;font-size:.78rem;color:var(--text3)}
 /* Urgency banner */
 #urgency-bar{
   position:fixed;top:0;left:0;right:0;z-index:1001;
@@ -879,10 +830,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:60px 24px 32px
 </div>
 
 <!-- ═══ POPUP LEAD CAPTURE ═══════════════════════════════ -->
-<div id="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-title">
-  <div id="popup-box">
-    <button id="popup-close" aria-label="Cerrar">✕</button>
-    <div class="popup-gift">🎁</div>
     <div style="text-align:center">
       <span class="popup-badge">Regalo exclusivo</span>
     </div>
@@ -1637,78 +1584,11 @@ filterBtns.forEach(function(btn){
       var cat = card.getAttribute('data-cat');
       if(filter === 'all' || cat === filter){
         card.style.display = 'flex';
-        setTimeout(function(){card.style.opacity='1';card.style.transform=''},10);
-      } else {
-        card.style.opacity = '0';
-        card.style.transform = 'scale(.95)';
-        setTimeout(function(){card.style.display='none'},200);
-      }
-    });
-  });
-});
-
-// ── FAQ accordion ────────────────────────────────────────
-document.querySelectorAll('.faq-q').forEach(function(btn){
-  btn.addEventListener('click', function(){
-    var item = this.closest('.faq-item');
-    var answer = item.querySelector('.faq-a');
-    var isOpen = item.classList.contains('open');
-    // Close all
-    document.querySelectorAll('.faq-item').forEach(function(i){
-      i.classList.remove('open');
-      var a = i.querySelector('.faq-a');
-      a.style.height = '0';
-      i.querySelector('.faq-q').setAttribute('aria-expanded','false');
-    });
-    // Open clicked (if was closed)
-    if(!isOpen){
-      item.classList.add('open');
-      answer.style.height = answer.querySelector('.faq-a-inner').offsetHeight + 'px';
-      this.setAttribute('aria-expanded','true');
-    }
-  });
-});
-
-// ── Active nav link ──────────────────────────────────────
-var sections = document.querySelectorAll('section[id]');
-var navLinks = document.querySelectorAll('.nav-links a');
-var sectionObserver = new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){
-      var id = e.target.getAttribute('id');
-      navLinks.forEach(function(link){
-        var href = link.getAttribute('href');
-        if(href === '#' + id) link.style.color = 'var(--accent-dark)';
-        else link.style.color = '';
-      });
-    }
-  });
-},{threshold:.4});
-sections.forEach(function(s){sectionObserver.observe(s)});
-
-// ── Popup lead capture ───────────────────────────────
-  var POPUP_KEY = 'zx_popup_seen';
-  var overlay   = document.getElementById('popup-overlay');
-  var popupForm = document.getElementById('popup-form');
-
-  function openPopup(){
-    overlay.classList.add('open');
-    document.body.style.overflow='hidden';
-  }
-  function closePopup(){
-    overlay.classList.remove('open');
-    document.body.style.overflow='';
-    try{localStorage.setItem(POPUP_KEY,'1')}catch(e){}
-  }
+          var overlay   =     }
 
   // Show after 8 seconds if not seen before
   if(!localStorage.getItem(POPUP_KEY)){
-    setTimeout(openPopup, 8000);
-  }
-
-  document.getElementById('popup-close').addEventListener('click', closePopup);
-  document.getElementById('popup-skip').addEventListener('click', closePopup);
-  overlay.addEventListener('click', function(e){ if(e.target===overlay) closePopup(); });
+        overlay.addEventListener('click', function(e){ if(e.target===overlay) closePopup(); });
 
   popupForm.addEventListener('submit', function(e){
     e.preventDefault();

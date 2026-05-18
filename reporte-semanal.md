@@ -1,5 +1,5 @@
 # Reporte Semanal ZAKARX
-**Generado:** 12 de mayo de 2026 | **Agente:** CEO Bot
+**Generado:** 18 de mayo de 2026 | **Agente:** CEO Bot
 
 ---
 
@@ -9,11 +9,10 @@
 
 ### Problemas detectados
 - ❌ WhatsApp placeholder sin reemplazar
-- ⚠️  Precio en $0 COP (verificar si es intencional)
 
 ### Noticias del mercado esta semana
-- Conoce a las Mejores Empresas Colombianas 2025 - Deloitte
-- CEPAL advierte que la transformación digital debe enmarcarse en una estrategia integral de desarrollo productivo - Comisión Económica para América Latina y el Caribe
+- El talento digital como motor de crecimiento: Ministerio TIC y FEDESOFT presentan estudio nacional de brecha 2025-2030 - MINTIC Colombia
+- De la digitalización a la inteligencia: cómo 2026 redefinirá el modelo operativo de las empresas latinoamericanas - samsung.com
 
 ### Recomendación
 Revisar los problemas pendientes y mantener el sitio actualizado.
@@ -27,9 +26,8 @@ El sistema autónomo está funcionando correctamente.
 |----------|--------|
 | Fecha noticias | 11 de mayo, 2026 |
 | Herramientas en portada | 6 tarjetas + 12 pills |
-| Meta description | 18 herramientas digitales que transforman tu pyme: CRM, facturación, IA, analíticas y más. Sin insta... |
+| Meta description | ZAKARX — 18 herramientas digitales para pymes colombianas. CRM, facturación, IA y más. Pago único, s... |
 | WhatsApp placeholder sin reemplazar | ❌  Pendiente |
-|  Precio en $0 COP (verificar si es intencional) | ⚠️ Pendiente |
 
 
 ---

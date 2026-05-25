@@ -1,5 +1,5 @@
 # Reporte Semanal ZAKARX
-**Generado:** 18 de mayo de 2026 | **Agente:** CEO Bot
+**Generado:** 25 de mayo de 2026 | **Agente:** CEO Bot
 
 ---
 
@@ -11,8 +11,8 @@
 - ❌ WhatsApp placeholder sin reemplazar
 
 ### Noticias del mercado esta semana
-- El talento digital como motor de crecimiento: Ministerio TIC y FEDESOFT presentan estudio nacional de brecha 2025-2030 - MINTIC Colombia
-- De la digitalización a la inteligencia: cómo 2026 redefinirá el modelo operativo de las empresas latinoamericanas - samsung.com
+- La nueva ola de startups en el país impulsa el software como servicio basado en IA: el segmento suma 610 empresas - Portafolio.co
+- CEPAL advierte que la transformación digital debe enmarcarse en una estrategia integral de desarrollo productivo - Comisión Económica para América Latina y el Caribe
 
 ### Recomendación
 Revisar los problemas pendientes y mantener el sitio actualizado.

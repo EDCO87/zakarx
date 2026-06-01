@@ -1,5 +1,5 @@
 # Reporte Semanal ZAKARX
-**Generado:** 25 de mayo de 2026 | **Agente:** CEO Bot
+**Generado:** 1 de junio de 2026 | **Agente:** CEO Bot
 
 ---
 
@@ -12,7 +12,7 @@
 
 ### Noticias del mercado esta semana
 - La nueva ola de startups en el país impulsa el software como servicio basado en IA: el segmento suma 610 empresas - Portafolio.co
-- CEPAL advierte que la transformación digital debe enmarcarse en una estrategia integral de desarrollo productivo - Comisión Económica para América Latina y el Caribe
+- Transformación digital: el nuevo motor de competitividad empresarial en América Latina - Entrepreneur en Espanol
 
 ### Recomendación
 Revisar los problemas pendientes y mantener el sitio actualizado.

@@ -1,5 +1,5 @@
 # Reporte Semanal ZAKARX
-**Generado:** 8 de junio de 2026 | **Agente:** CEO Bot
+**Generado:** 15 de junio de 2026 | **Agente:** CEO Bot
 
 ---
 

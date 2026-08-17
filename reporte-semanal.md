@@ -1,5 +1,5 @@
 # Reporte Semanal ZAKARX
-**Generado:** 10 de agosto de 2026 | **Agente:** CEO Bot
+**Generado:** 17 de agosto de 2026 | **Agente:** CEO Bot
 
 ---
 
@@ -12,7 +12,7 @@
 
 ### Noticias del mercado esta semana
 - La nueva ola de startups en el país impulsa el software como servicio basado en IA: el segmento suma 610 empresas - Portafolio.co
-- De la digitalización a la inteligencia: cómo 2026 redefinirá el modelo operativo de las empresas latinoamericanas - samsung.com
+- DHL invertirá 500 millones de euros en Latinoamérica hasta 2028 para digitalización y automatización logística - Portafolio.co
 
 ### Recomendación
 Revisar los problemas pendientes y mantener el sitio actualizado.

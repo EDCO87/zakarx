@@ -1,4 +1,4 @@
-# Reporte Competidores — 15/08/2026
+# Reporte Competidores — 01/09/2026
 
 ## Precios encontrados
 - **Alegra:** desde $69.900/mes

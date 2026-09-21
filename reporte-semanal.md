@@ -1,5 +1,5 @@
 # Reporte Semanal ZAKARX
-**Generado:** 14 de septiembre de 2026 | **Agente:** CEO Bot
+**Generado:** 21 de septiembre de 2026 | **Agente:** CEO Bot
 
 ---
 
@@ -11,8 +11,8 @@
 - ❌ WhatsApp placeholder sin reemplazar
 
 ### Noticias del mercado esta semana
-- La nueva ola de startups en el país impulsa el software como servicio basado en IA: el segmento suma 610 empresas - Portafolio.co
-- La confianza digital será el verdadero diferencial competitivo de las empresas latinoamericanas: Jumio - Latam Fintech Hub
+- Siesa: 45 años con 10.000 clientes y crece 20,6% en 2025 - El Ecosistema Startup
+- Marketing digital en PYMEs LATAM: claves 2026 con datos - El Ecosistema Startup
 
 ### Recomendación
 Revisar los problemas pendientes y mantener el sitio actualizado.

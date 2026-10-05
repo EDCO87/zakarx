@@ -1,5 +1,5 @@
 # Reporte Semanal ZAKARX
-**Generado:** 28 de septiembre de 2026 | **Agente:** CEO Bot
+**Generado:** 5 de octubre de 2026 | **Agente:** CEO Bot
 
 ---
 
@@ -12,7 +12,7 @@
 
 ### Noticias del mercado esta semana
 - La nueva ola de startups en el país impulsa el software como servicio basado en IA: el segmento suma 610 empresas - Portafolio.co
-- (Video) Empresas chinas buscan socios en Chile para impulsar digitalización de América Latina - 新华网
+- La confianza digital será el verdadero diferencial competitivo de las empresas latinoamericanas: Jumio - Latam Fintech Hub
 
 ### Recomendación
 Revisar los problemas pendientes y mantener el sitio actualizado.

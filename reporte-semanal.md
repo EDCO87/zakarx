@@ -1,5 +1,5 @@
 # Reporte Semanal ZAKARX
-**Generado:** 12 de octubre de 2026 | **Agente:** CEO Bot
+**Generado:** 19 de octubre de 2026 | **Agente:** CEO Bot
 
 ---
 
@@ -12,7 +12,7 @@
 
 ### Noticias del mercado esta semana
 - La nueva ola de startups en el país impulsa el software como servicio basado en IA: el segmento suma 610 empresas - Portafolio.co
-- Siigo, SaaS colombiana, invertirá más de US$100M en Latam - El Ecosistema Startup
+- Las pérdidas económicas, la peor consecuencia de un ciberataque para las pequeñas empresas en Latinoamérica - El Español
 
 ### Recomendación
 Revisar los problemas pendientes y mantener el sitio actualizado.

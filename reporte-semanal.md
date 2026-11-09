@@ -1,5 +1,5 @@
 # Reporte Semanal ZAKARX
-**Generado:** 2 de noviembre de 2026 | **Agente:** CEO Bot
+**Generado:** 9 de noviembre de 2026 | **Agente:** CEO Bot
 
 ---
 
@@ -11,7 +11,7 @@
 - ❌ WhatsApp placeholder sin reemplazar
 
 ### Noticias del mercado esta semana
-- El talento digital como motor de crecimiento: Ministerio TIC y FEDESOFT presentan estudio nacional de brecha 2025-2030 - MINTIC Colombia
+- La nueva ola de startups en el país impulsa el software como servicio basado en IA: el segmento suma 610 empresas - Portafolio.co
 - (Video) Empresas chinas buscan socios en Chile para impulsar digitalización de América Latina - 新华网
 
 ### Recomendación
